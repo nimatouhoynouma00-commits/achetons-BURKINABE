@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achetons Burkinabe - Vitrine du Made in Burkina Faso</title>
+  <meta name="description" content="Achetons Burkinabe : la plateforme qui rassemble les produits fabriques au Burkina Faso. Karite, sesame, miel, coton, artisanat. Directement des producteurs.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+</head>
+<body>
+  <a href="#main" class="skip-link">Aller au contenu</a>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <p class="eyebrow hero-eyebrow">Fabrique au Burkina Faso</p>
+        <h1 id="hero-title">Decouvrez et achetez ce que le Burkina Faso fabrique de mieux</h1>
+        <p class="hero-subtitle">Karite, sesame, miel, coton, artisanat... Une vitrine pour les producteurs et artisans locaux. Des produits authentiques, directement des cooperatives et ateliers du pays.</p>
+        <div class="hero-actions">
+          <a href="produits.html" class="btn btn-primary btn-lg">
+            Decouvrir les produits
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="connexion.html?type=vendeur" class="btn btn-secondary btn-lg">Je suis vendeur</a>
+        </div>
+
+        <form action="produits.html" method="GET" class="hero-search" role="search">
+          <div class="search-bar">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" name="q" class="form-input" placeholder="Karite, miel, bazin, bronze..." aria-label="Rechercher un produit">
+          </div>
+          <button type="submit" class="btn btn-primary">Rechercher</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- CATEGORIES PREVIEW -->
+    <section class="section" aria-labelledby="cats-title">
+      <div class="container">
+        <p class="eyebrow">Nos categories</p>
+        <h2 id="cats-title">Des filieres qui font la richesse du pays</h2>
+        <p class="text-doux" style="max-width:600px; margin-bottom:32px;">Chaque categorie correspond a une filiere economique reelle du Burkina Faso, avec ses cooperatives, ses artisans et ses traditions.</p>
+
+        <div class="categories-grid grid-desktop-5 grid-tablet-3" id="categories-grid">
+          <!-- Genere en JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS -->
+    <section class="section section-sesame" aria-labelledby="featured-title">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Selection du moment</p>
+            <h2 id="featured-title">Produits phares</h2>
+          </div>
+          <a href="produits.html" class="btn btn-ghost btn-sm">Voir tous les produits</a>
+        </div>
+        <div class="products-grid" id="featured-grid">
+          <!-- Genere en JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / CONCEPT -->
+    <section class="section" aria-labelledby="concept-title">
+      <div class="container">
+        <div class="two-column concept-grid">
+          <div class="concept-left">
+            <p class="eyebrow">Le concept</p>
+            <h2 id="concept-title">Pourquoi Achetons Burkinabe ?</h2>
+            <p>La plateforme rassemble en un seul endroit les produits fabriques au Burkina Faso. Karite du Sud-Ouest, sesame de la Boucle du Mouhoun, miel de Diebougou, bazin de Koudougou, bronzes de Ouagadougou, sculptures de Bobo-Dioulasso... Chaque produit est vendu directement par le producteur ou la cooperative qui le fabrique.</p>
+            <p>Notre objectif : valoriser le travail local, garantir la qualite par la certification, et permettre a chaque acheteur de connaitre l'origine exacte de ce qu'il achete. Pas d'intermediaires, pas de marges cachees, juste un lien direct entre celui qui fabrique et celui qui achete.</p>
+            <p>Le Burkina Faso est le premier exportateur de sesame en Afrique de l'Ouest (160 780 tonnes en 2020), le karite burkinabe est reconnu internationalement, et les bronzes de Ouagadougou sont exposes dans les musees du monde entier. Cette richesse merite une vitrine a la hauteur.</p>
+            <div class="concept-stats">
+              <div><strong class="price-large">5</strong><span class="text-caption">filieres representees</span></div>
+              <div><strong class="price-large">11</strong><span class="text-caption">cooperatives et ateliers</span></div>
+              <div><strong class="price-large">12</strong><span class="text-caption">regions du pays</span></div>
+            </div>
+          </div>
+          <div class="concept-right">
+            <ul class="feature-list">
+              <li>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <div><strong>Recherche instantanee</strong><p class="text-sm text-doux">Trouvez un produit par nom, categorie, vendeur ou region</p></div>
+              </li>
+              <li>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                <div><strong>Tracabilite complete</strong><p class="text-sm text-doux">Origine, cooperative, processus de fabrication, certifications</p></div>
+              </li>
+              <li>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                <div><strong>Contact direct vendeur</strong><p class="text-sm text-doux">Echangez avec le producteur, posez vos questions</p></div>
+              </li>
+              <li>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                <div><strong>Systeme de confiance</strong><p class="text-sm text-doux">Badges Bronze, Argent, Or selon les ventes et avis verifies</p></div>
+              </li>
+              <li>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+                <div><strong>Panier et recu</strong><p class="text-sm text-doux">Commandez plusieurs produits, recevez un recu imprimable</p></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST SYSTEM PREVIEW -->
+    <section class="section section-dark" aria-labelledby="trust-title">
+      <div class="container">
+        <p class="eyebrow">Systeme de confiance</p>
+        <h2 id="trust-title">Comment nous garantissons la confiance</h2>
+        <div class="trust-columns grid-desktop-3 grid-tablet-3">
+          <div class="trust-col-card">
+            <div class="trust-col-icon">
+              <svg class="icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Certification</h3>
+            <p>BioSPG, ABNORM, Made in BF. Des labels officiels verifies par les organismes nationaux.</p>
+          </div>
+          <div class="trust-col-card">
+            <div class="trust-col-icon">
+              <svg class="icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3>Tracabilite</h3>
+            <p>Region, ville, cooperative, processus de fabrication. Tout est trace du producteur au client.</p>
+          </div>
+          <div class="trust-col-card">
+            <div class="trust-col-icon">
+              <svg class="icon-xl" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h3>Avis verifies</h3>
+            <p>Systeme de confiance Bronze, Argent, Or base sur les ventes reelles et les avis des acheteurs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOP SELLERS -->
+    <section class="section" aria-labelledby="sellers-title">
+      <div class="container">
+        <p class="eyebrow">Nos producteurs</p>
+        <h2 id="sellers-title">Cooperatives et artisans qui font la qualite</h2>
+        <div class="sellers-grid grid-desktop-3 grid-tablet-2" id="sellers-grid">
+          <!-- Genere en JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="card cta-card">
+          <div class="cta-content">
+            <h2>Pret a decouvrir les produits du Burkina ?</h2>
+            <p>Rejoignez la plateforme en mode beta. Achetez, vendez, ou explorez les filieres locales.</p>
+          </div>
+          <div class="cta-actions">
+            <a href="produits.html" class="btn btn-primary btn-lg">Voir les produits</a>
+            <a href="connexion.html" class="btn btn-secondary btn-lg">Creer un compte</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/embedded-data.js"></script>
+  <script src="js/data-seed.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui-components.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/traceability.js"></script>
+  <script src="js/trust-system.js"></script>
+  <script src="js/seller.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('app:ready', () => {
+      // Render categories
+      const catsGrid = document.getElementById('categories-grid');
+      if (catsGrid) {
+        catsGrid.innerHTML = Data.categories.map(c => {
+          const count = Data.getProductsByCategory(c.nom).length;
+          return `
+            <a href="produits.html?category=${encodeURIComponent(c.nom)}" class="card category-card card-hover">
+              <div class="category-icon">${ProductImage._svgForCategory(c.nom, 'lg')}</div>
+              <h3>${Utils.escapeHtml(c.nom)}</h3>
+              <p class="text-sm text-doux">${Utils.escapeHtml(c.description)}</p>
+              <span class="text-caption">${count} produit${count > 1 ? 's' : ''}</span>
+            </a>
+          `;
+        }).join('');
+      }
+
+      // Render featured products
+      const featuredGrid = document.getElementById('featured-grid');
+      if (featuredGrid) {
+        const featured = Data.getFeatured(8);
+        ProductsView.renderGrid(featuredGrid, featured);
+      }
+
+      // Render top sellers
+      const sellersGrid = document.getElementById('sellers-grid');
+      if (sellersGrid) {
+        const top = [...Data.sellers]
+          .sort((a, b) => b.ventes_count - a.ventes_count)
+          .slice(0, 6);
+        sellersGrid.innerHTML = top.map(s => `
+          <a href="boutique-vendeur.html?id=${s.id}" class="card seller-card card-hover">
+            <div class="seller-avatar">
+              <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 7l9-4 9 4M5 21V11M9 21V11M15 21V11M19 21V11M3 11h18"/></svg>
+            </div>
+            <div class="seller-info">
+              <h3>${Utils.escapeHtml(s.nom)}</h3>
+              <p class="text-caption">${Utils.escapeHtml(s.ville)}, ${Utils.escapeHtml(s.region)}</p>
+              <p class="text-sm text-doux">${Utils.escapeHtml(Utils.truncate(s.description, 80))}</p>
+              <div class="seller-meta">
+                ${UI.trustBadgeHTML(s.trust_level, s.ventes_count)}
+                <span class="badge badge-category">${Utils.escapeHtml(s.categories.join(', '))}</span>
+              </div>
+            </div>
+          </a>
+        `).join('');
+      }
+    });
+  </script>
+</body>
+</html>

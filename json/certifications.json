@@ -1,0 +1,48 @@
+{
+  "certifications": [
+    {
+      "id": "CERT01",
+      "nom": "BioSPG",
+      "label": "BioSPG",
+      "organisme": "CNABio -- Conseil National de l'Agriculture Biologique du Burkina Faso",
+      "description": "Le label BioSPG garantit qu'une denree alimentaire a ete produite selon les normes de l'agriculture biologique. Le SPG (Systeme Participatif de Garantie) est un systeme de certification alternatif base sur la confiance et la participation active des producteurs, consommateurs et autres acteurs. Etabli en 2013, c'est l'un des premiers labels bio nationaux en Afrique de l'Ouest.",
+      "color": "#1F7A3D",
+      "icon_svg": "images/icons/icon-organic.svg",
+      "website": "https://www.cnabio.net/le-biospg",
+      "requirements": [
+        "Agriculture biologique sans pesticides chimiques",
+        "Verification participative par pairs",
+        "Engagement ecologique et social"
+      ]
+    },
+    {
+      "id": "CERT02",
+      "nom": "ABNORM",
+      "label": "ABNORM",
+      "organisme": "ABNORM -- Agence Burkinabe de Normalisation, Qualite, Metrologie et Certification",
+      "description": "ABNORM est l'organisme national de normalisation et certification du Burkina Faso. Il certifie que les produits repondent aux normes de qualite nationales et internationales. ABNORM delivre des attestations de conformite aux entreprises burkinabe.",
+      "color": "#2980B9",
+      "icon_svg": "images/icons/icon-certification.svg",
+      "requirements": [
+        "Conformite aux normes nationales",
+        "Tests de qualite en laboratoire",
+        "Audit de processus de production"
+      ]
+    },
+    {
+      "id": "CERT03",
+      "nom": "Made_in_BF",
+      "label": "Made in BF",
+      "organisme": "Ministere de l'Industrie, du Commerce et de l'Artisanat du Burkina Faso",
+      "description": "Le label Made in Burkina Faso est un signe officiel de conformite qui atteste que le produit a ete fabrique au Burkina Faso conformement aux regles et procedures definies par le Ministere de l'Industrie, du Commerce et de l'Artisanat. Ce label a ete lance pour encourager le consommer local et valoriser les produits nationaux.",
+      "color": "#A8531F",
+      "icon_svg": "images/icons/icon-made-in-bf.svg",
+      "website": "https://www.commerce.gov.bf",
+      "requirements": [
+        "Fabrication au Burkina Faso verifiee",
+        "Conformite aux regles du ministere",
+        "Origine locale confirme"
+      ]
+    }
+  ]
+}

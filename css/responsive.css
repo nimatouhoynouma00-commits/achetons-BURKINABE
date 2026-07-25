@@ -1,0 +1,127 @@
+/* responsive.css - Adaptations mobile/tablette/desktop */
+
+/* Mobile first : par defaut tout est empile */
+
+/* Mobile large 480px+ */
+@media (min-width: 480px) {
+  .grid-mobile-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablette 720px+ */
+@media (min-width: 720px) {
+  .container { padding: 0 var(--sp-lg); }
+
+  .grid-tablet-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .grid-tablet-3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .grid-tablet-4 {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .two-column {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .stack-tablet-row {
+    flex-direction: row !important;
+  }
+
+  h1 { font-size: 2.6rem; }
+  h2 { font-size: 2rem; }
+}
+
+/* Desktop 1024px+ */
+@media (min-width: 1024px) {
+  .grid-desktop-3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .grid-desktop-4 {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+  .grid-desktop-5 {
+    grid-template-columns: repeat(5, 1fr) !important;
+  }
+  .two-column-60-40 {
+    grid-template-columns: 3fr 2fr !important;
+  }
+  .two-column-40-60 {
+    grid-template-columns: 2fr 3fr !important;
+  }
+
+  .sticky-sidebar {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+  }
+}
+
+/* Mobile : cacher ce qui est desktop-only */
+@media (max-width: 719px) {
+  .desktop-only { display: none !important; }
+}
+
+/* Tablette et plus : cacher ce qui est mobile-only */
+@media (min-width: 720px) {
+  .mobile-only { display: none !important; }
+}
+
+/* Grid produit auto-fill */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--grid-gap);
+}
+
+@media (min-width: 720px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+/* Hide scrollbar horizontal pour carrousels */
+.scroll-x {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--miel) var(--sesame);
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-x::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scroll-x::-webkit-scrollbar-track {
+  background: var(--sesame);
+  border-radius: 3px;
+}
+
+.scroll-x::-webkit-scrollbar-thumb {
+  background: var(--miel);
+  border-radius: 3px;
+}
+
+/* Header sticky mobile */
+@media (max-width: 719px) {
+  .header-actions .header-search {
+    display: none;
+  }
+  .header-actions .nav-links {
+    display: none;
+  }
+}
+
+/* Table responsive : scroll horizontal sur petits ecrans */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-responsive table {
+  min-width: 600px;
+  width: 100%;
+}

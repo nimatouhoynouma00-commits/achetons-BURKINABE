@@ -1,0 +1,366 @@
+/* animations.css - Keyframes et utilitaires d'animation modernes */
+
+/* ============================================
+   KEYFRAMES - Animations de base
+   ============================================ */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleInFast {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(232, 161, 58, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(232, 161, 58, 0);
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes drawCheckmark {
+  0% { stroke-dashoffset: 50; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes barGrow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes ringProgress {
+  from { stroke-dashoffset: 283; }
+}
+
+/* ============================================
+   CLASSES UTILITAIRES
+   ============================================ */
+
+.animate-fadeIn { animation: fadeIn 0.4s ease-out both; }
+.animate-fadeInUp { animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fadeInDown { animation: fadeInDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fadeInLeft { animation: fadeInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fadeInRight { animation: fadeInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-scaleIn { animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-slideInUp { animation: slideInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-slideInRight { animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-bounce { animation: bounce 0.6s ease infinite; }
+.animate-pulse { animation: pulse 2s ease infinite; }
+.animate-pulseGlow { animation: pulseGlow 2s ease infinite; }
+.animate-spin { animation: spin 0.8s linear infinite; }
+.animate-wiggle { animation: wiggle 0.4s ease; }
+
+/* Delays */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
+
+/* Stagger for grids */
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger > *:nth-child(4) { animation-delay: 0.20s; }
+.stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger > *:nth-child(6) { animation-delay: 0.30s; }
+.stagger > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger > *:nth-child(8) { animation-delay: 0.40s; }
+.stagger > *:nth-child(n+9) { animation-delay: 0.45s; }
+
+/* ============================================
+   SKELETON LOADING
+   ============================================ */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--sesame) 25%,
+    color-mix(in srgb, var(--sesame) 50%, var(--carte)) 50%,
+    var(--sesame) 75%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: var(--rayon-sm);
+}
+
+.skeleton-text {
+  height: 12px;
+  margin: 6px 0;
+}
+
+.skeleton-card {
+  height: 240px;
+  border-radius: var(--rayon-md);
+}
+
+/* ============================================
+   TRANSITIONS STANDARDISÉES
+   ============================================ */
+
+/* Page transitions */
+.page-enter { animation: fadeInUp 0.4s ease both; }
+
+/* Card hover */
+.card-hover {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ombre-card-hover);
+}
+
+/* Button press feedback */
+.btn-press {
+  transition: transform 0.1s ease, box-shadow 0.15s ease;
+}
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+/* Ripple effect container */
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+/* ============================================
+   SCROLLBAR CUSTOM
+   ============================================ */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--fond);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ligne);
+  border-radius: 5px;
+  border: 2px solid var(--fond);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--terre);
+}
+
+/* ============================================
+   REDUCED MOTION - Accessibilité
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   TOAST ANIMATIONS (utilisées par ui-components.js)
+   ============================================ */
+.toast-enter {
+  animation: slideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.toast-exit {
+  animation: slideOutRight 0.3s ease-in both;
+}
+
+/* ============================================
+   MODAL ANIMATIONS
+   ============================================ */
+.modal-backdrop-enter {
+  animation: fadeIn 0.2s ease both;
+}
+.modal-content-enter {
+  animation: scaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ============================================
+   STAT CARD ANIMATIONS
+   ============================================ */
+.stat-value {
+  animation: countUp 0.6s ease both;
+}
+
+/* ============================================
+   MINI CHART BARS
+   ============================================ */
+.mini-chart-bar {
+  transform-origin: bottom;
+  animation: barGrow 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ============================================
+   TRUST BADGE PULSE
+   ============================================ */
+.trust-badge.or {
+  animation: pulseGlow 3s ease infinite;
+}
+
+/* ============================================
+   LOADING SPINNER
+   ============================================ */
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--ligne);
+  border-top-color: var(--terre);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.spinner-lg {
+  width: 36px;
+  height: 36px;
+  border-width: 3px;
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+@keyframes progressFill {
+  from { width: 0; }
+}
+.progress-fill {
+  animation: progressFill 1s ease-out both;
+}

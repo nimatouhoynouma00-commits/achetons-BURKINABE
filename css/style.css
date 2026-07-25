@@ -1,0 +1,218 @@
+/* style.css - Variables globales, reset et layout de base */
+
+:root {
+  /* Palette primaire - Marque */
+  --terre: #A8531F;
+  --terre-fonce: #7A3B14;
+  --miel: #E8A13A;
+  --miel-clair: #F4C877;
+
+  /* Palette secondaire - Fonctionnelle */
+  --vert-bf: #1F7A3D;
+  --vert-clair: #2ECC71;
+  --bleu-bf: #2980B9;
+
+  /* Palette neutre */
+  --nuit: #241A12;
+  --fond: #FBF6EE;
+  --carte: #FFFFFF;
+  --sesame: #F1E6D0;
+  --texte: #2B2013;
+  --texte-doux: #6E5F4D;
+  --ligne: #E6DAC0;
+
+  /* Status */
+  --succes: #27AE60;
+  --erreur: #C0392B;
+  --attention: #F39C12;
+  --info: #2980B9;
+
+  /* Trust levels */
+  --bronze: #CD7F32;
+  --argent: #C0C0C0;
+  --or: #FFD700;
+
+  /* Spacing */
+  --sp-xs: 4px;
+  --sp-sm: 8px;
+  --sp-md: 16px;
+  --sp-lg: 24px;
+  --sp-xl: 32px;
+  --sp-xxl: 48px;
+  --sp-xxxl: 64px;
+
+  /* Border radius */
+  --rayon-sm: 6px;
+  --rayon-md: 10px;
+  --rayon-lg: 16px;
+  --rayon-pill: 24px;
+  --rayon-circle: 50%;
+
+  /* Shadows */
+  --ombre-card: 0 2px 10px rgba(36, 26, 18, 0.08);
+  --ombre-card-hover: 0 4px 20px rgba(36, 26, 18, 0.15);
+  --ombre-dropdown: 0 4px 12px rgba(36, 26, 18, 0.12);
+  --ombre-modal: 0 8px 40px rgba(36, 26, 18, 0.25);
+  --ombre-toast: 0 2px 8px rgba(36, 26, 18, 0.10);
+
+  /* Layout */
+  --max-width: 1080px;
+  --page-padding: 20px;
+  --card-padding: 16px;
+  --section-padding: 50px;
+  --grid-gap: 18px;
+
+  /* Typography */
+  --font-body: 'Noto Sans', 'Segoe UI', Arial, sans-serif;
+  --font-heading: Georgia, 'Times New Roman', serif;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+}
+
+/* Mode sombre : chaque element est adapte individuellement */
+:root[data-theme="dark"] {
+  --nuit: #0F0B07;
+  --fond: #1A140D;
+  --carte: #241C13;
+  --sesame: #2D2216;
+  --texte: #F1E6D0;
+  --texte-doux: #C6B494;
+  --ligne: #3A2D1C;
+  --ombre-card: 0 2px 10px rgba(0, 0, 0, 0.4);
+  --ombre-card-hover: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Reset minimal */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--texte);
+  background-color: var(--fond);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--terre);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--terre-fonce);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* Layout containers */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+}
+
+.container-narrow {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+}
+
+main {
+  flex: 1 0 auto;
+  padding: var(--sp-xl) 0;
+}
+
+/* Section spacing */
+.section {
+  padding: var(--section-padding) 0;
+}
+
+.section-sm {
+  padding: var(--sp-xxl) 0;
+}
+
+/* Skip link accessibilite */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--terre);
+  color: #fff;
+  padding: var(--sp-sm) var(--sp-md);
+  z-index: 9999;
+  border-radius: 0 0 var(--rayon-sm) 0;
+}
+
+.skip-link:focus {
+  top: 0;
+  color: #fff;
+}
+
+/* Sr-only pour accessibilite */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus visible global */
+*:focus-visible {
+  outline: 3px solid var(--miel);
+  outline-offset: 2px;
+  border-radius: var(--rayon-sm);
+}
+
+/* Bandeau motif tissu en haut de page */
+.motif-strip {
+  height: 8px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--terre) 0 12px,
+      var(--miel) 12px 18px,
+      var(--vert-bf) 18px 30px,
+      var(--miel-clair) 30px 36px
+    );
+  width: 100%;
+}

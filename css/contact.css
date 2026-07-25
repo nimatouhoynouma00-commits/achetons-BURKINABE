@@ -1,0 +1,52 @@
+/* contact.css - Styles page contact vendeur */
+
+.contact-layout {
+  display: grid;
+  gap: var(--sp-xl);
+  margin-bottom: var(--sp-xxl);
+}
+
+@media (min-width: 1024px) {
+  .contact-layout {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+.contact-form-card h3,
+.contact-info-card h3 {
+  margin-bottom: var(--sp-md);
+}
+
+.contact-info-row {
+  display: flex;
+  gap: var(--sp-md);
+  align-items: flex-start;
+  padding: var(--sp-sm) 0;
+}
+
+.contact-info-row .icon {
+  color: var(--terre);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+:root[data-theme="dark"] .contact-info-row .icon {
+  color: var(--miel);
+}
+
+.contact-info-row strong {
+  display: block;
+}
+
+.message-item {
+  padding: var(--sp-md);
+  margin-bottom: var(--sp-sm);
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--sp-sm);
+  gap: var(--sp-sm);
+  flex-wrap: wrap;
+}

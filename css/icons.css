@@ -1,0 +1,70 @@
+/* icons.css - Styles pour icones SVG inline */
+
+.icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.icon-sm { width: 16px; height: 16px; }
+.icon-lg { width: 32px; height: 32px; }
+.icon-xl { width: 48px; height: 48px; }
+
+.icon-fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Header / nav icons */
+.header-icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* Logo container */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--terre);
+}
+
+.logo:hover {
+  color: var(--terre-fonce);
+}
+
+.logo .logo-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--terre);
+  border-radius: var(--rayon-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 6px;
+}
+
+.logo .logo-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+:root[data-theme="dark"] .logo {
+  color: var(--miel);
+}
+
+:root[data-theme="dark"] .logo .logo-icon {
+  background: var(--miel);
+  color: var(--nuit);
+}

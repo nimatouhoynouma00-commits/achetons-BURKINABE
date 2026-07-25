@@ -1,0 +1,52 @@
+/* historique.css - Styles page historique */
+
+.filter-tabs {
+  display: flex;
+  gap: var(--sp-xs);
+  margin-bottom: var(--sp-lg);
+  flex-wrap: wrap;
+}
+
+.history-card {
+  padding: var(--sp-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+}
+
+.history-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--sp-md);
+  flex-wrap: wrap;
+}
+
+.history-card-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--sp-sm) 0;
+  border-top: 1px dashed var(--ligne);
+  border-bottom: 1px dashed var(--ligne);
+}
+
+.history-item-mini {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+}
+
+.history-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-md);
+  flex-wrap: wrap;
+}
+
+.history-card-actions {
+  display: flex;
+  gap: var(--sp-xs);
+  flex-wrap: wrap;
+}

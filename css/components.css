@@ -1,0 +1,106 @@
+/* css/boutique.css - Styles spécifiques à la page boutique-vendeur.html
+ * Affichage de la vitrine publique d'un vendeur (produits, trust, contact).
+ * La majorité des styles vient du design-system.css et home.css.
+ */
+
+/* En-tête boutique */
+.boutique-header {
+  background: linear-gradient(135deg, var(--terre, #8B4513), var(--miel, #D4A574));
+  color: #fff;
+  padding: var(--space-xl) 0;
+  border-radius: 0 0 24px 24px;
+}
+
+.boutique-header-content {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+@media (max-width: 700px) {
+  .boutique-header-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.boutique-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: var(--terre, #8B4513);
+  font-weight: 700;
+}
+
+.boutique-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.boutique-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.boutique-region,
+.boutique-trust {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.boutique-contact-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-size: 0.9rem;
+}
+
+/* Grille produits du vendeur */
+.boutique-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-md);
+  padding: var(--space-xl) 0;
+}
+
+/* Section stats boutique */
+.boutique-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+}
+
+.boutique-stat {
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #eee);
+  border-radius: 12px;
+  padding: var(--space-md);
+  text-align: center;
+}
+
+.boutique-stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--terre, #8B4513);
+}
+
+.boutique-stat-label {
+  font-size: 0.85rem;
+  color: var(--text-doux, #888);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: var(--space-xs);
+}

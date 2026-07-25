@@ -1,0 +1,5 @@
+/* dashboard.css - Styles communs dashboards */
+
+main#main {
+  padding: var(--sp-lg) 0;
+}

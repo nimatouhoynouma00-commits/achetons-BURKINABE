@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion / Inscription - Achetons Burkinabe</title>
+  <meta name="description" content="Connectez-vous ou creez un compte acheteur, vendeur ou revendeur sur Achetons Burkinabe. Mode beta avec 12 comptes de test.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/connexion.css">
+  <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+  <style>
+    /* Refonte L7a - layouts specifiques page connexion */
+    .auth-hero {
+      background: linear-gradient(135deg, var(--terre) 0%, var(--terre-fonce) 60%, #5a2a0e 100%);
+      color: #fff;
+      padding: var(--sp-xxl) 0 var(--sp-xl);
+      position: relative;
+      overflow: hidden;
+    }
+    .auth-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(232, 161, 58, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(244, 200, 119, 0.18) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .auth-hero .container { position: relative; z-index: 1; text-align: center; }
+    .auth-hero .eyebrow { color: var(--miel-clair); margin-bottom: var(--sp-sm); }
+    .auth-hero h1 { color: #fff; margin: 0 0 var(--sp-sm); font-size: 2.2rem; }
+    .auth-hero p { color: rgba(255,255,255,0.9); max-width: 620px; margin: 0 auto; }
+
+    .auth-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-xl);
+      align-items: start;
+      padding: var(--sp-xl) 0;
+    }
+    @media (min-width: 1024px) {
+      .auth-layout { grid-template-columns: minmax(0, 1fr) 380px; }
+    }
+
+    .auth-type-grid.three-cols {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 640px) {
+      .auth-type-grid.three-cols { grid-template-columns: 1fr; }
+    }
+
+    .auth-mode-tabs {
+      display: flex;
+      gap: 4px;
+      padding: 4px;
+      background: var(--surface-3);
+      border-radius: var(--radius-pill);
+      margin-bottom: var(--sp-lg);
+      width: fit-content;
+      max-width: 100%;
+    }
+    .auth-mode-tab {
+      flex: 1;
+      padding: 10px 22px;
+      border: none;
+      background: transparent;
+      color: var(--texte-doux);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+    .auth-mode-tab.active {
+      background: var(--surface-1);
+      color: var(--terre);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .auth-form-card {
+      background: var(--surface-1);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-xl);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-subtle);
+    }
+    .auth-form-card h2 { margin: 0 0 var(--sp-md); font-size: 1.4rem; }
+    .auth-form-card .auth-form-hint { color: var(--texte-doux); font-size: 0.9rem; margin: 0 0 var(--sp-lg); }
+
+    .auth-form-section { display: none; }
+    .auth-form-section.active { display: block; animation: fadeIn 0.3s ease; }
+
+    .auth-categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: var(--sp-sm);
+      margin-top: var(--sp-sm);
+    }
+    .auth-cat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border: 1.5px solid var(--ligne);
+      border-radius: var(--radius-pill);
+      font-size: 0.85rem;
+      cursor: pointer;
+      user-select: none;
+      transition: all var(--transition-fast);
+    }
+    .auth-cat-pill input { accent-color: var(--terre); }
+    .auth-cat-pill:has(input:checked) {
+      border-color: var(--terre);
+      background: color-mix(in srgb, var(--terre) 8%, transparent);
+      color: var(--terre);
+      font-weight: 600;
+    }
+
+    .auth-boutique-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-md);
+    }
+    @media (max-width: 480px) { .auth-boutique-options { grid-template-columns: 1fr; } }
+    .auth-boutique-option {
+      display: block;
+      padding: var(--sp-md);
+      border: 2px solid var(--ligne);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      background: var(--surface-1);
+    }
+    .auth-boutique-option input { position: absolute; opacity: 0; }
+    .auth-boutique-option:hover { border-color: var(--miel); }
+    .auth-boutique-option:has(input:checked) {
+      border-color: var(--terre);
+      background: var(--surface-2);
+      box-shadow: var(--shadow-glow);
+    }
+    .auth-boutique-option .opt-title { font-weight: 700; color: var(--texte); margin-bottom: 4px; }
+    .auth-boutique-option .opt-desc { font-size: 0.8rem; color: var(--texte-doux); }
+    .auth-boutique-option .opt-remise {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 0.75rem;
+      color: var(--succes);
+      font-weight: 600;
+    }
+
+    .beta-panel {
+      background: var(--surface-1);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-subtle);
+      position: sticky;
+      top: calc(var(--header-h) + var(--sp-md));
+    }
+    .beta-panel-header { margin-bottom: var(--sp-md); }
+    .beta-panel-header h3 { margin: 0 0 4px 0; font-size: 1.1rem; }
+    .beta-panel-header p { margin: 0; font-size: 0.8rem; color: var(--texte-doux); }
+
+    .beta-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      padding: 4px;
+      background: var(--surface-3);
+      border-radius: var(--radius-pill);
+      margin-bottom: var(--sp-md);
+    }
+    .beta-filter-btn {
+      flex: 1 1 auto;
+      padding: 6px 10px;
+      border: none;
+      background: transparent;
+      color: var(--texte-doux);
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+    .beta-filter-btn.active {
+      background: var(--surface-1);
+      color: var(--terre);
+      box-shadow: var(--shadow-xs);
+    }
+    .beta-filter-btn .count {
+      display: inline-block;
+      margin-left: 4px;
+      padding: 0 6px;
+      border-radius: var(--radius-pill);
+      background: color-mix(in srgb, var(--terre) 12%, transparent);
+      color: var(--terre);
+      font-size: 0.65rem;
+    }
+
+    .beta-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-sm);
+      max-height: 720px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .beta-card {
+      display: grid;
+      grid-template-columns: 40px 1fr auto;
+      gap: var(--sp-sm);
+      align-items: center;
+      padding: var(--sp-sm);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: var(--surface-1);
+      transition: all var(--transition-fast);
+      animation: fadeIn 0.3s ease both;
+    }
+    .beta-card:hover {
+      border-color: var(--terre);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+    .beta-card .beta-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-pill);
+      background: var(--gradient-terre);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .beta-card.beta-acheteur .beta-avatar { background: linear-gradient(135deg, #2ECC71, #1F7A3D); }
+    .beta-card.beta-vendeur .beta-avatar { background: linear-gradient(135deg, #C0651F, #7A3B14); }
+    .beta-card.beta-revendeur .beta-avatar { background: linear-gradient(135deg, #F4C877, #E8A13A); color: #5a2a0e; }
+    .beta-card .beta-body { min-width: 0; }
+    .beta-card .beta-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--texte);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .beta-card .beta-meta {
+      font-size: 0.72rem;
+      color: var(--texte-doux);
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+    .beta-card .beta-meta .badge-modern { font-size: 0.65rem; padding: 1px 8px; }
+    .beta-card .beta-login-btn {
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      background: var(--terre);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+    }
+    .beta-card .beta-login-btn:hover {
+      background: var(--terre-fonce);
+      transform: scale(1.04);
+    }
+
+    .auth-success-banner {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-sm);
+      padding: var(--sp-sm) var(--sp-md);
+      background: color-mix(in srgb, var(--succes) 12%, transparent);
+      border-left: 3px solid var(--succes);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--sp-md);
+      color: var(--succes);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Aller au contenu</a>
+
+  <main id="main">
+    <!-- Hero section courte -->
+    <section class="auth-hero">
+      <div class="container">
+        <p class="eyebrow">Mode beta</p>
+        <h1>Connexion / Inscription</h1>
+        <p>Achetez, vendez ou revendez des produits burkinabe. Choisissez votre profil et accedez a la plateforme.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="auth-layout">
+        <!-- ============ Colonne gauche : formulaires ============ -->
+        <div class="auth-forms-col">
+          <!-- Type selector (3 cartes) -->
+          <div class="auth-type-grid three-cols" id="auth-type-grid">
+            <button class="auth-type-card active" data-type="acheteur" type="button">
+              <div class="auth-type-icon">
+                <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+              </div>
+              <h3>Acheteur</h3>
+              <p>Je veux acheter des produits locaux</p>
+            </button>
+            <button class="auth-type-card" data-type="vendeur" type="button">
+              <div class="auth-type-icon">
+                <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5M4 9v11a1 1 0 001 1h14a1 1 0 001-1V9M9 22V12h6v10"/></svg>
+              </div>
+              <h3>Vendeur</h3>
+              <p>Je suis producteur ou cooperative</p>
+            </button>
+            <button class="auth-type-card" data-type="revendeur" type="button">
+              <div class="auth-type-icon">
+                <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+              </div>
+              <h3>Revendeur</h3>
+              <p>J'achete en gros pour revendre</p>
+            </button>
+          </div>
+
+          <!-- Form card -->
+          <div class="auth-form-card">
+            <!-- Mode toggle (login / register) -->
+            <div class="auth-mode-tabs" role="tablist" aria-label="Mode authentification">
+              <button class="auth-mode-tab active" data-mode="login" role="tab" type="button">Connexion</button>
+              <button class="auth-mode-tab" data-mode="register" role="tab" type="button">Inscription</button>
+            </div>
+
+            <!-- ===== LOGIN FORM (commun) ===== -->
+            <section class="auth-form-section active" id="login-section">
+              <h2 id="login-title">Connexion acheteur</h2>
+              <p class="auth-form-hint">Entrez votre email ou telephone pour vous connecter.</p>
+              <form id="login-form" novalidate>
+                <div class="input-group-modern">
+                  <label for="login-identifier" class="form-label">Email ou telephone <span class="required">*</span></label>
+                  <input type="text" id="login-identifier" name="identifier" class="input-modern" placeholder="email@exemple.bf ou 70 XX XX XX" autocomplete="username">
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="login-password" class="form-label">Mot de passe <span class="required">*</span></label>
+                  <input type="password" id="login-password" name="password" class="input-modern" placeholder="Votre mot de passe" autocomplete="current-password" minlength="4">
+                  <div class="input-error"></div>
+                </div>
+                <button type="submit" class="btn-modern btn-modern-primary btn-modern-block btn-modern-lg">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>
+                  Se connecter
+                </button>
+              </form>
+              <p class="text-center text-sm text-doux" style="margin-top:16px;">
+                Pas encore de compte ?
+                <a href="#" id="goto-register-link" style="font-weight:600;color:var(--terre);">Creez un compte</a>
+              </p>
+              <p class="text-center text-caption" style="margin-top:6px;color:var(--texte-doux);">
+                Mode beta : tout identifiant valide (4+ caracteres) fonctionne
+              </p>
+            </section>
+
+            <!-- ===== REGISTER ACHETEUR ===== -->
+            <section class="auth-form-section" id="register-acheteur-section">
+              <h2>Creer un compte acheteur</h2>
+              <p class="auth-form-hint">Quelques informations pour rejoindre la communaute.</p>
+              <form id="register-acheteur-form" novalidate>
+                <div class="input-group-modern">
+                  <label for="reg-a-nom" class="form-label">Nom complet <span class="required">*</span></label>
+                  <input type="text" id="reg-a-nom" name="nom" class="input-modern" minlength="2" required>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-a-email" class="form-label">Email <span class="required">*</span></label>
+                  <input type="email" id="reg-a-email" name="email" class="input-modern" required>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-a-tel" class="form-label">Telephone <span class="required">*</span></label>
+                  <input type="tel" id="reg-a-tel" name="telephone" class="input-modern" placeholder="70 XX XX XX" required>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-a-ville" class="form-label">Ville <span class="required">*</span></label>
+                  <select id="reg-a-ville" name="ville" class="input-modern" required>
+                    <option value="">Choisir une ville...</option>
+                  </select>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-a-region" class="form-label">Region <span class="required">*</span></label>
+                  <select id="reg-a-region" name="region" class="input-modern" required>
+                    <option value="">Choisir une region...</option>
+                  </select>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-a-pass" class="form-label">Mot de passe <span class="required">*</span></label>
+                  <input type="password" id="reg-a-pass" name="password" class="input-modern" minlength="4" required>
+                  <div class="input-error"></div>
+                </div>
+                <button type="submit" class="btn-modern btn-modern-primary btn-modern-block btn-modern-lg">Creer mon compte</button>
+              </form>
+              <p class="text-center text-sm text-doux" style="margin-top:16px;">
+                Deja inscrit ?
+                <a href="#" class="goto-login-link" style="font-weight:600;color:var(--terre);">Se connecter</a>
+              </p>
+            </section>
+
+            <!-- ===== REGISTER VENDEUR ===== -->
+            <section class="auth-form-section" id="register-vendeur-section">
+              <h2>Creer un compte vendeur</h2>
+              <p class="auth-form-hint">Producteur, cooperative ou artisan : vende vos produits en direct.</p>
+              <form id="register-vendeur-form" novalidate>
+                <div class="input-group-modern">
+                  <label for="reg-v-nom" class="form-label">Nom de boutique ou cooperative <span class="required">*</span></label>
+                  <input type="text" id="reg-v-nom" name="nom" class="input-modern" minlength="2" required>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-v-email" class="form-label">Email <span class="required">*</span></label>
+                  <input type="email" id="reg-v-email" name="email" class="input-modern" required>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-v-tel" class="form-label">Telephone <span class="required">*</span></label>
+                  <input type="tel" id="reg-v-tel" name="telephone" class="input-modern" placeholder="70 XX XX XX" required>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-v-ville" class="form-label">Ville <span class="required">*</span></label>
+                  <select id="reg-v-ville" name="ville" class="input-modern" required>
+                    <option value="">Choisir une ville...</option>
+                  </select>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-v-region" class="form-label">Region d'activite <span class="required">*</span></label>
+                  <select id="reg-v-region" name="region" class="input-modern" required>
+                    <option value="">Choisir une region...</option>
+                  </select>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-v-desc" class="form-label">Description de l'activite</label>
+                  <textarea id="reg-v-desc" name="description" class="input-modern" rows="3" placeholder="Decrivez votre boutique, vos produits phares, votre histoire..."></textarea>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label class="form-label">Categories de produits <span class="text-doux">(selection libre)</span></label>
+                  <div class="auth-categories-grid" id="reg-v-categories"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-v-pass" class="form-label">Mot de passe <span class="required">*</span></label>
+                  <input type="password" id="reg-v-pass" name="password" class="input-modern" minlength="4" required>
+                  <div class="input-error"></div>
+                </div>
+                <button type="submit" class="btn-modern btn-modern-primary btn-modern-block btn-modern-lg">Creer mon compte vendeur</button>
+              </form>
+              <p class="text-center text-sm text-doux" style="margin-top:16px;">
+                Deja inscrit ?
+                <a href="#" class="goto-login-link" style="font-weight:600;color:var(--terre);">Se connecter</a>
+              </p>
+            </section>
+
+            <!-- ===== REGISTER REVENDEUR ===== -->
+            <section class="auth-form-section" id="register-revendeur-section">
+              <h2>Creer un compte revendeur</h2>
+              <p class="auth-form-hint">Achetez en gros et beneficiez de remises selon votre type de boutique.</p>
+              <form id="register-revendeur-form" novalidate>
+                <div class="input-group-modern">
+                  <label for="reg-r-nom" class="form-label">Nom de boutique <span class="required">*</span></label>
+                  <input type="text" id="reg-r-nom" name="nom" class="input-modern" minlength="2" required>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-r-email" class="form-label">Email <span class="required">*</span></label>
+                  <input type="email" id="reg-r-email" name="email" class="input-modern" required>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-r-tel" class="form-label">Telephone <span class="required">*</span></label>
+                  <input type="tel" id="reg-r-tel" name="telephone" class="input-modern" placeholder="70 XX XX XX" required>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-r-ville" class="form-label">Ville <span class="required">*</span></label>
+                  <select id="reg-r-ville" name="ville" class="input-modern" required>
+                    <option value="">Choisir une ville...</option>
+                  </select>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-r-region" class="form-label">Region <span class="required">*</span></label>
+                  <select id="reg-r-region" name="region" class="input-modern" required>
+                    <option value="">Choisir une region...</option>
+                  </select>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label class="form-label">Type de boutique <span class="required">*</span></label>
+                  <div class="auth-boutique-options">
+                    <label class="auth-boutique-option">
+                      <input type="radio" name="boutique_type" value="grande_boutique" required>
+                      <div class="opt-title">Grande boutique</div>
+                      <div class="opt-desc">Import/export, supermarche, gros volumes.</div>
+                      <div class="opt-remise">Remise gros : -15%</div>
+                    </label>
+                    <label class="auth-boutique-option">
+                      <input type="radio" name="boutique_type" value="petite_boutique" required>
+                      <div class="opt-title">Petite boutique</div>
+                      <div class="opt-desc">Boutique de quartier, revendeur local.</div>
+                      <div class="opt-remise">Remise gros : -10%</div>
+                    </label>
+                  </div>
+                  <div class="input-error"></div>
+                </div>
+                <div class="input-group-modern">
+                  <label for="reg-r-pass" class="form-label">Mot de passe <span class="required">*</span></label>
+                  <input type="password" id="reg-r-pass" name="password" class="input-modern" minlength="4" required>
+                  <div class="input-error"></div>
+                </div>
+                <button type="submit" class="btn-modern btn-modern-primary btn-modern-block btn-modern-lg">Creer mon compte revendeur</button>
+              </form>
+              <p class="text-center text-sm text-doux" style="margin-top:16px;">
+                Deja inscrit ?
+                <a href="#" class="goto-login-link" style="font-weight:600;color:var(--terre);">Se connecter</a>
+              </p>
+            </section>
+          </div>
+        </div>
+
+        <!-- ============ Colonne droite : comptes beta ============ -->
+        <aside class="beta-panel" aria-label="Comptes beta testeurs">
+          <div class="beta-panel-header">
+            <h3>Acces rapide beta</h3>
+            <p>12 comptes pre-configures pour tester la plateforme. Cliquez pour vous connecter instantanement.</p>
+          </div>
+          <div class="beta-filter-bar" role="tablist" aria-label="Filtrer par type">
+            <button class="beta-filter-btn active" data-filter="all" type="button">
+              Tous <span class="count" id="count-all">12</span>
+            </button>
+            <button class="beta-filter-btn" data-filter="acheteur" type="button">
+              Acheteurs <span class="count" id="count-acheteur">4</span>
+            </button>
+            <button class="beta-filter-btn" data-filter="vendeur" type="button">
+              Vendeurs <span class="count" id="count-vendeur">4</span>
+            </button>
+            <button class="beta-filter-btn" data-filter="revendeur" type="button">
+              Revendeurs <span class="count" id="count-revendeur">4</span>
+            </button>
+          </div>
+          <div class="beta-cards-grid" id="beta-cards"></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/embedded-data.js"></script>
+  <script src="js/data-seed.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui-components.js"></script>
+  <script src="js/form-validation.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    /* ====== Etat local ====== */
+    let currentType = 'acheteur';
+    let currentMode = 'login'; // 'login' | 'register'
+
+    const TYPE_LABELS = {
+      acheteur: 'acheteur',
+      vendeur: 'vendeur',
+      revendeur: 'revendeur'
+    };
+
+    document.addEventListener('app:ready', () => {
+      // Si deja connecte, redirige
+      const session = Auth.current();
+      if (session) {
+        Auth.redirectByType(session);
+        return;
+      }
+
+      // Pre-remplir les selects (villes et regions)
+      const villes = Data.regions.map(r => r.chef_lieu);
+      const regions = Data.regions.map(r => r.nom);
+      ['reg-a-ville', 'reg-v-ville', 'reg-r-ville'].forEach(id => {
+        const sel = document.getElementById(id);
+        if (sel) villes.forEach(v => sel.insertAdjacentHTML('beforeend', `<option value="${Utils.escapeHtml(v)}">${Utils.escapeHtml(v)}</option>`));
+      });
+      ['reg-a-region', 'reg-v-region', 'reg-r-region'].forEach(id => {
+        const sel = document.getElementById(id);
+        if (sel) regions.forEach(r => sel.insertAdjacentHTML('beforeend', `<option value="${Utils.escapeHtml(r)}">${Utils.escapeHtml(r)}</option>`));
+      });
+
+      // Categories checkboxes (form vendeur)
+      const catContainer = document.getElementById('reg-v-categories');
+      if (catContainer) {
+        catContainer.innerHTML = Data.categories.map(c => `
+          <label class="auth-cat-pill">
+            <input type="checkbox" name="categories" value="${Utils.escapeHtml(c.nom)}">
+            ${Utils.escapeHtml(c.nom)}
+          </label>
+        `).join('');
+      }
+
+      // Pre-selectionner le type depuis l'URL (?type=vendeur par ex)
+      const urlType = Utils.getQueryParam('type');
+      if (urlType && ['acheteur', 'vendeur', 'revendeur'].includes(urlType)) {
+        selectType(urlType);
+      } else {
+        selectType('acheteur');
+      }
+
+      // Message de redirection
+      const msg = Utils.getQueryParam('message');
+      if (msg) {
+        UI.toast(decodeURIComponent(msg), 'info', 5000);
+      }
+
+      // Wire interactions
+      wireTypeSwitching();
+      wireModeSwitching();
+      wireForms();
+
+      // Render les cartes beta
+      renderBetaCards();
+      wireBetaFilters();
+    });
+
+    /* ====== Type switching ====== */
+    function selectType(type) {
+      currentType = type;
+      document.querySelectorAll('.auth-type-card').forEach(c => {
+        c.classList.toggle('active', c.dataset.type === type);
+      });
+      // Met a jour le titre du login
+      const titleEl = document.getElementById('login-title');
+      if (titleEl) titleEl.textContent = 'Connexion ' + type;
+      // Re-affiche la section correspondant au mode courant
+      applyMode();
+    }
+
+    function wireTypeSwitching() {
+      document.querySelectorAll('.auth-type-card').forEach(card => {
+        card.addEventListener('click', () => selectType(card.dataset.type));
+      });
+    }
+
+    /* ====== Mode switching (login / register) ====== */
+    function setMode(mode) {
+      currentMode = mode;
+      document.querySelectorAll('.auth-mode-tab').forEach(t => {
+        t.classList.toggle('active', t.dataset.mode === mode);
+      });
+      applyMode();
+    }
+
+    function applyMode() {
+      document.querySelectorAll('.auth-form-section').forEach(s => s.classList.remove('active'));
+      if (currentMode === 'login') {
+        document.getElementById('login-section').classList.add('active');
+      } else {
+        // Section register specifique au type courant
+        const target = document.getElementById('register-' + currentType + '-section');
+        if (target) target.classList.add('active');
+      }
+    }
+
+    function wireModeSwitching() {
+      document.querySelectorAll('.auth-mode-tab').forEach(tab => {
+        tab.addEventListener('click', () => setMode(tab.dataset.mode));
+      });
+      // Lien "Creez un compte" dans la section login
+      const gotoReg = document.getElementById('goto-register-link');
+      if (gotoReg) gotoReg.addEventListener('click', (e) => { e.preventDefault(); setMode('register'); });
+      // Liens "Se connecter" dans les sections register
+      document.querySelectorAll('.goto-login-link').forEach(a => {
+        a.addEventListener('click', (e) => { e.preventDefault(); setMode('login'); });
+      });
+    }
+
+    /* ====== Forms : validation live + soumission ====== */
+    function wireForms() {
+      // ===== LOGIN =====
+      const loginForm = document.getElementById('login-form');
+      FormValidation.attachLiveValidation(loginForm, {
+        fields: [
+          { id: 'identifier', required: true, validation: 'email_or_phone', required_message: 'Email ou telephone requis' },
+          { id: 'password', required: true, min_length: 4, required_message: 'Mot de passe requis' }
+        ]
+      });
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const identifier = document.getElementById('login-identifier').value.trim();
+        const password = document.getElementById('login-password').value;
+        if (!identifier) { UI.toast('Entrez votre email ou telephone', 'warning'); return; }
+        if (password.length < 4) { UI.toast('Mot de passe trop court (4 caracteres min)', 'warning'); return; }
+        const result = await Auth.login(currentType, identifier, password);
+        if (result.success) {
+          UI.toast('Connexion reussie en tant que ' + result.session.user_name, 'success');
+          setTimeout(() => Auth.redirectByType(result.session), 700);
+        } else {
+          UI.toast(result.error, 'error');
+        }
+      });
+
+      // ===== REGISTER ACHETEUR =====
+      wireRegisterForm('register-acheteur-form', 'acheteur', [
+        { id: 'nom', required: true, min_length: 2 },
+        { id: 'email', required: true, validation: 'email' },
+        { id: 'telephone', required: true, validation: 'phone' },
+        { id: 'ville', required: true },
+        { id: 'region', required: true },
+        { id: 'password', required: true, min_length: 4 }
+      ]);
+
+      // ===== REGISTER VENDEUR =====
+      wireRegisterForm('register-vendeur-form', 'vendeur', [
+        { id: 'nom', required: true, min_length: 2 },
+        { id: 'email', required: true, validation: 'email' },
+        { id: 'telephone', required: true, validation: 'phone' },
+        { id: 'ville', required: true },
+        { id: 'region', required: true },
+        { id: 'password', required: true, min_length: 4 }
+      ]);
+
+      // ===== REGISTER REVENDEUR =====
+      wireRegisterForm('register-revendeur-form', 'revendeur', [
+        { id: 'nom', required: true, min_length: 2 },
+        { id: 'email', required: true, validation: 'email' },
+        { id: 'telephone', required: true, validation: 'phone' },
+        { id: 'ville', required: true },
+        { id: 'region', required: true },
+        { id: 'password', required: true, min_length: 4 }
+      ], { checkBoutiqueType: true });
+    }
+
+    function wireRegisterForm(formId, type, fields, opts = {}) {
+      const form = document.getElementById(formId);
+      if (!form) return;
+      FormValidation.attachLiveValidation(form, { fields });
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        // Recupere les valeurs
+        const data = {};
+        form.querySelectorAll('[name]').forEach(input => {
+          if (input.type === 'checkbox') {
+            if (!data[input.name]) data[input.name] = [];
+            if (input.checked) data[input.name].push(input.value);
+          } else if (input.type === 'radio') {
+            if (input.checked) data[input.name] = input.value;
+          } else {
+            data[input.name] = input.value.trim();
+          }
+        });
+
+        // Validation specifique : boutique_type pour revendeur
+        if (opts.checkBoutiqueType && !data.boutique_type) {
+          UI.toast('Selectionnez le type de boutique', 'warning');
+          return;
+        }
+
+        const result = await Auth.register(type, data);
+        if (result.success) {
+          UI.toast('Compte cree. Bienvenue, ' + result.session.user_name + ' !', 'success');
+          setTimeout(() => Auth.redirectByType(result.session), 900);
+        } else {
+          UI.toast(result.error, 'error');
+        }
+      });
+    }
+
+    /* ====== Beta cards ====== */
+    function initialsOf(name) {
+      if (!name) return '?';
+      const parts = String(name).trim().split(/\s+/);
+      if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+
+    function trustBadgeClass(level) {
+      if (level === 'or') return 'badge-modern-warning';
+      if (level === 'argent') return 'badge-modern-neutral';
+      if (level === 'bronze') return 'badge-modern-terre';
+      return 'badge-modern-neutral';
+    }
+    function trustLabelFr(level) {
+      if (level === 'or') return 'Or';
+      if (level === 'argent') return 'Argent';
+      if (level === 'bronze') return 'Bronze';
+      return level || '';
+    }
+    function typeBadgeClass(type) {
+      if (type === 'acheteur') return 'badge-modern-vert';
+      if (type === 'vendeur') return 'badge-modern-terre';
+      return 'badge-modern-miel';
+    }
+
+    function renderBetaCards(filter = 'all') {
+      const container = document.getElementById('beta-cards');
+      if (!container) return;
+      const accounts = Data.betaAccounts.filter(a => filter === 'all' || a.type === filter);
+      if (!accounts.length) {
+        container.innerHTML = '<p class="text-doux text-center" style="padding:24px;">Aucun compte pour ce filtre.</p>';
+        return;
+      }
+      container.innerHTML = accounts.map((a, idx) => {
+        const v = a.ville || 'N/A';
+        return `
+          <article class="beta-card beta-${a.type}" data-account-id="${a.id}" data-type="${a.type}" style="animation-delay:${idx * 30}ms;">
+            <div class="beta-avatar" aria-hidden="true">${initialsOf(a.nom)}</div>
+            <div class="beta-body">
+              <div class="beta-name" title="${Utils.escapeHtml(a.nom)}">${Utils.escapeHtml(a.nom)}</div>
+              <div class="beta-meta">
+                <span class="badge-modern ${typeBadgeClass(a.type)}">${a.type}</span>
+                ${a.trust_level ? `<span class="badge-modern ${trustBadgeClass(a.trust_level)}">${trustLabelFr(a.trust_level)}</span>` : ''}
+                <span>${Utils.escapeHtml(v)}</span>
+              </div>
+            </div>
+            <button class="beta-login-btn" data-account-id="${a.id}" type="button">Se connecter</button>
+          </article>
+        `;
+      }).join('');
+
+      // Wire chaque bouton
+      container.querySelectorAll('.beta-login-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const accountId = btn.dataset.accountId;
+          const account = Data.betaAccounts.find(a => a.id === accountId);
+          if (!account) return;
+          const result = Auth.betaLogin(account.id, account.type);
+          if (result.success) {
+            UI.toast('Connexion reussie en tant que ' + result.session.user_name, 'success');
+            setTimeout(() => Auth.redirectByType(result.session), 600);
+          } else {
+            UI.toast(result.error, 'error');
+          }
+        });
+      });
+    }
+
+    function wireBetaFilters() {
+      document.querySelectorAll('.beta-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.beta-filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderBetaCards(btn.dataset.filter);
+        });
+      });
+      // Initialise les compteurs
+      const all = Data.betaAccounts.length;
+      const byType = t => Data.betaAccounts.filter(a => a.type === t).length;
+      const set = (id, n) => { const el = document.getElementById(id); if (el) el.textContent = String(n); };
+      set('count-all', all);
+      set('count-acheteur', byType('acheteur'));
+      set('count-vendeur', byType('vendeur'));
+      set('count-revendeur', byType('revendeur'));
+    }
+  </script>
+</body>
+</html>

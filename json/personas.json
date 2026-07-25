@@ -1,0 +1,53 @@
+{
+  "personas": [
+    {
+      "id": "P01",
+      "name": "Amadou Diallo",
+      "type": "acheteur",
+      "age": 25,
+      "location": "Ouagadougou, Centre",
+      "device": "Smartphone Android milieu de gamme",
+      "literacy": "Moyenne -- WhatsApp, Facebook quotidien",
+      "goals": "Trouver des produits locaux de qualite pour sa famille",
+      "frustrations": [
+        "Pas habitue aux plateformes e-commerce",
+        "Craint les arnaques",
+        "Veut voir des vraies photos"
+      ],
+      "key_path": "Homepage -> Recherche -> Detail -> Panier -> Checkout",
+      "needs": "Navigation simple, photos reelles, confiance visible"
+    },
+    {
+      "id": "P02",
+      "name": "Fatimata Ouedraogo",
+      "type": "vendeur",
+      "age": 35,
+      "location": "Leo, Sud-Ouest",
+      "device": "Smartphone basique",
+      "literacy": "Basique -- WhatsApp pour cooperative",
+      "goals": "Vendre produits karite, gerer commandes",
+      "frustrations": [
+        "Pas habituee aux dashboards",
+        "Clics complexes"
+      ],
+      "key_path": "Connexion -> Dashboard -> Commandes -> Accepter/Refuser",
+      "needs": "Dashboard simple, actions rapide 1 clic"
+    },
+    {
+      "id": "P03",
+      "name": "Ibrahim Kabore",
+      "type": "revendeur",
+      "age": 40,
+      "location": "Ouagadougou, Centre",
+      "device": "Ordinateur + smartphone",
+      "literacy": "Bonne -- WhatsApp Business catalogue",
+      "goals": "Acheter lots pour boutique, optimiser prix",
+      "frustrations": [
+        "Besoin voir remises clairement",
+        "Calculer benefices"
+      ],
+      "key_path": "Connexion -> Catalogue bulk -> Calculer -> Checkout lot",
+      "needs": "Prix bulk visible, calculateur economie"
+    }
+  ]
+}

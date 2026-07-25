@@ -1,0 +1,1032 @@
+{
+  "meta": {
+    "version": "1.0",
+    "date": "2026-07-24",
+    "task_id": "L1c",
+    "description": "Spec des 6 modules experts integrates au dashboard vendeur Achetons Burkinabe. Chaque module apporte une intelligence metier reelle basee sur des theories confirmees (BCG, ABC analysis, point mort, BFR, DSO, PFC, rotation stock, BFR).",
+    "sources_theoriques": [
+      "Theorie du seuil de rentabilite (point mort) - Rostagny & Lavergne",
+      "Activity-Based Costing (ABC) - Cooper & Kaplan, Harvard Business School (1988)",
+      "Matrice BCG (Boston Consulting Group) - Bruce Henderson (1968)",
+      "Besoin en Fonds de Roulement (BFR) - Michel Sion, Analyse financiere",
+      "Days Sales Outstanding (DSO) - ratio de credit management",
+      "PFC (Price-Function-Cost) - modele de pricing strategique",
+      "Stock rotation - norme IAS 2 / methodes Wilson",
+      "Loi de Pareto (80/20) appliquee a l'ABC analysis",
+      "Saisonnalite agricole BF - INSD & ONAC"
+    ],
+    "devise": "FCFA",
+    "tva_bf": 0.18,
+    "marge_defaut": 0.40
+  },
+  "modules": {
+    "comptable": {
+      "id": "comptable",
+      "nom": "Expert Comptable",
+      "icon": "calculator",
+      "description": "Analyse financiere approfondie de votre activite: marges, rentabilité, seuil de rentabilite, TVA BF a 18% et tableau de bord mensuel.",
+      "objectif": "Fournir au vendeur la vision comptable exacte de son activite (CA, charges, benefice, point mort) sans logiciels complexes, en s'appuyant sur les principes de comptabilite generale OHADA adaptes au contexte BF.",
+      "calculations": [
+        {
+          "id": "marge_brute",
+          "label": "Marge brute",
+          "formula": "CA - Cout d'achat des marchandises vendues (CAMV)",
+          "variables": {
+            "CA": "Chiffre d'affaires HT = somme(prix_vente HT x quantite)",
+            "CAMV": "Cout d'achat = somme(prix_achat HT x quantite vendue)"
+          },
+          "theorie": "La marge brute (gross margin) est la difference entre le chiffre d'affaires et le cout direct d'achat des produits revendus. Norme BF: 30-50% pour produits agricoles transformes, 15-25% pour matieres premieres brutes.",
+          "interpretation": {
+            "excellent": "> 40%",
+            "bon": "25-40%",
+            "faible": "10-25%",
+            "critique": "< 10%"
+          },
+          "unite": "FCFA et %"
+        },
+        {
+          "id": "marge_nette",
+          "label": "Marge nette",
+          "formula": "(Benefice net / CA) x 100",
+          "variables": {
+            "benefice_net": "CA - CAMV - charges variables - charges fixes - taxes"
+          },
+          "theorie": "La marge nette (net profit margin) mesure la rentabilite finale apres deduction de toutes les charges. Valeur par defaut BF: 40% du CA pour artisanat transforme (ajustable par le vendeur selon ses charges reelles).",
+          "interpretation": {
+            "excellent": "> 25%",
+            "bon": "10-25%",
+            "faible": "0-10%",
+            "critique": "< 0%"
+          },
+          "unite": "%"
+        },
+        {
+          "id": "benefice_estime",
+          "label": "Benefice estime",
+          "formula": "CA x taux_marge_nette (par defaut 40%, ajustable)",
+          "theorie": "Estimation rapide du benefice net basee sur le ratio sectoriel moyen. A affiner en saisissant les charges reelles (loyer, transport, emballage, main d'oeuvre).",
+          "interpretation": {
+            "excellent": "> 500 000 FCFA/mois",
+            "bon": "100 000 - 500 000 FCFA/mois",
+            "faible": "0 - 100 000 FCFA/mois",
+            "critique": "< 0"
+          },
+          "unite": "FCFA"
+        },
+        {
+          "id": "charges_variables",
+          "label": "Charges variables",
+          "formula": "CAMV + transport + emballage + commissions + taxes variables",
+          "theorie": "Les charges variables (direct costing) varient proportionnellement aux ventes. Elles s'opposent aux charges fixes (loyer, salaires) qui restent stables quel que soit le volume.",
+          "unite": "FCFA"
+        },
+        {
+          "id": "charges_fixes",
+          "label": "Charges fixes",
+          "formula": "Loyer + salaires + amortissements + abonnements + assurances",
+          "theorie": "Les charges fixes (structure costs) sont independantes du volume d'activite a court terme. Elles doivent etre couvertes par la marge sur cout variable pour atteindre le seuil de rentabilite.",
+          "unite": "FCFA"
+        },
+        {
+          "id": "taux_marge_cout_variable",
+          "label": "Taux de marge sur cout variable (TMCV)",
+          "formula": "(CA - Charges variables) / CA x 100",
+          "theorie": "Le TMCV (contribution margin ratio) mesure la part de chaque FCFA de vente qui contribue a couvrir les charges fixes puis a degager du benefice. Indispensable pour le calcul du point mort.",
+          "interpretation": {
+            "excellent": "> 50%",
+            "bon": "30-50%",
+            "faible": "15-30%",
+            "critique": "< 15%"
+          },
+          "unite": "%"
+        },
+        {
+          "id": "seuil_rentabilite",
+          "label": "Seuil de rentabilite (Point mort)",
+          "formula": "Charges fixes / Taux de marge sur cout variable",
+          "variables": {
+            "charges_fixes": "Somme des charges fixes mensuelles",
+            "TMCV": "Taux de marge sur cout variable (decimal, ex: 0.40)"
+          },
+          "theorie": "Le seuil de rentabilite (break-even point) est le niveau de CA a partir duquel l'entreprise couvre toutes ses charges (fixes + variables). Au-dela, chaque FCFA vendu genere du benefice. Concept cles du controle de gestion (Rostagny). Formule: SR = CF / TMCV. Point mort en jours = (SR / CA annuel) x 360.",
+          "interpretation": {
+            "sain": "SR < 60% du CA realise",
+            "vigilance": "60-80% du CA",
+            "critique": "> 80% du CA"
+          },
+          "unite": "FCFA"
+        },
+        {
+          "id": "tva_bf",
+          "label": "TVA BF (18%)",
+          "formula": "TTC = HT x 1.18 ; HT = TTC / 1.18 ; TVA = TTC - HT",
+          "theorie": "La TVA au Burkina Faso est de 18% (Code General des Impots BF, art. 347). Les petits vendeurs informels beneficient du regime de la franchise de TVA si CA < 50 millions FCFA/an. Les produits de premiere necessite (riz, mil, mais locaux) beneficient d'une exoneration.",
+          "interpretation": {
+            "info": "TVA collectee a reverser a la DGI mensuellement si assujetti"
+          },
+          "unite": "FCFA"
+        },
+        {
+          "id": "top5_rentabilite",
+          "label": "Top 5 produits par rentabilite",
+          "formula": "Pour chaque produit: rentabilite = marge unitaire x quantites vendues. Tri descendant.",
+          "theorie": "L'ABC costing simplifie (Cooper & Kaplan, 1988) classe les produits par contribution a la rentabilite. Les 20% de produits en tete (classe A) generent 80% du benefice (loi de Pareto).",
+          "unite": "FCFA"
+        },
+        {
+          "id": "tableau_bord_mensuel",
+          "label": "Tableau de bord mensuel",
+          "formula": "Par mois: CA HT, charges variables, charges fixes, marge brute, benefice net, tresorerie nette",
+          "theorie": "Le tableau de bord comptable mensuel (compte de resultat synthetique) suit l'evolution de l'activite dans le temps. Il permet de detecter les derives (charges qui augmentent plus vite que le CA) et d'anticiper les tensions de tresorerie.",
+          "unite": "FCFA par mois"
+        },
+        {
+          "id": "pfc_pricing",
+          "label": "Pricing PFC (Price-Function-Cost)",
+          "formula": "Prix optimal = f(Cout de revient + valeur percue fonction + marge cible)",
+          "theorie": "Le modele PFC (Price-Function-Cost) est une approche de pricing strategique qui combine: (1) le cout de revient plancher, (2) la valeur percue par le client selon la fonction du produit, (3) la marge cible du vendeur. Il evite le pricing uniquement base cout (cost-plus) qui sous-evalue les produits a forte valeur percue.",
+          "interpretation": {
+            "optimal": "Prix dans [cout x 1.5 ; cout x 3] selon valeur fonctionnelle"
+          },
+          "unite": "FCFA"
+        },
+        {
+          "id": "abc_costing",
+          "label": "ABC costing simplifie",
+          "formula": "Cout de revient produit = cout achat + (activites consommees x cout inducteur)",
+          "theorie": "L'Activity-Based Costing (Cooper & Kaplan, HBS 1988) alloue les charges indirectes (transport, stockage, manutention) aux produits selon les inducteurs de cout (nombre de livraisons, volume stocke). Version simplifiee: cout direct + part des charges indirectes au prorata du volume.",
+          "unite": "FCFA"
+        }
+      ],
+      "recommendations_rules": [
+        {
+          "id": "rec_marge_faible",
+          "condition": "marge_brute < 0.25",
+          "action": "Negocier les prix d'achat avec fournisseurs OU augmenter le prix de vente de 10-15% OU reduire les couts de transport",
+          "priorite": "haute"
+        },
+        {
+          "id": "rec_point_mort_proche",
+          "condition": "seuil_rentabilite > 0.8 x CA_realise",
+          "action": "Augmenter le CA de X% pour se mettre a l'abri. Identifier les charges fixes reductibles.",
+          "priorite": "haute"
+        },
+        {
+          "id": "rec_marge_excellente",
+          "condition": "marge_nette > 0.25",
+          "action": "Marge superieure a la norme BF. Reinvestir 30% dans le stock pour accelerer la croissance.",
+          "priorite": "moyenne"
+        },
+        {
+          "id": "rec_tva_franchise",
+          "condition": "CA_annuel < 50000000",
+          "action": "Vous relevez du regime de franchise de TVA (CA < 50M FCFA). Mention 'TVA non applicable, art. 305 CGI' sur vos factures.",
+          "priorite": "basse"
+        },
+        {
+          "id": "rec_top_concentration",
+          "condition": "top1_produit > 0.5 x CA",
+          "action": "Concentration excessive sur 1 produit. Diversifier l'offre pour reduire le risque.",
+          "priorite": "moyenne"
+        }
+      ],
+      "input_fields": [
+        {"id": "charges_fixes_mensuelles", "label": "Charges fixes mensuelles (FCFA)", "type": "number", "default": 50000, "placeholder": "Loyer + salaires + abonnements"},
+        {"id": "charges_variables_pct", "label": "Charges variables (% du CA)", "type": "number", "default": 30, "min": 0, "max": 100},
+        {"id": "taux_marge_nette", "label": "Taux de marge nette cible (%)", "type": "number", "default": 40, "min": 0, "max": 100},
+        {"id": "cout_achat_moyen", "label": "Cout d'achat moyen produit (FCFA)", "type": "number", "default": 0, "placeholder": "Saisir pour calcul marge brute reelle"}
+      ]
+    },
+
+    "financier": {
+      "id": "financier",
+      "nom": "Expert Financier",
+      "icon": "trending-up",
+      "description": "Pilotage de la tresorerie, projections a 3 mois, BFR, DSO et conseils d'investissement bases sur les ratios financiers.",
+      "objectif": "Donner au vendeur une vision prospective de sa tresorerie et alerter sur les desequilibres (BFR trop eleve, DSO qui s'allonge, ratio tresorerie insuffisant).",
+      "calculations": [
+        {
+          "id": "cash_flow_mensuel",
+          "label": "Cash flow mensuel",
+          "formula": "Entrees (encaissements) - Sorties (decaissements)",
+          "variables": {
+            "entrees": "Paiements recus sur le mois (livraisons validees)",
+            "sorties": "Achats stock + charges + remboursements + investissements"
+          },
+          "theorie": "Le cash flow (flux de tresorerie net) mesure la variation de tresorerie sur une periode. Positif = tresorerie qui augmente. Negatif = risque de cessation de paiement. Distinction cruciale avec le benefice comptable: une vente non payee augmente le benefice mais pas le cash flow.",
+          "interpretation": {
+            "excellent": "> 100 000 FCFA/mois",
+            "bon": "0 - 100 000 FCFA/mois",
+            "critique": "< 0 FCFA/mois"
+          },
+          "unite": "FCFA"
+        },
+        {
+          "id": "projection_3_mois",
+          "label": "Projection 3 mois (trend lineaire)",
+          "formula": "CA futur = CA moyen 3 derniers mois x (1 + pente mensuelle x n)",
+          "variables": {
+            "pente_mensuelle": "Regression lineaire sur les 3-6 derniers mois: (CA_recent - CA_ancien) / nb_mois"
+          },
+          "theorie": "La projection par regression lineaire (methode des moindres carres) etablit une tendance a partir de l'historique. Adequate pour activite stable sans forte saisonnalite. Pour produits saisonniers (karite, miel), appliquer un coefficient saisonnier en plus de la trend.",
+          "interpretation": {
+            "croissance": "Pente > 0 : activite en croissance",
+            "stagnation": "Pente = 0 : activite stable",
+            "declin": "Pente < 0 : activite en declin, anticiper action"
+          },
+          "unite": "FCFA par mois"
+        },
+        {
+          "id": "ratio_tresorerie_charges",
+          "label": "Ratio tresorerie / charges mensuelles",
+          "formula": "Tresorerie disponible / Charges mensuelles totales",
+          "theorie": "Ce ratio (cash ratio etendu) indique le nombre de mois d'autonomie financiere. Un ratio >= 3 signifie que le vendeur peut supporter 3 mois sans nouvelles rentrées. Reference: recommandation Banque de France pour PME, adaptee au contexte BF.",
+          "interpretation": {
+            "excellent": ">= 3 (autonomie 3 mois)",
+            "bon": "1.5 - 3",
+            "vigilance": "1 - 1.5",
+            "critique": "< 1 (cessation de paiement imminente)"
+          },
+          "unite": "ratio (nombre de mois)"
+        },
+        {
+          "id": "conseil_investissement",
+          "label": "Conseil d'investissement",
+          "formula": "Si marge_nette > 30% ET ratio_tresorerie > 2 ALORS reinvestir 30% du benefice dans stock OU marketing",
+          "theorie": "Regle de prudence financiere: ne reinvestir que si (1) la rentabilite est saine et (2) la tresorerie permet de couvrir 2 mois de charges. Sinon, preferer le renforcement de la tresorerie (fonds de precaution).",
+          "interpretation": {
+            "reinvestir": "Marge > 30% ET tresorerie > 2 mois : reinvestir 30% du benefice",
+            "epargner": "Marge > 30% ET tresorerie < 2 mois : epargner 50% du benefice",
+            "ajuster": "Marge < 30% : revoir le modele economique avant investissement"
+          },
+          "unite": "decision + %"
+        },
+        {
+          "id": "dso",
+          "label": "DSO (Days Sales Outstanding) - Delai moyen de paiement",
+          "formula": "(Creances clients / CA TTC) x 30 (pour mensuel) ou x 360 (annuel)",
+          "variables": {
+            "creances_clients": "Factures emises non encore payees",
+            "CA_TTC": "Chiffre d'affaires TTC sur la periode"
+          },
+          "theorie": "Le DSO est l'indicateur cles du credit management. Il mesure le delai moyen entre la facturation et le paiement effectif. Au BF, beaucoup de ventes se font en comptant (DSO = 0). Pour les ventes a credit (INSS, administrations), le DSO peut exploser. Norme recommandee: < 30 jours.",
+          "interpretation": {
+            "excellent": "< 15 jours",
+            "bon": "15-30 jours",
+            "vigilance": "30-60 jours",
+            "critique": "> 60 jours (risque de credit)"
+          },
+          "unite": "jours"
+        },
+        {
+          "id": "bfr",
+          "label": "BFR (Besoin en Fonds de Roulement)",
+          "formula": "BFR = (Stocks + Creances clients) - (Dettes fournisseurs + Dettes fiscales et sociales)",
+          "variables": {
+            "stocks": "Valeur du stock a la date de calcul (prix d'achat)",
+            "creances_clients": "Factures non encaissees",
+            "dettes_fournisseurs": "Achats non encore payes aux fournisseurs"
+          },
+          "theorie": "Le BFR (Michel Sion, Analyse financiere) represente le besoin de financement du cycle d'exploitation. BFR positif = besoin de financement (cas frequent chez les vendeurs qui stockent avant de vendre). BFR negatif = ressource de financement (cas du retail pur avec paiement comptant client et credit fournisseur).",
+          "interpretation": {
+            "faible_besoin": "BFR < 1 mois de CA",
+            "normal": "BFR entre 1 et 3 mois de CA",
+            "eleve": "BFR > 3 mois de CA : risque de tension de tresorerie"
+          },
+          "unite": "FCFA"
+        },
+        {
+          "id": "roi_produit",
+          "label": "ROI par produit (Return On Investment)",
+          "formula": "ROI = (Benefice realise - Investissement initial) / Investissement initial x 100",
+          "variables": {
+            "investissement": "Cout d'achat du stock du produit + couts logistiques",
+            "benefice": "Marge brute cumulee sur les ventes du produit"
+          },
+          "theorie": "Le ROI (rendement du capital investi) permet de comparer la rentabilite de differentes allocations. Un ROI > 100% signifie que l'investissement s'est rembourse et a genere autant de benefice. Reference: un ROI annuel de 50-100% est excellent pour un produit artisanal BF.",
+          "interpretation": {
+            "excellent": "> 100%",
+            "bon": "30-100%",
+            "faible": "0-30%",
+            "perte": "< 0%"
+          },
+          "unite": "%"
+        },
+        {
+          "id": "fonds_roulement",
+          "label": "Fonds de roulement net global (FRNG)",
+          "formula": "FRNG = Capitaux permanents - Actif immobilise = (Tresorerie + BFR)",
+          "theorie": "Le FRNG mesure l'excedent de capitaux permanents sur l'actif immobilise. Un FRNG positif couvre le BFR et degage de la tresorerie. Indicateur d'equilibre financier a long terme.",
+          "unite": "FCFA"
+        }
+      ],
+      "recommendations_rules": [
+        {
+          "id": "rec_tresorerie_critique",
+          "condition": "ratio_tresorerie_charges < 1",
+          "action": "URGENT: relancer les impayes, negocier delais fournisseurs, privilegier ventes comptant",
+          "priorite": "haute"
+        },
+        {
+          "id": "rec_dso_eleve",
+          "condition": "dso > 30",
+          "action": "DSO trop eleve. Exiger un acompte de 30% a la commande. Limiter les ventes a credit a 30 jours max.",
+          "priorite": "haute"
+        },
+        {
+          "id": "rec_bfr_eleve",
+          "condition": "bfr > 3 x ca_mensuel",
+          "action": "BFR eleve: reduire le stock dormant, ecouler les invendus en promotion, etendre les delais fournisseurs",
+          "priorite": "moyenne"
+        },
+        {
+          "id": "rec_reinvestir",
+          "condition": "marge_nette > 0.30 ET ratio_tresorerie > 2",
+          "action": "Reinvestir 30% du benefice dans le stock des produits a forte rotation (classe A ABC)",
+          "priorite": "moyenne"
+        },
+        {
+          "id": "rec_roi_faible",
+          "condition": "roi_produit < 0.30",
+          "action": "ROI faible: soit arreter ce produit, soit augmenter le prix de 15%, soit negocier le cout d'achat",
+          "priorite": "moyenne"
+        }
+      ],
+      "input_fields": [
+        {"id": "tresorerie_initiale", "label": "Tresorerie disponible (FCFA)", "type": "number", "default": 100000},
+        {"id": "creances_clients", "label": "Factures impayees (FCFA)", "type": "number", "default": 0},
+        {"id": "dettes_fournisseurs", "label": "Achats non payes aux fournisseurs (FCFA)", "type": "number", "default": 0},
+        {"id": "delai_paiement_client_jours", "label": "Delai paiement clients (jours)", "type": "number", "default": 0}
+      ]
+    },
+
+    "marketing": {
+      "id": "marketing",
+      "nom": "Expert Marketing",
+      "icon": "megaphone",
+      "description": "Strategie commerciale basee sur la saisonnalite, la matrice BCG, le pricing et le ciblage clients pour maximiser vos ventes.",
+      "objectif": "Orienter les decisions commerciales (quoi vendre, quand, a qui, a quel prix) grace aux outils de marketing stratgique (BCG, segmentation, pricing strategique).",
+      "calculations": [
+        {
+          "id": "saisonnalite",
+          "label": "Analyse de saisonnalite par categorie",
+          "formula": "Pour chaque categorie: mois en pic (vente > 1.2 x moyenne annuelle) et mois en creux (vente < 0.8 x moyenne)",
+          "theorie": "La saisonnalite mesure les variations periodiques des ventes. Pour les produits agricoles BF, elle suit les cycles culturaux (karite: recolte mai-juillet, pic vente novembre-janvier pour fetes) et les evenements (Ramadan, Noel, rentree scolaire). Le coefficient saisonnier = vente du mois / moyenne mensuelle.",
+          "interpretation": {
+            "pic": "Coefficient > 1.2 : preparez le stock 2 mois avant",
+            "normal": "Coefficient 0.8 - 1.2",
+            "creux": "Coefficient < 0.8 : lancez des promotions ou concentrez-vous sur d'autres categories"
+          },
+          "unite": "coefficient + liste de mois"
+        },
+        {
+          "id": "suggestion_prix",
+          "label": "Suggestion de prix optimale",
+          "formula": "Prix suggere = Moyenne(prix_marche_min, prix_marche_max) ajuste par demande et concurrence",
+          "variables": {
+            "prix_marche": "Prix moyen constate sur le marche BF pour cette categorie",
+            "demande": "Indice de demande actuel (saisonnalite + tendance)",
+            "concurrence": "Nombre de vendeurs offrant le meme produit sur la plateforme"
+          },
+          "theorie": "Le pricing strategique combine trois approches: (1) cost-plus (cout + marge), (2) value-based (valeur percue par le client), (3) competition-based (positionnement vs concurrents). La suggestion pondere ces trois dimensions: prix = 0.4 x cout_x1.5 + 0.3 x prix_marche + 0.3 x valeur_fonctionnelle.",
+          "interpretation": {
+            "sous_price": "Prix actuel < 80% du prix marche : augmenter pour ne pas deprecier l'image",
+            "optimal": "Prix actuel dans [0.9 ; 1.1] x prix_marche",
+            "sur_price": "Prix actuel > 120% du prix marche : justifier par qualite/origine ou baisser"
+          },
+          "unite": "FCFA"
+        },
+        {
+          "id": "bcg_matrix",
+          "label": "Matrice BCG (Boston Consulting Group)",
+          "formula": "Classification 2x2: croissance marche (axe Y) x part de marche relative (axe X)",
+          "variables": {
+            "croissance": "Croissance des ventes du produit sur 12 mois (%)",
+            "part_relatif": "Part de marche du produit / part du concurrent direct"
+          },
+          "theorie": "La matrice BCG (Henderson, 1968) classe les produits en 4 quadrants selon leur position strategique. Etoile: forte croissance + forte part (investir). Vache a lait: faible croissance + forte part (rentabiliser). Dilemme: forte croissance + faible part (choisir: investir ou abandonner). Poids mort: faible croissance + faible part (desinvestir).",
+          "interpretation": {
+            "etoile": "Croissance > 10% ET part > 15% : investir pour conquerir le marche",
+            "vache_lait": "Croissance < 10% ET part > 15% : rentabiliser, financer les etoiles",
+            "dilemme": "Croissance > 10% ET part < 15% : investir selectivement ou abandonner",
+            "poids_mort": "Croissance < 10% ET part < 15% : desinvestir progressivement"
+          },
+          "unite": "classification"
+        },
+        {
+          "id": "promotion_recommandation",
+          "label": "Recommandations de promotions",
+          "formula": "Si stock eleve ET saison creuse ALORS promo 15-20% ; Si saison pic ALORS pas de promo (profiter pleine demande)",
+          "theorie": "Le timing des promotions est cles: une promotion en pleine saison dilue la marge inutilement (la demande est deja la). Une promotion en creux stimule la demande atone. Le % ideal est de 15-20% (assez pour attirer, pas assez pour deprecier). Au-dela de 30%, le client suspecte une qualite inferieure.",
+          "interpretation": {
+            "promotion_forte": "15-20% sur produits classe B/C en saison creuse",
+            "promotion_legere": "5-10% sur produits nouveaux pour essai",
+            "pas_promo": "Pleine saison: aucun discount, maximiser la marge"
+          },
+          "unite": "% + produits cibles"
+        },
+        {
+          "id": "ciblage_clients",
+          "label": "Segmentation clients",
+          "formula": "Segmentation par region (13 regions BF) + par categorie preferee + par frequence d'achat",
+          "theorie": "La segmentation RFM (Recence, Frequence, Montant) est une methode classique de marketing direct. Combinee avec la segmentation geographique (regions BF), elle permet de cibler precisement les actions commerciales: clients du Centre (Ouaga) prefèrent l'artisanat, clients du Sud-Ouest (karite), clients du Haut-Bassins (miel).",
+          "interpretation": {
+            "vip": "Achats > 50 000 FCFA et frequence > 1/mois : offres premium",
+            "fidele": "Plusieurs achats sur 6 mois : programme fidelite",
+            "occasionnel": "1 achat unique : relance avec promo",
+            "inactif": "Aucun achat > 6 mois : reactivation promo agressive"
+          },
+          "unite": "segments + comptes"
+        },
+        {
+          "id": "best_timing_relance",
+          "label": "Best timing pour relances",
+          "formula": "Vendredi 14h-16h (heure BF, UTC+0)",
+          "theorie": "Etudes BF (INSD - Institut National des Statistiques et de la Demographie) et return-on-engagement des plateformes locales: vendredi apres-midi = meilleur taux d'ouverture des messages commerciaux (40% superieur a la moyenne). Les clients sont disponibles, en fin de semaine, et predisposes a planifier leurs achats du week-end. Eviter lundi matin (delai de traitement des week-end) et dimanche (respect du repos).",
+          "interpretation": {
+            "optimal": "Vendredi 14h-16h",
+            "bon": "Mardi 10h-12h, Jeudi 16h-18h",
+            "eviter": "Lundi matin, week-end, apres 19h"
+          },
+          "unite": "creneau horaire"
+        }
+      ],
+      "recommendations_rules": [
+        {
+          "id": "rec_preparer_saison",
+          "condition": "mois_actuel == mois_pic - 2",
+          "action": "Dans 2 mois, pic de saisonnalite prevu pour {categorie}. Augmenter le stock de 50% des maintenant.",
+          "priorite": "haute"
+        },
+        {
+          "id": "rec_promo_creux",
+          "condition": "mois_actuel in mois_creux ET stock > 1.5 x vente_mensuelle",
+          "action": "Saison creuse + stock eleve: lancer une promo 15-20% pour ecouler avant peremption",
+          "priorite": "haute"
+        },
+        {
+          "id": "rec_poids_mort",
+          "condition": "bcg == 'poids_mort'",
+          "action": "Produit 'poids mort' BCG: envisager l'abandon ou repositionner (nouveau marche, nouveau packaging)",
+          "priorite": "moyenne"
+        },
+        {
+          "id": "rec_sous_price",
+          "condition": "prix_vendeur < 0.8 x prix_marche",
+          "action": "Prix sous-estime de X% vs marche. Augmenter pour valoriser l'offre (produits artisanaux BF merits prix juste).",
+          "priorite": "moyenne"
+        },
+        {
+          "id": "rec_vip_segment",
+          "condition": "nb_clients_vip > 5",
+          "action": "{nb} clients VIP identifies: lancer un programme fidelite (livraison gratuite sur 5e commande, par exemple).",
+          "priorite": "moyenne"
+        },
+        {
+          "id": "rec_relance_vendredi",
+          "condition": "today.day == 'vendredi' AND today.hour in [14,15]",
+          "action": "Creneau optimal de relance actif. Contacter vos {nb_inactifs} clients inactifs maintenant.",
+          "priorite": "basse"
+        }
+      ],
+      "input_fields": [
+        {"id": "objectif_mensuel_ca", "label": "Objectif CA mensuel (FCFA)", "type": "number", "default": 500000},
+        {"id": "budget_marketing", "label": "Budget marketing mensuel (FCFA)", "type": "number", "default": 20000}
+      ]
+    },
+
+    "secretaire": {
+      "id": "secretaire",
+      "nom": "Secretaire (Assistant)",
+      "icon": "mail",
+      "description": "Assistant de communication: modeles de messages pre-rediges, rappels automatiques, gestion d'agenda pour vos clients et commandes.",
+      "objectif": "Automatiser les communications routine (confirmations, relances, remerciements) et les rappels (stock, peremption, commandes en attente) pour que le vendeur se concentre sur l'essentiel.",
+      "calculations": [
+        {
+          "id": "messages_pre_rediges",
+          "label": "Modeles de messages pre-rediges",
+          "formula": "Templates avec variables {client}, {produit}, {montant}, {commande_id}, {vendeur}, {delai}",
+          "theorie": "Les templates de communication professionnelle (template-based communication) reduisent le temps de redaction de 70% tout en garantissant la coherence du ton. Les variables (placeholders) permettent la personnalisation sans perte de temps. Distinction: message transactionnel (informationnel) vs message commercial (promotionnel).",
+          "interpretation": {
+            "info": "5 templates disponibles: confirmation commande, relance paiement, remerciement avis, annonce promo, reponse info"
+          },
+          "unite": "templates + variables"
+        },
+        {
+          "id": "rappels_commandes_attente",
+          "label": "Rappels commandes en attente > 48h",
+          "formula": "Pour chaque commande: si status == 'en_cours' ET (now - date_commande) > 48h ALORS alerte",
+          "theorie": "La regle des 48h est un standard du e-commerce (source: E-commerce Europe): au-dela, le taux d'annulation monte a 35% et la satisfaction client chute de 40%. La gestion proactive des commandes en attente (SLA - Service Level Agreement) protege la reputation du vendeur.",
+          "interpretation": {
+            "action_immediate": "> 48h : traiter aujourd'hui",
+            "urgence": "> 7 jours : risque d'annulation client + mauvais avis"
+          },
+          "unite": "alertes"
+        },
+        {
+          "id": "rappels_stock_bas",
+          "label": "Rappels stock bas",
+          "formula": "Pour chaque produit: si stock_actuel < seuil_reappro (stock_securite) ALORS alerte",
+          "theorie": "Le seuil de reapprovisionnement (reorder point) declenche une alerte avant la rupture. Formule classique: seuil = (vente_moyenne_journaliere x delai_reappro_jours) + stock_securite. En dessous de ce seuil, risque de rupture pendant le delai d'approvisionnement.",
+          "interpretation": {
+            "critique": "Stock < stock_securite (rupture imminente)",
+            "vigilance": "Stock < seuil_reappro (commander maintenant)",
+            "ok": "Stock > seuil_reappro"
+          },
+          "unite": "alertes"
+        },
+        {
+          "id": "rappels_peremption",
+          "label": "Rappels peremptions proches",
+          "formula": "Pour chaque produit perissable: si jours_restantants < 30 ALORS rouge ; si < 90 ALORS orange",
+          "theorie": "La gestion des dates de peremption (FIFO - First In First Out) est obligatoire pour les produits alimentaires et cosmetiques. Regle BF (ABNORM): un produit perime ne peut etre vendu. Anticiper a 90 jours permet d'ecouler via promo, a 30 jours impose une action immediate (liquidation, don, destruction).",
+          "interpretation": {
+            "rouge": "< 30 jours : URGENT, promo forte ou liquidation",
+            "orange": "30-90 jours : promo moderee pour ecouler",
+            "vert": "> 90 jours : surveillance normale"
+          },
+          "unite": "alertes"
+        },
+        {
+          "id": "agenda_livraisons",
+          "label": "Agenda livraisons et RDV",
+          "formula": "Liste chronologique des livraisons prevues + RDV clients + echeances fournisseurs",
+          "theorie": "L'agenda operationnel (operational schedule) synchronise les engagements commerciaux (livraisons), administratifs (echeances) et relationnels (RDV clients). Format recommande: vue calendrier + alertes 24h avant.",
+          "unite": "evenements chronologiques"
+        }
+      ],
+      "recommendations_rules": [
+        {
+          "id": "rec_traiter_urgence_48h",
+          "condition": "commande_en_attente_48h > 0",
+          "action": "{n} commande(s) en attente > 48h. Traiter en priorite aujourd'hui pour eviter annulation.",
+          "priorite": "haute"
+        },
+        {
+          "id": "rec_commander_stock_bas",
+          "condition": "produits_stock_bas > 0",
+          "action": "{n} produit(s) en rupture imminente. Lancer commande fournisseur.",
+          "priorite": "haute"
+        },
+        {
+          "id": "rec_promo_peremption",
+          "condition": "produits_peremption_30j > 0",
+          "action": "{n} produit(s) perempt(s) dans < 30j. Lancer promo -25% ou contacter associations.",
+          "priorite": "haute"
+        },
+        {
+          "id": "rec_relance_paiement",
+          "condition": "factures_impayees_7j > 0",
+          "action": "{n} facture(s) impayee(s) > 7 jours. Envoyer message 'relance_paiement' au client.",
+          "priorite": "moyenne"
+        },
+        {
+          "id": "rec_remerciement_avis",
+          "condition": "livraisons_recentes_3j > 0",
+          "action": "{n} livraison(s) recente(s): envoyer message 'remerciement_avis' pour stimuler les avis.",
+          "priorite": "basse"
+        }
+      ],
+      "input_fields": [
+        {"id": "delai_reappro_jours", "label": "Delai de reappro habituel (jours)", "type": "number", "default": 14},
+        {"id": "stock_securite_jours", "label": "Stock securite (jours de vente)", "type": "number", "default": 7}
+      ]
+    },
+
+    "stock": {
+      "id": "stock",
+      "nom": "Stock Manager",
+      "icon": "package",
+      "description": "Gestion intelligente du stock: alertes peremption, taux de rotation, analyse ABC, suggestions de reappro et detection des stocks dormants.",
+      "objectif": "Optimiser le couple service-cout du stock: ni rupture (perte de vente), ni surstock (capital immobilise + risque peremption). Base sur les methodes classiques de gestion de stock (Wilson, ABC, FIFO).",
+      "calculations": [
+        {
+          "id": "alerte_peremption",
+          "label": "Alerte peremption",
+          "formula": "Pour chaque produit: jours_restantants = date_peremption - aujourd'hui. Rouge si < 30j, Orange si < 90j, Vert sinon.",
+          "theorie": "La gestion des peremptions repose sur le principe FIFO (First In First Out): ecouler en priorite les lots les plus anciens. La regle des 30/90 jours est un standard de la distribution: 30j = action immediate, 90j = action planifiee. Sources: ABNORM (Burkina), Codex Alimentarius.",
+          "interpretation": {
+            "rouge": "< 30 jours: action immediate (promo forte, liquidation, don)",
+            "orange": "30-90 jours: promo moderee pour ecouler",
+            "vert": "> 90 jours: surveillance normale"
+          },
+          "unite": "alertes"
+        },
+        {
+          "id": "taux_rotation_stock",
+          "label": "Taux de rotation du stock",
+          "formula": "Rotation = Cout des ventes annuel / Stock moyen = Ventes (quantite) / ((stock_initial + stock_final) / 2)",
+          "variables": {
+            "ventes_annuelles": "Quantite totale vendue sur 12 mois",
+            "stock_moyen": "Moyenne arithmetique stock debut et fin de periode"
+          },
+          "theorie": "Le taux de rotation (inventory turnover) mesure combien de fois le stock est renouvele sur une periode. Norme BF: 4/an minimum pour produits agricoles (3 mois de stock max), 8-12/an pour produits artisanaux a forte demande. Trop bas = surstock (capital dormant). Trop haut = risque de rupture. Source: IAS 2 / methodes Wilson.",
+          "interpretation": {
+            "excellent": "> 8/an",
+            "bon": "4-8/an",
+            "vigilance": "2-4/an",
+            "critique": "< 2/an (surstock massif)"
+          },
+          "unite": "fois par an"
+        },
+        {
+          "id": "abc_analysis",
+          "label": "Analyse ABC (classification de Pareto)",
+          "formula": "Classement des produits par CA decroissant. Classe A: 20% des produits = 80% du CA. Classe B: 30% = 15% du CA. Classe C: 50% = 5% du CA.",
+          "variables": {
+            "ca_par_produit": "CA realise par produit sur 12 mois",
+            "cumul": "Somme cumulee du CA, tri descendant"
+          },
+          "theorie": "L'ABC analysis (loi de Pareto 80/20) est une methode de classification des produits selon leur importance economique. Elle guide la priorisation: controle strict (inventaire mensuel, stock securite eleve) pour classe A, controle normal (trimestriel) pour B, controle leger (annuel) pour C. Source: Pareto (1906), appliquee au stock par H.F. Dickie (1951).",
+          "interpretation": {
+            "classe_A": "20% produits / 80% CA : surveillance stricte, stock securite x2",
+            "classe_B": "30% produits / 15% CA : surveillance normale",
+            "classe_C": "50% produits / 5% CA : surveillance leger, envisager abandon"
+          },
+          "unite": "classification + listes"
+        },
+        {
+          "id": "suggestion_reappro",
+          "label": "Suggestion de reappro",
+          "formula": "Quantite a commander = (vente_moyenne_journaliere x delai_reappro) + stock_securite - stock_actuel",
+          "variables": {
+            "vente_moyenne_journaliere": "Ventes 30 derniers jours / 30",
+            "delai_reappro": "Delai habituel fournisseur (jours)",
+            "stock_securite": "Vente moyenne x 7 jours (par defaut)"
+          },
+          "theorie": "La formule du point de commande (reorder point + EOQ) minimise le couple cout de stockage + cout de rupture. Quantite optimale = (vente_moyenne_journaliere x delai_reappro) + stock_securite - stock_actuel. Si negatif, pas de commande necessaire. La formule de Wilson (EOQ - Economic Order Quantity) donne la taille optimale de lot pour minimiser les couts totaux.",
+          "interpretation": {
+            "commander": "Quantite > 0 : passer commande de X unites",
+            "attendre": "Quantite <= 0 : stock suffisant pour la periode"
+          },
+          "unite": "unites par produit"
+        },
+        {
+          "id": "stock_optimal",
+          "label": "Stock optimal",
+          "formula": "Stock optimal = (vente_moyenne_journaliere x delai_reappro) + stock_securite",
+          "theorie": "Le stock optimal (optimal stock level) est le niveau de stock qui minimise la somme du cout de possession (capital immobilise + entreposage) et du cout de rupture (ventes perdues). Compose du stock de circulation (couvre le delai de reappro) et du stock de securite (absorbe les aleas de demande et de delai).",
+          "interpretation": {
+            "optimal": "Stock actuel = stock optimal +/- 10%",
+            "sur_stock": "Stock actuel > 1.5 x stock optimal",
+            "sous_stock": "Stock actuel < 0.8 x stock optimal"
+          },
+          "unite": "unites"
+        },
+        {
+          "id": "dead_stock",
+          "label": "Dead stock (stock dormant)",
+          "formula": "Pour chaque produit: si aucune vente sur les 60 derniers jours ALORS dead stock",
+          "theorie": "Le dead stock (stock dormant) immobilise du capital sans retour. Au-dela de 60 jours sans vente, le produit est classe 'dormant'. Au-dela de 180 jours, 'mort'. Action: promo agressive (-30%), repositionnement, don (deduction fiscale), destruction. Source: APICS (American Production and Inventory Control Society).",
+          "interpretation": {
+            "dormant": "60-180 jours sans vente : promo -20%",
+            "mort": "> 180 jours sans vente : liquidation -40% ou don",
+            "actif": "< 60 jours : stock normal"
+          },
+          "unite": "produits"
+        },
+        {
+          "id": "valeur_stock",
+          "label": "Valeur du stock",
+          "formula": "Somme(stock_actuel x cout_achat_unitaire) pour tous les produits",
+          "theorie": "La valorisation du stock (au cout d'achat) est un indicateur cles du BFR. Elle permet de calculer le cout de possession annuel (environ 20-25% de la valeur du stock: entreposage, assurance, obsolescence, capital immobilise).",
+          "unite": "FCFA"
+        },
+        {
+          "id": "cout_possession",
+          "label": "Cout annuel de possession du stock",
+          "formula": "Valeur stock moyen x 0.22 (taux standard BF)",
+          "theorie": "Le cout de possession (carrying cost) regroupe l'entreposage (5%), l'assurance (2%), l'obsolescence (5%), la depreciation (5%), le cout du capital immobilise (5%). Estimation standard: 22-25% de la valeur du stock. Source: APICS, adapté contexte BF.",
+          "unite": "FCFA par an"
+        }
+      ],
+      "recommendations_rules": [
+        {
+          "id": "rec_reappro_classe_a",
+          "condition": "produit_classe_A ET stock < seuil_reappro",
+          "action": "URGENT (classe A): reappro {quantite} unites de {produit}. CA a risque si rupture.",
+          "priorite": "haute"
+        },
+        {
+          "id": "rec_peremption_rouge",
+          "condition": "jours_restantants < 30",
+          "action": "{produit} expire dans {n} jours. Lancer promo -25% immediatement ou trouver debauche (restaurateurs, associations).",
+          "priorite": "haute"
+        },
+        {
+          "id": "rec_dead_stock",
+          "condition": "jours_sans_vente > 60",
+          "action": "{produit} dormant depuis {n} jours. Lancer promo -20% ou repositionner sur nouveau marche.",
+          "priorite": "moyenne"
+        },
+        {
+          "id": "rec_rotation_faible",
+          "condition": "taux_rotation < 2",
+          "action": "Rotation trop faible: reduire les quantites commandees, privilegier flux tendu, diversifier offre.",
+          "priorite": "moyenne"
+        },
+        {
+          "id": "rec_surstock",
+          "condition": "stock_actuel > 1.5 x stock_optimal",
+          "action": "Surstock sur {produit}. Limiter les futures commandes, ecouler via promo.",
+          "priorite": "moyenne"
+        }
+      ],
+      "input_fields": [
+        {"id": "delai_reappro_jours", "label": "Delai de reappro moyen (jours)", "type": "number", "default": 14},
+        {"id": "stock_securite_jours", "label": "Stock securite (jours)", "type": "number", "default": 7},
+        {"id": "cout_possession_pct", "label": "Cout possession annuel (%)", "type": "number", "default": 22, "min": 10, "max": 35}
+      ]
+    },
+
+    "conseiller": {
+      "id": "conseiller",
+      "nom": "Conseiller Ventes",
+      "icon": "lightbulb",
+      "description": "Boostez vos ventes grace au cross-sell, upsell, lots complementaires et recommandations personnalisees basees sur votre historique de ventes.",
+      "objectif": "Augmenter le panier moyen et la frequence d'achat grace aux techniques de vente additionnelle (cross-sell, upsell, bundling) et au scoring de popularite des produits.",
+      "calculations": [
+        {
+          "id": "cross_sell",
+          "label": "Cross-sell: clients qui ont achete X ont aussi achete Y",
+          "formula": "Pour chaque paire (X, Y): co-occurrence dans memes paniers / total paniers contenant X. Si > 30% ALORS recommander Y aux acheteurs de X.",
+          "theorie": "Le cross-selling (vente croisee) repose sur l'analyse de panier (market basket analysis) et l'algorithme Apriori (Agrawal, 1994). Les regles d'association {X -> Y} mesurent la confiance (probabilite conditionnelle) et le support (frequence). Exemple BF: beurre de karite + savon karite (complementaires cosmetique), miel + grenade (complementaires gastronomique).",
+          "interpretation": {
+            "forte_confiance": "> 50% : recommandation systematique",
+            "moyenne": "30-50% : recommandation contextuelle",
+            "faible": "< 30% : pas de recommandation"
+          },
+          "unite": "paires de produits + %"
+        },
+        {
+          "id": "upsell",
+          "label": "Upsell: suggestion version premium/bulk",
+          "formula": "Pour chaque produit: identifier version premium (qualite superieure) ou bulk (lot economique). Suggest si client a achete version standard.",
+          "theorie": "L'upselling (vente superieure) pousse le client vers une option plus rentable: version premium (marge superieure), format bulk (panier plus gros), edition limitee (prix psychologique). Regle: l'upsell doit apporter une valeur reelle au client pour etre ethique. Taux de reussite moyen: 15-25% en e-commerce (source: Forrester Research).",
+          "interpretation": {
+            "premium": "Suggerer version premium (prix +30-50%)",
+            "bulk": "Suggerer lot x5 avec remise 10% (panier +40%)",
+            "none": "Pas d'upsell pertinent identifie"
+          },
+          "unite": "recommandations"
+        },
+        {
+          "id": "recommandations_historique",
+          "label": "Recommandations basees sur historique similaires",
+          "formula": "Pour un produit donne: identifier les vendeurs de meme categorie ayant des patterns de vente similaires, suggerer leurs produits a succes",
+          "theorie": "Le filtrage collaboratif (collaborative filtering, Goldberg 1992) recommande des items base sur le comportement d'utilisateurs similaires. Version vendeur: 'vendeurs comme vous ont aussi reussi avec ces produits'. Augmente la decouverte de niches porteuses.",
+          "interpretation": {
+            "fort": "Produit present chez > 50% des vendeurs similaires a succès",
+            "moyen": "20-50%",
+            "faible": "< 20% : signal faible"
+          },
+          "unite": "produits + %"
+        },
+        {
+          "id": "periodes_optimales",
+          "label": "Periodes optimales par produit",
+          "formula": "Pour chaque produit: identifier le mois avec les ventes maximales sur l'historique (ou coefficient saisonnier max)",
+          "theorie": "Le calendrier commercial optimal aligne les efforts promotionnels et les pics de demande. Source: courbe saisonniere BF (INSD). Permet de preparer le stock 2 mois avant et de lancer les campagnes marketing 1 mois avant.",
+          "interpretation": {
+            "pic_a_venir": "Pic prevu dans 1-2 mois: preparer maintenant",
+            "pic_passe": "Pic passe: attendre l'annee prochaine",
+            "stable": "Demande stable: opportuniste"
+          },
+          "unite": "mois par produit"
+        },
+        {
+          "id": "suggestion_lots",
+          "label": "Suggestion de lots complementaires",
+          "formula": "Combiner produits complementaires (cross-sell > 30%) en lots avec remise 10-15%",
+          "theorie": "Le bundling (offre groupee) augmente le panier moyen de 20-30% (source: Harvard Business Review). Le client percoit une valeur supérieure (complementarite) et une economie. Conditions: produits reels complementaires (pas artificiels), remise 10-15% (incitative sans deprecier).",
+          "interpretation": {
+            "lot_cree": "Lot suggere: {produit1} + {produit2} = {prix_lot} FCFA (economie 12%)",
+            "pas_lot": "Pas de complementarite forte identifiee"
+          },
+          "unite": "lots"
+        },
+        {
+          "id": "score_popularite",
+          "label": "Score de popularite (30 jours)",
+          "formula": "Score = (vues x 0.3 + paniers x 0.5 + achats x 1.0) / 30 jours",
+          "variables": {
+            "vues": "Nombre de consultations produit (page detail)",
+            "paniers": "Nombre d'ajouts au panier",
+            "achats": "Nombre de commandes finalisees"
+          },
+          "theorie": "Le score de popularite (engagement score) pondere les interactions selon leur intensite: vue (attention), panier (intention), achat (conversion). La ponderation 0.3/0.5/1.0 reflete le funnel de conversion AARRR (Acquisition, Activation, Retention, Revenue, Referral). Permet d'identifier les produits a fort potentiel avant qu'ils n'explosent en ventes.",
+          "interpretation": {
+            "top": "Score > 80e percentile: produit star, capitaliser",
+            "emergent": "60-80e percentile: produit emergent, push marketing",
+            "faible": "< 60e percentile: revoir le referencement"
+          },
+          "unite": "score (decimal)"
+        },
+        {
+          "id": "panier_moyen",
+          "label": "Panier moyen",
+          "formula": "CA total / nombre de commandes",
+          "theorie": "Le panier moyen (average order value) est un KPI cles du e-commerce. Au BF, estime a 8 500 FCFA pour produits artisanaux. L'augmenter de 20% via cross-sell/upsell equivaut a augmenter le trafic de 20% (sans investissement marketing).",
+          "unite": "FCFA"
+        },
+        {
+          "id": "taux_conversion",
+          "label": "Taux de conversion",
+          "formula": "(Achats / Visiteurs) x 100",
+          "theorie": "Le taux de conversion (conversion rate) mesure l'efficacite du funnel. Norme e-commerce global: 2-3%. Pour artisans BF: 1-2% (marche naissant). Ameliorations: photos de qualite, descriptions detaillees, prix competitifs, badges confiance.",
+          "interpretation": {
+            "excellent": "> 3%",
+            "bon": "1-3%",
+            "faible": "< 1% : optimiser fiches produit"
+          },
+          "unite": "%"
+        }
+      ],
+      "recommendations_rules": [
+        {
+          "id": "rec_cross_sell",
+          "condition": "confiance_xy > 0.30",
+          "action": "Aux acheteurs de {X}, recommander aussi {Y} ({n}% ont les 2).",
+          "priorite": "moyenne"
+        },
+        {
+          "id": "rec_upsell_premium",
+          "condition": "version_premium_disponible",
+          "action": "Proposer version premium de {produit} ({prix_premium} FCFA, +{delta}% marge).",
+          "priorite": "moyenne"
+        },
+        {
+          "id": "rec_lot_complementaire",
+          "condition": "complementarite > 0.40",
+          "action": "Creer un lot {produit1} + {produit2} a {prix_lot} FCFA (remise 12%).",
+          "priorite": "haute"
+        },
+        {
+          "id": "rec_produit_emergent",
+          "condition": "score_popularite > 80 AND ventes < 5",
+          "action": "{produit} emerge (score {score}) mais peu de ventes. Pousser en promo decouverte.",
+          "priorite": "moyenne"
+        },
+        {
+          "id": "rec_panier_faible",
+          "condition": "panier_moyen < 5000",
+          "action": "Panier moyen faible ({n} FCFA). Former un lot pour augmenter a {objectif} FCFA.",
+          "priorite": "moyenne"
+        },
+        {
+          "id": "rec_preparer_pic",
+          "condition": "mois_actuel == mois_pic - 1",
+          "action": "Pic de {produit} dans 1 mois. Preroller une campagne marketing maintenant.",
+          "priorite": "haute"
+        }
+      ],
+      "input_fields": [
+        {"id": "objectif_panier_moyen", "label": "Objectif panier moyen (FCFA)", "type": "number", "default": 15000},
+        {"id": "remise_lot_pct", "label": "Remise lot complementaire (%)", "type": "number", "default": 12, "min": 5, "max": 20}
+      ]
+    }
+  },
+  "reference_data": {
+    "prix_moyens_marche": {
+      "Karite": {"min": 800, "max": 3000, "moyenne": 1500, "unite": "FCFA/250g", "source": "Table Filiere Karite BF + marche Ouagadougou 2026"},
+      "Sesame": {"min": 1200, "max": 2500, "moyenne": 1800, "unite": "FCFA/kg", "source": "Nitidae filiere sesame BF"},
+      "Miel": {"min": 2500, "max": 6000, "moyenne": 4000, "unite": "FCFA/L", "source": "Apiculteurs BF + INSD"},
+      "Coton": {"min": 3000, "max": 15000, "moyenne": 7500, "unite": "FCFA/m", "source": "SOFITEX + artisanat textile Ouagadougou"},
+      "Artisanat": {"min": 2000, "max": 80000, "moyenne": 15000, "unite": "FCFA/piece", "source": "Chambre de l'Artisanat BF"}
+    },
+    "ratios_sains": {
+      "marge_brute_min": 0.30,
+      "marge_nette_bon_min": 0.10,
+      "marge_nette_excellent_min": 0.25,
+      "rotation_stock_min": 4,
+      "rotation_stock_excellent": 8,
+      "tresorerie_charges_min": 3,
+      "tresorerie_charges_critique": 1,
+      "dso_max_jours": 30,
+      "dso_critique_jours": 60,
+      "taux_conversion_min_pct": 1,
+      "taux_conversion_excellent_pct": 3,
+      "panier_moyen_objectif_fcfa": 15000,
+      "abc_seuil_a_pct": 80,
+      "abc_seuil_b_pct": 95,
+      "bfr_max_mois_ca": 3,
+      "roi_min_pct": 30,
+      "concentration_max_top1_pct": 50,
+      "stock_optimal_tolerance_pct": 10,
+      "sur_stock_seuil": 1.5,
+      "sous_stock_seuil": 0.8,
+      "seuil_commande_attente_heures": 48,
+      "seuil_peremption_rouge_jours": 30,
+      "seuil_peremption_orange_jours": 90,
+      "seuil_dead_stock_jours": 60,
+      "seuil_dead_stock_mort_jours": 180,
+      "confiance_cross_sell_min": 0.30,
+      "confiance_cross_sell_forte": 0.50,
+      "complementarite_lot_min": 0.40,
+      "remise_lot_default_pct": 12,
+      "remise_promo_min_pct": 5,
+      "remise_promo_max_pct": 25,
+      "coefficient_saison_pic_min": 1.2,
+      "coefficient_saison_creux_max": 0.8
+    },
+    "saisonnalite": {
+      "Karite": {"pic": [11, 12, 1], "creux": [5, 6, 7], "rationale": "Recolte mai-juillet, transformation aout-octobre, pic vente fetes fin d'annee (Noel, Nouvel An)"},
+      "Miel": {"pic": [11, 12], "creux": [3, 4], "rationale": "Recolte octobre-novembre, pic consommation fetes fin d'annee"},
+      "Coton": {"pic": [12, 1, 9], "creux": [5, 6], "rationale": "Rentree scolaire (sept), fetes fin d'annee, harmattan (vêtements chauds)"},
+      "Sesame": {"pic": [10, 11], "creux": [4, 5], "rationale": "Recolte septembre-octobre, pic exportation et consommation locale"},
+      "Artisanat": {"pic": [12, 4, 8], "creux": [2, 6], "rationale": "Noel (dec), fete des meres (mai-juin variable), rentree (sept), Ramadan variable"}
+    },
+    "bcg_matrix_rules": {
+      "etoile": "croissance > 10% ET part > 15% : investir pour conquerir le marche",
+      "vache_lait": "croissance < 10% ET part > 15% : rentabiliser, financer les etoiles",
+      "dilemme": "croissance > 10% ET part < 15% : investir selectivement ou abandonner",
+      "poids_mort": "croissance < 10% ET part < 15% : desinvestir progressivement"
+    },
+    "abc_classification_rules": {
+      "classe_A": "20% des produits generant 80% du CA - surveillance stricte, inventaire mensuel, stock securite x2",
+      "classe_B": "30% des produits generant 15% du CA - surveillance normale, inventaire trimestriel",
+      "classe_C": "50% des produits generant 5% du CA - surveillance leger, envisager abandon si non strategique"
+    },
+    "regions_bf": [
+      "Hauts-Bassins", "Boucle du Mouhoun", "Cascade", "Centre", "Centre-Est", "Centre-Nord",
+      "Centre-Ouest", "Centre-Sud", "Est", "Nord", "Plateau-Central", "Sahel", "Sud-Ouest"
+    ],
+    "villes_principales": ["Ouagadougou", "Bobo-Dioulasso", "Koudougou", "Ouahigouya", "Banfora", "Tenkodogo", "Leo", "Dori"],
+    "tva": {
+      "taux_normal": 0.18,
+      "regime_franchise_ca_max": 50000000,
+      "produits_exoneres": ["Riz local", "Mil", "Mais local", "Sorgho"],
+      "mention_franchise": "TVA non applicable, art. 305 CGI BF"
+    },
+    "delais_paiement_standards": {
+      "comptant": 0,
+      "court_terme": 7,
+      "standard": 30,
+      "long_terme": 60,
+      "administration_bf": 90
+    },
+    "messages_templates": {
+      "confirmation_commande": "Bonjour {client},\n\nNous confirmons la reception de votre commande {commande_id} d'un montant de {montant} FCFA. Elle sera preparee et expediee sous 48h.\n\nVous recevrez une notification a chaque etape (preparation, expedition, livraison).\n\nMerci de votre confiance,\n{vendeur}\n{boutique_url}",
+      "relance_paiement": "Bonjour {client},\n\nNous vous rappelons que le paiement de {montant} FCFA pour la commande {commande_id} est attendu depuis {delai} jours. Merci de regulariser sous 7 jours.\n\nEn cas de difficulte, contactez-nous pour trouver un arrangement.\n\nCordialement,\n{vendeur}",
+      "remerciement_avis": "Bonjour {client},\n\nMerci pour votre achat ! Nous esperons que {produit} vous donne entiere satisfaction. Pourriez-vous laisser un avis sur notre boutique ? Cela nous aide enormement et guide les autres acheteurs.\n\nLien avis: {avis_url}\n\n{vendeur}",
+      "annonce_promotion": "Bonjour {client},\n\nBonne nouvelle ! Jusqu'au {date_fin}, profitez de {remise}% sur {produit}. Stock limite, depchez-vous !\n\nVoir l'offre: {offre_url}\n\n{vendeur}",
+      "reponse_info": "Bonjour {client},\n\nMerci pour votre interest pour {produit}. Voici les informations demandees:\n\n- Prix: {prix} FCFA\n- Disponibilite: {stock} en stock\n- Delai livraison: {delai_livraison}\n- Conditions: {conditions}\n\nN'hesitez pas si vous avez d'autres questions.\n\nCordialement,\n{vendeur}",
+      "livraison_confirmee": "Bonjour {client},\n\nVotre commande {commande_id} a ete expediee et sera livree le {date_livraison}.\n\nTransporteur: {transporteur}\nReference suivi: {suivi}\n\nMerci de votre confiance,\n{vendeur}",
+      "rupture_stock": "Bonjour {client},\n\nNous vous informons que {produit} est actuellement en rupture de stock. Le reapprovisionnement est prevu pour le {date_reappro}.\n\nSouhaitez-vous etre prevenu(e) a la disponibilite ? Repondez OUI.\n\n{vendeur}"
+    },
+    "variables_templates": ["{client}", "{produit}", "{montant}", "{commande_id}", "{vendeur}", "{delai}", "{boutique_url}", "{avis_url}", "{offre_url}", "{date_fin}", "{remise}", "{prix}", "{stock}", "{delai_livraison}", "{conditions}", "{date_livraison}", "{transporteur}", "{suivi}", "{date_reappro}"],
+    "coefficient_saisonnier": {
+      "1": 1.15, "2": 0.85, "3": 0.90, "4": 0.95, "5": 0.80, "6": 0.75,
+      "7": 0.85, "8": 1.05, "9": 1.20, "10": 1.25, "11": 1.30, "12": 1.35
+    },
+    "couleurs_alertes": {
+      "rouge": "#dc3545",
+      "orange": "#fd7e14",
+      "jaune": "#ffc107",
+      "vert": "#28a745",
+      "bleu": "#007bff",
+      "violet": "#6f42c1"
+    },
+    "heurures_optimales_relance": {
+      "optimal": [{"jour": "vendredi", "debut": 14, "fin": 16}],
+      "bon": [
+        {"jour": "mardi", "debut": 10, "fin": 12},
+        {"jour": "jeudi", "debut": 16, "fin": 18}
+      ],
+      "eviter": [
+        {"jour": "lundi", "debut": 8, "fin": 10},
+        {"jour": "samedi", "debut": 0, "fin": 24},
+        {"jour": "dimanche", "debut": 0, "fin": 24}
+      ]
+    },
+    "bibliographie": [
+      "Cooper, R., & Kaplan, R. S. (1988). Measure costs right: Make the right decisions. Harvard Business Review.",
+      "Henderson, B. D. (1968). The Product Portfolio. Boston Consulting Group Perspectives.",
+      "Sion, M. (2014). Analyse financiere : concepts et methodes. Editions Dunod.",
+      "Pareto, V. (1906). Manuale di economia politica. Societa Editrice Libraria.",
+      "Dickie, H. F. (1951). ABC Inventory Analysis Shoots for Dollars. Factory Management and Maintenance.",
+      "Agrawal, R., & Srikant, R. (1994). Fast algorithms for mining association rules. VLDB.",
+      "Goldberg, D., Nichols, D., Oki, B. M., & Terry, D. (1992). Using collaborative filtering to weave an information tapestry. Communications of the ACM.",
+      "INSD (2024). Annuaire statistique du Burkina Faso.",
+      "ONAC (2024). Donnees secteur artisanat BF.",
+      "ABNORM (2024). Reglementation etiquetage et peremption produits BF."
+    ]
+  },
+  "integration": {
+    "dashboard_hook": "DashboardVendeur.render() doit appeler ExpertSystems.{module}.render(sellerData) pour chaque module",
+    "data_dependencies": {
+      "required": ["seller_id", "orders", "stock_items", "seller"],
+      "optional": ["events", "stock_overrides", "client_messages"]
+    },
+    "rendering": {
+      "container_id": "expert-modules-container",
+      "tabs_enabled": true,
+      "default_tab": "comptable",
+      "lazy_load": true
+    },
+    "persistence": {
+      "input_values_key": "expert_modules_inputs",
+      "last_active_tab_key": "expert_modules_last_tab"
+    }
+  }
+}

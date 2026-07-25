@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detail produit - Achetons Burkinabe</title>
+<meta name="description" content="Detail d'un produit du Burkina Faso : karite, sesame, miel, coton ou artisanat. Tracabilite, certifications, vendeur et avis.">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/icons.css">
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/dark-mode.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/home.css">
+
+<link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+
+<style>
+/* Refonte L7a - skeleton + breadcrumb enrichi */
+.detail-skeleton {
+    padding: var(--sp-xl) 0;
+}
+
+.detail-skeleton .skel-breadcrumb {
+    display: flex;
+    gap: 8px;
+    margin-bottom: var(--sp-lg);
+}
+
+.detail-skeleton .skel-breadcrumb .skeleton {
+    height: 14px;
+    width: 80px;
+}
+
+.detail-skeleton .skel-breadcrumb .skeleton:nth-child(2) {
+    width: 60px;
+}
+
+.detail-skeleton .skel-breadcrumb .skeleton:nth-child(3) {
+    width: 100px;
+}
+
+.detail-skeleton .skel-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-xl);
+}
+
+@media (min-width: 1024px) {
+    .detail-skeleton .skel-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.detail-skeleton .skel-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--rayon-lg);
+}
+
+.detail-skeleton .skel-thumbs {
+    display: flex;
+    gap: 8px;
+    margin-top: var(--sp-md);
+}
+
+.detail-skeleton .skel-thumbs .skeleton {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--rayon-sm);
+}
+
+.detail-skeleton .skel-badges {
+    display: flex;
+    gap: 6px;
+    margin-bottom: var(--sp-md);
+}
+
+.detail-skeleton .skel-badges .skeleton {
+    height: 22px;
+    width: 70px;
+    border-radius: var(--rayon-pill);
+}
+
+.detail-skeleton .skel-title {
+    height: 32px;
+    width: 80%;
+    margin-bottom: var(--sp-sm);
+}
+
+.detail-skeleton .skel-rating {
+    height: 18px;
+    width: 200px;
+    margin-bottom: var(--sp-md);
+}
+
+.detail-skeleton .skel-price {
+    height: 36px;
+    width: 240px;
+    margin-bottom: var(--sp-lg);
+}
+
+.detail-skeleton .skel-line {
+    height: 14px;
+    margin-bottom: 8px;
+}
+
+.detail-skeleton .skel-line.w-100 {
+    width: 100%;
+}
+
+.detail-skeleton .skel-line.w-90 {
+    width: 90%;
+}
+
+.detail-skeleton .skel-line.w-80 {
+    width: 80%;
+}
+
+.detail-skeleton .skel-line.w-60 {
+    width: 60%;
+}
+
+.detail-skeleton .skel-card {
+    padding: var(--sp-lg);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--rayon-md);
+    margin-top: var(--sp-md);
+}
+
+.detail-skeleton .skel-button {
+    height: 48px;
+    width: 100%;
+    border-radius: var(--rayon-md);
+    margin-top: var(--sp-md);
+}
+
+/* Breadcrumb enrichi */
+
+.breadcrumb-rich {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-xs);
+    padding: var(--sp-md) 0;
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.breadcrumb-rich a {
+    color: var(--texte-doux);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.breadcrumb-rich a:hover {
+    color: var(--terre);
+}
+
+.breadcrumb-rich .breadcrumb-sep {
+    color: var(--texte-doux);
+}
+opacity: 0.5;
+margin: 0 2px;
+}
+
+.breadcrumb-rich .breadcrumb-current {
+    color: var(--texte);
+    font-weight: 600;
+    max-width: 320px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.breadcrumb-rich .breadcrumb-cat-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--terre) 12%, transparent);
+    border-radius: var(--radius-xs);
+    color: var(--terre);
+}
+
+.breadcrumb-rich .breadcrumb-cat-icon svg {
+    width: 14px;
+    height: 14px;
+}
+</style>
+</head>
+
+<body>
+    <a href="#main" class="skip-link">Aller au contenu</a>
+
+    <main id="main">
+        <div id="product-detail-container">
+            <div class="container">
+
+                <!-- Loading skeleton -->
+                <div class="detail-skeleton" role="status" aria-live="polite" aria-label="Chargement du produit">
+
+                    <div class="skel-breadcrumb">
+                        <div class="skeleton"></div>
+                        <div class="skeleton"></div>
+                        <div class="skeleton"></div>
+                    </div>
+
+                    <div class="skel-grid">
+                        <div>
+                            <div class=""skeleton skel-image"></div>
+
+                            <div class="skel-thumbs">
+                                <div class="skeleton"></div>
+                                <div class="skeleton"></div>
+                                <div class="skeleton"></div>
+                                <div class="skeleton"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="skel-badges">
+                                <div class="skeleton"></div>
+                                <div class="skeleton"></div>
+                                <div class="skeleton"></div>
+                            </div>
+
+                            <div class="skeleton skel-title"></div>
+                            <div class="skeleton skel-rating"></div>
+                            <div class="skeleton skel-price"></div>
+                            <div class="skeleton skel-line w-100"></div>
+                            <div class="skeleton skel-line w-90"></div>
+                            <div class="skeleton skel-line w-80"></div>
+                            <div class="skeleton skel-line w-60"></div>
+
+                            <div class="skel-card">
+                                <div class="skeleton skel-line w-60"></div>
+                                <div class="skeleton skel-line w-90"></div>
+                                <div class="skeleton skel-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/utils.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/embedded-data.js"></script>
+    <script src="js/data-seed.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/ui-components.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/traceability.js"></script>
+    <script src="js/trust-system.js"></script>
+    <script src="js/app.js"></script>
+
+    <script>
+        document.addEventListener('app:ready', () => {
+            const productId = Utils.getQueryParam('id') || 'PRD001';
+            const container = document.getElementById('product-detail-container');
+
+            // Rendu de la page detail (remplace le skeleton)
+            ProductDetail.render(container, productId);
+
+            // Enrichit le breadcrumb apres rendu
+            enrichBreadcrumb(container, productId);
+        });
+        /* Breadcrumb enrichi : Accueil > Catégorie (avec icone) > Produit
+ * + JSON-LD schema.org/BreadcrumbList pour SEO */
+function enrichBreadcrumb(container, productId) {
+  const product = Data.getProduct(productId);
+  if (!product) return;
+
+  // Remplace le breadcrumb existant par une version enrichie
+  const existing = container.querySelector('.breadcrumb');
+  if (!existing) return;
+
+  const catIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>';
+
+  const html = '<nav class="breadcrumb-rich" aria-label="Fil d\'Ariane">' +
+    '<a href="index.html">' +
+      '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01 1m-6 0h6"/></svg>' +
+      'Accueil' +
+    '</a>' +
+    '<span class="breadcrumb-sep" aria-hidden="true"></span>' +
+    '<a href="produits.html?category=' +
+encodeURIComponent(product.categorie) + '">' +
+      '<span class="breadcrumb-cat-icon" aria-hidden="true">' + catIcon + '</span>' +
+      Utils.escapeHtml(product.categorie) +
+    '</a>' +
+    '<span class="breadcrumb-sep" aria-hidden="true"></span>' +
+    '<span class="breadcrumb-current" aria-current="page">' +
+Utils.escapeHtml(product.nom) + '</span>' +
+  '</nav>';
+  existing.outerHTML = html;
+
+  // Injecte le schema.org JSON-LD pour SEO
+  const ld = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: window.location.origin + '/index.html' },
+      { '@type': 'ListItem', position: 2, name: product.categorie, item: window.location.origin + '/produits.html?category=' + encodeURIComponent(product.categorie) },
+      { '@type': 'ListItem', position: 3, name: product.nom, item:
+      window.location.href }
+    ]
+  };
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify(ld);
+  document.head.appendChild(script);
+}
+</script>
+</body>
+</html>

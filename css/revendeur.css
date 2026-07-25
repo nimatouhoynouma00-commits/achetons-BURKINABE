@@ -1,0 +1,84 @@
+/* css/revendeur.css - Styles spécifiques à la page revendeur (dashboard revendeur)
+ * Surcharges spécifiques au dashboard revendeur (catalogue bulk, calculator, etc.)
+ * La majorité des styles vient du design-system.css et dashboard.css.
+ */
+
+/* Layout principal du dashboard revendeur */
+.reseller-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--space-xl);
+  padding: var(--space-xl) 0;
+}
+
+@media (max-width: 900px) {
+  .reseller-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cartes de catalogue bulk */
+.bulk-card {
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #eee);
+  border-radius: 12px;
+  padding: var(--space-md);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.bulk-card:hover {
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.08));
+  transform: translateY(-2px);
+}
+
+.bulk-card-price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+  margin: var(--space-sm) 0;
+}
+
+.bulk-card-price .price-unit {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--terre, #8B4513);
+}
+
+.bulk-card-price .price-lot {
+  font-size: 0.9rem;
+  color: var(--text-doux, #888);
+}
+
+/* Calculator temps réel */
+.bulk-calculator {
+  background: var(--bg-soft, #faf8f5);
+  border-radius: 12px;
+  padding: var(--space-lg);
+}
+
+.bulk-calculator-result {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--terre, #8B4513);
+  margin-top: var(--space-md);
+}
+
+/* Table des transactions bulk */
+.bulk-history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bulk-history-table th,
+.bulk-history-table td {
+  padding: var(--space-xs) var(--space-sm);
+  text-align: left;
+  border-bottom: 1px solid var(--border-color, #eee);
+}
+
+.bulk-history-table th {
+  font-weight: 600;
+  color: var(--text-doux, #666);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}

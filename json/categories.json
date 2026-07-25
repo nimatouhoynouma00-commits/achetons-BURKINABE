@@ -1,0 +1,75 @@
+{
+  "categories": [
+    {
+      "id": "CAT01",
+      "nom": "Karite",
+      "slug": "karite",
+      "icon_svg": "images/icons/icon-karite.svg",
+      "description": "Beurre de karite, savons, produits cosmetiques artisanaux",
+      "color_accent": "#e8d4a0",
+      "product_count": 2,
+      "sub_categories": [
+        "Beurre",
+        "Savon",
+        "Cosmetique"
+      ]
+    },
+    {
+      "id": "CAT02",
+      "nom": "Sesame",
+      "slug": "sesame",
+      "icon_svg": "images/icons/icon-sesame.svg",
+      "description": "Graines de sesame et huile presse a froid",
+      "color_accent": "#eccf8a",
+      "product_count": 2,
+      "sub_categories": [
+        "Graines",
+        "Huile"
+      ]
+    },
+    {
+      "id": "CAT03",
+      "nom": "Miel",
+      "slug": "miel",
+      "icon_svg": "images/icons/icon-miel.svg",
+      "description": "Miel burkinabe recolte en foret classee",
+      "color_accent": "#e8a13a",
+      "product_count": 2,
+      "sub_categories": [
+        "Toutes fleurs",
+        "Mono-floral karite",
+        "En rayon"
+      ]
+    },
+    {
+      "id": "CAT04",
+      "nom": "Coton",
+      "slug": "coton",
+      "icon_svg": "images/icons/icon-coton.svg",
+      "description": "Pagnes bazin et fils de coton files main",
+      "color_accent": "#7fa88a",
+      "product_count": 2,
+      "sub_categories": [
+        "Pagne",
+        "Fil",
+        "Bazin"
+      ]
+    },
+    {
+      "id": "CAT05",
+      "nom": "Artisanat",
+      "slug": "artisanat",
+      "icon_svg": "images/icons/icon-artisanat.svg",
+      "description": "Paniers, bronzes, masques sculptes, bijoux en perles",
+      "color_accent": "#a8531f",
+      "product_count": 4,
+      "sub_categories": [
+        "Panier",
+        "Bronze",
+        "Masque",
+        "Bijoux",
+        "Sculpture"
+      ]
+    }
+  ]
+}

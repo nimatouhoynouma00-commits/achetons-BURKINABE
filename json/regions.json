@@ -1,0 +1,112 @@
+{
+  "regions": [
+    {
+      "id": "REG01",
+      "nom": "Centre",
+      "chef_lieu": "Ouagadougou",
+      "produits_typiques": [
+        "Bronze artisanal",
+        "Savons karite"
+      ]
+    },
+    {
+      "id": "REG02",
+      "nom": "Centre-Ouest",
+      "chef_lieu": "Koudougou",
+      "produits_typiques": [
+        "Pagnes bazin",
+        "Coton file"
+      ]
+    },
+    {
+      "id": "REG03",
+      "nom": "Sud-Ouest",
+      "chef_lieu": "Gaoua",
+      "produits_typiques": [
+        "Karite",
+        "Miel"
+      ]
+    },
+    {
+      "id": "REG04",
+      "nom": "Boucle du Mouhoun",
+      "chef_lieu": "Dedougou",
+      "produits_typiques": [
+        "Sesame",
+        "Graines"
+      ]
+    },
+    {
+      "id": "REG05",
+      "nom": "Hauts-Bassins",
+      "chef_lieu": "Bobo-Dioulasso",
+      "produits_typiques": [
+        "Sculptures bois",
+        "Coton filature"
+      ]
+    },
+    {
+      "id": "REG06",
+      "nom": "Nord",
+      "chef_lieu": "Ouahigouya",
+      "produits_typiques": [
+        "Paniers tresses",
+        "Cereales"
+      ]
+    },
+    {
+      "id": "REG07",
+      "nom": "Sahel",
+      "chef_lieu": "Dori",
+      "produits_typiques": [
+        "Bijoux perles",
+        "Elevage"
+      ]
+    },
+    {
+      "id": "REG08",
+      "nom": "Plateau-Central",
+      "chef_lieu": "Ziniare",
+      "produits_typiques": [
+        "Cereales",
+        "Legumes"
+      ]
+    },
+    {
+      "id": "REG09",
+      "nom": "Centre-Est",
+      "chef_lieu": "Tenkodogo",
+      "produits_typiques": [
+        "Karite",
+        "Sesame"
+      ]
+    },
+    {
+      "id": "REG10",
+      "nom": "Est",
+      "chef_lieu": "Fada N'Gourma",
+      "produits_typiques": [
+        "Sesame",
+        "Miel"
+      ]
+    },
+    {
+      "id": "REG11",
+      "nom": "Cascades",
+      "chef_lieu": "Banfora",
+      "produits_typiques": [
+        "Miel",
+        "Fruits"
+      ]
+    },
+    {
+      "id": "REG12",
+      "nom": "Centre-Nord",
+      "chef_lieu": "Kaya",
+      "produits_typiques": [
+        "Coton",
+        "Cereales"
+      ]
+    }
+  ]
+}

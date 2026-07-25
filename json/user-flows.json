@@ -1,0 +1,136 @@
+{
+  "flows": {
+    "acheteur_complete": {
+      "name": "Parcours Acheteur Complet",
+      "steps": [
+        {
+          "step": 1,
+          "page": "accueil",
+          "action": "Arrivee homepage, voit categories et produits phares"
+        },
+        {
+          "step": 2,
+          "page": "produits",
+          "action": "Click 'Decouvrir les produits' -> catalogue"
+        },
+        {
+          "step": 3,
+          "page": "produits",
+          "action": "Recherche ou filtre -> trouve un produit"
+        },
+        {
+          "step": 4,
+          "page": "produit-detail",
+          "action": "Click produit -> detail, tracabilite, certification"
+        },
+        {
+          "step": 5,
+          "page": "produit-detail",
+          "action": "Click 'Ajouter au panier' -> toast confirmation"
+        },
+        {
+          "step": 6,
+          "page": "panier",
+          "action": "Click panier header -> voit items + total"
+        },
+        {
+          "step": 7,
+          "page": "connexion",
+          "action": "Click 'Valider' -> si non connecte, redirect connexion"
+        },
+        {
+          "step": 8,
+          "page": "connexion",
+          "action": "Se connecte (beta account ou inscription)"
+        },
+        {
+          "step": 9,
+          "page": "checkout",
+          "action": "Remplit infos livraison + confirme"
+        },
+        {
+          "step": 10,
+          "page": "checkout",
+          "action": "Recu genere, historique mis a jour"
+        },
+        {
+          "step": 11,
+          "page": "historique",
+          "action": "Voir historique, statut commande"
+        }
+      ],
+      "target_time": "moins de 8 minutes"
+    },
+    "vendeur_complete": {
+      "name": "Parcours Vendeur Complet",
+      "steps": [
+        {
+          "step": 1,
+          "page": "connexion",
+          "action": "Connexion type vendeur"
+        },
+        {
+          "step": 2,
+          "page": "dashboard-vendeur",
+          "action": "Vue stats: ventes, revenus, commandes en cours, stock"
+        },
+        {
+          "step": 3,
+          "page": "dashboard-vendeur",
+          "action": "Section commandes -> nouvelle commande visible"
+        },
+        {
+          "step": 4,
+          "page": "dashboard-vendeur",
+          "action": "Click 'Accepter' -> notification envoyee a acheteur"
+        },
+        {
+          "step": 5,
+          "page": "dashboard-vendeur",
+          "action": "Section stock -> verifier quantites restantes"
+        },
+        {
+          "step": 6,
+          "page": "dashboard-vendeur",
+          "action": "Section finance -> voir benefices et marges"
+        },
+        {
+          "step": 7,
+          "page": "notifications",
+          "action": "Voir notifications trust upgrade si applicable"
+        }
+      ],
+      "target_time": "moins de 3 minutes pour action principale"
+    },
+    "revendeur_complete": {
+      "name": "Parcours Revendeur Complet",
+      "steps": [
+        {
+          "step": 1,
+          "page": "connexion",
+          "action": "Connexion type revendeur"
+        },
+        {
+          "step": 2,
+          "page": "revendeur",
+          "action": "Choisi type boutique (grande/petite) -> remises affichees"
+        },
+        {
+          "step": 3,
+          "page": "revendeur",
+          "action": "Recherche produits bulk -> voit prix + remise"
+        },
+        {
+          "step": 4,
+          "page": "revendeur",
+          "action": "Ajoute lots au panier -> calcul remise automatique"
+        },
+        {
+          "step": 5,
+          "page": "checkout",
+          "action": "Checkout avec details remises et economies"
+        }
+      ]
+    }
+  }
+}

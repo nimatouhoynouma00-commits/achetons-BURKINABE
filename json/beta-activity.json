@@ -1,0 +1,2181 @@
+{
+  "acheteurs": {
+    "beta_acheteur_1": {
+      "id": "beta_acheteur_1",
+      "type": "acheteur",
+      "nom": "Amadou Diallo",
+      "email": "amadou.diallo@test.bf",
+      "telephone": "70 25 36 48",
+      "ville": "Ouagadougou",
+      "region": "Centre",
+      "trust_level": "bronze",
+      "date_inscription": "2024-08-15",
+      "description_courte": "Jeune entrepreneur de 25 ans, achète des produits cosmétiques naturels pour sa famille",
+      "historique_activite": [
+        {
+          "date": "2025-07-24T16:00:00",
+          "type": "notification",
+          "detail": "Vendeur a expédié votre commande BF-20250721-00042"
+        },
+        {
+          "date": "2025-07-23T08:20:00",
+          "type": "commande_recue",
+          "detail": "Marqué reçu: commande BF-20250721-00042"
+        },
+        {
+          "date": "2025-07-22T14:00:00",
+          "type": "notification",
+          "detail": "Vendeur a accepté votre commande BF-20250721-00042"
+        },
+        {
+          "date": "2025-07-21T09:15:00",
+          "type": "commande",
+          "detail": "Commande BF-20250721-00042 (2500 FCFA) - 1 article"
+        },
+        {
+          "date": "2025-07-21T09:10:00",
+          "type": "paiement",
+          "detail": "Paiement Mobile Money - 2500 FCFA (Orange Money)"
+        },
+        {
+          "date": "2025-07-20T10:40:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Beurre de karité pur (PRD001)"
+        },
+        {
+          "date": "2025-07-20T10:35:00",
+          "type": "recherche",
+          "detail": "Recherche: 'beurre karite bio'"
+        },
+        {
+          "date": "2025-07-20T10:30:00",
+          "type": "connexion",
+          "detail": "Connexion depuis Ouagadougou (Centre)"
+        },
+        {
+          "date": "2025-06-15T11:00:00",
+          "type": "avis",
+          "detail": "Avis 5★ laissé sur Beurre de karité pur (PRD001)"
+        },
+        {
+          "date": "2025-06-14T16:30:00",
+          "type": "commande_recue",
+          "detail": "Marqué reçu: commande BF-20250610-00038"
+        },
+        {
+          "date": "2025-06-12T10:00:00",
+          "type": "notification",
+          "detail": "Commande BF-20250610-00038 en cours de livraison"
+        },
+        {
+          "date": "2025-06-10T14:25:00",
+          "type": "commande",
+          "detail": "Commande BF-20250610-00038 (4000 FCFA) - 1 article"
+        },
+        {
+          "date": "2025-06-10T14:20:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Miel toutes fleurs du Sud-Ouest (PRD005)"
+        },
+        {
+          "date": "2025-06-10T14:00:00",
+          "type": "recherche",
+          "detail": "Recherche: 'miel brut bio'"
+        },
+        {
+          "date": "2025-05-05T09:00:00",
+          "type": "favoris_ajout",
+          "detail": "Ajouté aux favoris: Apiculteurs de Diebougou (SEL005)"
+        },
+        {
+          "date": "2025-04-22T15:00:00",
+          "type": "commande_recue",
+          "detail": "Marqué reçu: commande BF-20250418-00031"
+        },
+        {
+          "date": "2025-04-18T11:30:00",
+          "type": "commande",
+          "detail": "Commande BF-20250418-00031 (1200 FCFA) - 1 article"
+        },
+        {
+          "date": "2025-04-18T11:25:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Savon au karité et miel (PRD002)"
+        },
+        {
+          "date": "2025-03-10T13:00:00",
+          "type": "profil_update",
+          "detail": "Profil mis à jour: préférence langue définie sur fr"
+        },
+        {
+          "date": "2025-02-10T10:00:00",
+          "type": "confiance_upgrade",
+          "detail": "Niveau de confiance atteint: Bronze"
+        }
+      ],
+      "notifications_recentes": [
+        {
+          "date": "2025-07-24T16:00:00",
+          "type": "order_shipped",
+          "lu": false,
+          "titre": "Commande expédiée",
+          "message": "Votre commande BF-20250721-00042 a été expédiée par Coopérative Femmes de Léo"
+        },
+        {
+          "date": "2025-07-23T10:00:00",
+          "type": "trust_upgrade",
+          "lu": true,
+          "titre": "Vendeur favori promu",
+          "message": "Coopérative Femmes de Léo est passée au niveau Or"
+        },
+        {
+          "date": "2025-07-22T14:00:00",
+          "type": "order_accepted",
+          "lu": false,
+          "titre": "Commande acceptée",
+          "message": "Votre commande BF-20250721-00042 a été acceptée par le vendeur"
+        },
+        {
+          "date": "2025-07-15T09:30:00",
+          "type": "promo",
+          "lu": true,
+          "titre": "Promotion Karité",
+          "message": "20% sur les produits karité cette semaine, profitez-en!"
+        },
+        {
+          "date": "2025-06-12T10:00:00",
+          "type": "order_delivered",
+          "lu": true,
+          "titre": "Commande en livraison",
+          "message": "Votre commande BF-20250610-00038 est en cours de livraison"
+        },
+        {
+          "date": "2025-05-05T09:00:00",
+          "type": "favorite_added",
+          "lu": true,
+          "titre": "Vendeur favori",
+          "message": "Apiculteurs de Diebougou ajouté à vos favoris"
+        },
+        {
+          "date": "2025-04-01T08:00:00",
+          "type": "newsletter",
+          "lu": true,
+          "titre": "Newsletter Avril",
+          "message": "Découvrez les nouveaux produits de printemps de nos coopératives"
+        }
+      ],
+      "achats_count": 5,
+      "preferences": {
+        "categories_preferees": [
+          "Karite",
+          "Miel"
+        ],
+        "newsletter": true,
+        "langue": "fr"
+      }
+    },
+    "beta_acheteur_2": {
+      "id": "beta_acheteur_2",
+      "type": "acheteur",
+      "nom": "Fatimata Ouedraogo",
+      "email": "fatimata.ouedraogo@test.bf",
+      "telephone": "70 67 89 01",
+      "ville": "Bobo-Dioulasso",
+      "region": "Hauts-Bassins",
+      "trust_level": "argent",
+      "date_inscription": "2023-03-12",
+      "description_courte": "Mère de famille nombreuse (6 enfants), achète régulièrement des produits alimentaires locaux",
+      "historique_activite": [
+        {
+          "date": "2025-07-24T18:30:00",
+          "type": "commande",
+          "detail": "Commande BF-20250724-00156 (9100 FCFA) - 3 articles"
+        },
+        {
+          "date": "2025-07-24T18:25:00",
+          "type": "paiement",
+          "detail": "Paiement Mobile Money - 9100 FCFA (Moov Money)"
+        },
+        {
+          "date": "2025-07-24T18:20:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Miel de karité en rayon (PRD006)"
+        },
+        {
+          "date": "2025-07-24T18:15:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Graines de sésame doré (PRD003) x2"
+        },
+        {
+          "date": "2025-07-24T18:10:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Beurre de karité pur (PRD001)"
+        },
+        {
+          "date": "2025-07-24T18:00:00",
+          "type": "connexion",
+          "detail": "Connexion depuis Bobo-Dioulasso (Hauts-Bassins)"
+        },
+        {
+          "date": "2025-07-20T11:00:00",
+          "type": "avis",
+          "detail": "Avis 5★ laissé sur Miel toutes fleurs du Sud-Ouest (PRD005)"
+        },
+        {
+          "date": "2025-07-18T15:30:00",
+          "type": "commande_recue",
+          "detail": "Marqué reçu: commande BF-20250710-00148"
+        },
+        {
+          "date": "2025-07-15T09:00:00",
+          "type": "notification",
+          "detail": "Commande BF-20250710-00148 prête pour retrait"
+        },
+        {
+          "date": "2025-07-10T14:00:00",
+          "type": "commande",
+          "detail": "Commande BF-20250710-00148 (4800 FCFA) - 2 articles"
+        },
+        {
+          "date": "2025-07-10T13:55:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Huile de sésame artisanale (PRD004) x2"
+        },
+        {
+          "date": "2025-06-28T16:00:00",
+          "type": "recherche",
+          "detail": "Recherche: 'huile sésame pressé froid'"
+        },
+        {
+          "date": "2025-06-20T10:30:00",
+          "type": "commande_recue",
+          "detail": "Marqué reçu: commande BF-20250615-00137"
+        },
+        {
+          "date": "2025-06-15T11:00:00",
+          "type": "commande",
+          "detail": "Commande BF-20250615-00137 (4000 FCFA) - 1 article"
+        },
+        {
+          "date": "2025-06-15T10:55:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Miel toutes fleurs du Sud-Ouest (PRD005)"
+        },
+        {
+          "date": "2025-05-22T14:00:00",
+          "type": "favoris_ajout",
+          "detail": "Ajouté aux favoris: Coopérative Wend-Kuni (SEL004)"
+        },
+        {
+          "date": "2025-05-10T09:15:00",
+          "type": "commande",
+          "detail": "Commande BF-20250510-00121 (7200 FCFA) - 4 articles"
+        },
+        {
+          "date": "2025-04-25T16:00:00",
+          "type": "confiance_upgrade",
+          "detail": "Niveau de confiance atteint: Argent (merci pour votre fidélité!)"
+        },
+        {
+          "date": "2025-04-12T13:00:00",
+          "type": "avis",
+          "detail": "Avis 4★ laissé sur Graines de sésame doré (PRD003)"
+        },
+        {
+          "date": "2025-03-30T11:00:00",
+          "type": "commande_recue",
+          "detail": "Marqué reçu: commande BF-20250320-00108"
+        },
+        {
+          "date": "2025-03-20T15:30:00",
+          "type": "commande",
+          "detail": "Commande BF-20250320-00108 (5300 FCFA) - 2 articles"
+        },
+        {
+          "date": "2025-02-15T10:00:00",
+          "type": "profil_update",
+          "detail": "Profil mis à jour: adresse de livraison ajoutée"
+        }
+      ],
+      "notifications_recentes": [
+        {
+          "date": "2025-07-24T18:30:00",
+          "type": "order_placed",
+          "lu": false,
+          "titre": "Commande confirmée",
+          "message": "Votre commande BF-20250724-00156 de 9100 FCFA a été enregistrée"
+        },
+        {
+          "date": "2025-07-23T09:00:00",
+          "type": "promo",
+          "lu": false,
+          "titre": "Promo Miel",
+          "message": "Le miel de karité en rayon est en stock limité!"
+        },
+        {
+          "date": "2025-07-15T09:00:00",
+          "type": "order_ready",
+          "lu": true,
+          "titre": "Commande prête",
+          "message": "Votre commande BF-20250710-00148 est prête pour retrait"
+        },
+        {
+          "date": "2025-06-28T16:00:00",
+          "type": "newsletter",
+          "lu": true,
+          "titre": "Newsletter Juin",
+          "message": "Recettes du Ramadan avec des produits locaux burkinabè"
+        },
+        {
+          "date": "2025-04-25T16:00:00",
+          "type": "trust_upgrade",
+          "lu": true,
+          "titre": "Niveau Argent atteint!",
+          "message": "Félicitations! Vous êtes maintenant acheteur Argents avec 5% de réduction"
+        },
+        {
+          "date": "2025-03-01T08:00:00",
+          "type": "newsletter",
+          "lu": true,
+          "titre": "Newsletter Mars",
+          "message": "Nouveaux produits de la coopérative Wend-Kuni disponibles"
+        }
+      ],
+      "achats_count": 32,
+      "preferences": {
+        "categories_preferees": [
+          "Miel",
+          "Sesame",
+          "Karite"
+        ],
+        "newsletter": true,
+        "langue": "fr"
+      }
+    },
+    "beta_acheteur_3": {
+      "id": "beta_acheteur_3",
+      "type": "acheteur",
+      "nom": "Ibrahim Kabore",
+      "email": "ibrahim.kabore@test.bf",
+      "telephone": "70 78 90 12",
+      "ville": "Koudougou",
+      "region": "Centre-Ouest",
+      "trust_level": "or",
+      "date_inscription": "2022-06-01",
+      "description_courte": "Collectionneur passionné d'artisanat burkinabè, acheteur premium niveau Or avec 85 achats",
+      "historique_activite": [
+        {
+          "date": "2025-07-24T20:00:00",
+          "type": "commande",
+          "detail": "Commande BF-20250724-00203 (27000 FCFA) - 2 articles"
+        },
+        {
+          "date": "2025-07-24T19:55:00",
+          "type": "paiement",
+          "detail": "Paiement virement bancaire - 27000 FCFA (UBA)"
+        },
+        {
+          "date": "2025-07-24T19:50:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Bronze du Burkina statuette (PRD010)"
+        },
+        {
+          "date": "2025-07-24T19:45:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Pagne en coton bazin riche (PRD007)"
+        },
+        {
+          "date": "2025-07-24T19:30:00",
+          "type": "connexion",
+          "detail": "Connexion depuis Koudougou (Centre-Ouest)"
+        },
+        {
+          "date": "2025-07-22T11:00:00",
+          "type": "avis",
+          "detail": "Avis 5★ laissé sur Bronze du Burkina (PRD010) - 'Pièce magnifique de collection'"
+        },
+        {
+          "date": "2025-07-20T14:00:00",
+          "type": "commande_recue",
+          "detail": "Marqué reçu: commande BF-20250710-00189"
+        },
+        {
+          "date": "2025-07-18T09:00:00",
+          "type": "notification",
+          "detail": "Nouvelle pièce en bronze disponible chez Fondeurs de Ouagadougou"
+        },
+        {
+          "date": "2025-07-15T16:30:00",
+          "type": "favoris_ajout",
+          "detail": "Ajouté aux favoris: Fondeurs de Ouagadougou (SEL009)"
+        },
+        {
+          "date": "2025-07-10T14:00:00",
+          "type": "commande",
+          "detail": "Commande BF-20250710-00189 (15000 FCFA) - 1 article"
+        },
+        {
+          "date": "2025-07-10T13:55:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Bronze du Burkina statuette (PRD010)"
+        },
+        {
+          "date": "2025-06-28T17:00:00",
+          "type": "commande_recue",
+          "detail": "Marqué reçu: commande BF-20250620-00175"
+        },
+        {
+          "date": "2025-06-20T10:00:00",
+          "type": "commande",
+          "detail": "Commande BF-20250620-00175 (6500 FCFA) - 1 article"
+        },
+        {
+          "date": "2025-06-20T09:55:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Panier tressé en fibres locales (PRD009)"
+        },
+        {
+          "date": "2025-06-15T14:00:00",
+          "type": "recherche",
+          "detail": "Recherche: 'masque bois sculpté Bobo'"
+        },
+        {
+          "date": "2025-05-30T11:00:00",
+          "type": "avis",
+          "detail": "Avis 5★ laissé sur Pagne en coton bazin riche (PRD007)"
+        },
+        {
+          "date": "2025-05-20T15:30:00",
+          "type": "commande_recue",
+          "detail": "Marqué reçu: commande BF-20250510-00162"
+        },
+        {
+          "date": "2025-05-10T13:00:00",
+          "type": "commande",
+          "detail": "Commande BF-20250510-00162 (30000 FCFA) - 2 articles"
+        },
+        {
+          "date": "2025-05-10T12:55:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Masque en bois sculpté (PRD011) x2"
+        },
+        {
+          "date": "2025-04-18T10:00:00",
+          "type": "confiance_upgrade",
+          "detail": "Niveau de confiance atteint: Or - statut premium débloqué"
+        },
+        {
+          "date": "2025-04-05T16:00:00",
+          "type": "commande",
+          "detail": "Commande BF-20250405-00151 (18000 FCFA) - 1 article"
+        },
+        {
+          "date": "2025-03-22T11:00:00",
+          "type": "favoris_ajout",
+          "detail": "Ajouté aux favoris: Sculpteurs de Bobo-Dioulasso (SEL010)"
+        },
+        {
+          "date": "2025-03-10T14:00:00",
+          "type": "commande_recue",
+          "detail": "Marqué reçu: commande BF-20250228-00138"
+        },
+        {
+          "date": "2025-02-28T13:00:00",
+          "type": "commande",
+          "detail": "Commande BF-20250228-00138 (12000 FCFA) - 1 article"
+        },
+        {
+          "date": "2025-02-10T09:00:00",
+          "type": "recherche",
+          "detail": "Recherche: 'bijoux perles Sahel'"
+        }
+      ],
+      "notifications_recentes": [
+        {
+          "date": "2025-07-24T20:00:00",
+          "type": "order_placed",
+          "lu": false,
+          "titre": "Commande premium",
+          "message": "Votre commande BF-20250724-00203 de 27000 FCFA a été enregistrée - 10% de réduction Or appliquée"
+        },
+        {
+          "date": "2025-07-22T11:00:00",
+          "type": "review_thanks",
+          "lu": false,
+          "titre": "Merci pour votre avis",
+          "message": "Votre avis sur Bronze du Burkina aide la communauté"
+        },
+        {
+          "date": "2025-07-18T09:00:00",
+          "type": "new_product",
+          "lu": true,
+          "titre": "Nouveau produit favori",
+          "message": "Fondeurs de Ouagadougou a ajouté une nouvelle pièce en bronze"
+        },
+        {
+          "date": "2025-07-15T16:30:00",
+          "type": "favorite_added",
+          "lu": true,
+          "titre": "Favori ajouté",
+          "message": "Fondeurs de Ouagadougou ajouté à vos vendeurs favoris"
+        },
+        {
+          "date": "2025-06-15T14:00:00",
+          "type": "search_suggestion",
+          "lu": true,
+          "titre": "Suggestion",
+          "message": "Basé sur vos recherches: Masque en bois sculpté pourrait vous intéresser"
+        },
+        {
+          "date": "2025-04-18T10:00:00",
+          "type": "trust_upgrade",
+          "lu": true,
+          "titre": "Niveau Or atteint!",
+          "message": "Félicitations! Vous êtes maintenant acheteur Or avec 10% de réduction permanente"
+        },
+        {
+          "date": "2025-03-22T11:00:00",
+          "type": "favorite_added",
+          "lu": true,
+          "titre": "Favori ajouté",
+          "message": "Sculpteurs de Bobo-Dioulasso ajouté à vos vendeurs favoris"
+        },
+        {
+          "date": "2025-02-15T09:00:00",
+          "type": "newsletter",
+          "lu": true,
+          "titre": "Newsletter Février",
+          "message": "Nouvelles collections d'artisanat disponibles"
+        }
+      ],
+      "achats_count": 85,
+      "preferences": {
+        "categories_preferees": [
+          "Artisanat",
+          "Coton"
+        ],
+        "newsletter": false,
+        "langue": "fr"
+      }
+    },
+    "beta_acheteur_4": {
+      "id": "beta_acheteur_4",
+      "type": "acheteur",
+      "nom": "Aïssata Traoré",
+      "email": "aissata.traore@test.bf",
+      "telephone": "70 33 44 55",
+      "ville": "Ouahigouya",
+      "region": "Nord",
+      "trust_level": "bronze",
+      "date_inscription": "2024-11-20",
+      "description_courte": "Neene (aînée) réservée de Ouahigouya, achète miel et karité pour sa famille élargie",
+      "historique_activite": [
+        {
+          "date": "2025-07-23T17:00:00",
+          "type": "commande_recue",
+          "detail": "Marqué reçu: commande BF-20250718-00074"
+        },
+        {
+          "date": "2025-07-22T10:00:00",
+          "type": "notification",
+          "detail": "Commande BF-20250718-00074 en livraison"
+        },
+        {
+          "date": "2025-07-18T14:00:00",
+          "type": "commande",
+          "detail": "Commande BF-20250718-00074 (4000 FCFA) - 1 article"
+        },
+        {
+          "date": "2025-07-18T13:55:00",
+          "type": "paiement",
+          "detail": "Paiement Mobile Money - 4000 FCFA (Orange Money)"
+        },
+        {
+          "date": "2025-07-18T13:50:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Miel toutes fleurs du Sud-Ouest (PRD005)"
+        },
+        {
+          "date": "2025-07-18T13:30:00",
+          "type": "connexion",
+          "detail": "Connexion depuis Ouahigouya (Nord)"
+        },
+        {
+          "date": "2025-06-25T11:00:00",
+          "type": "commande_recue",
+          "detail": "Marqué reçu: commande BF-20250615-00065"
+        },
+        {
+          "date": "2025-06-15T16:00:00",
+          "type": "commande",
+          "detail": "Commande BF-20250615-00065 (2500 FCFA) - 1 article"
+        },
+        {
+          "date": "2025-06-15T15:55:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Beurre de karité pur (PRD001)"
+        },
+        {
+          "date": "2025-05-20T10:00:00",
+          "type": "avis",
+          "detail": "Avis 4★ laissé sur Beurre de karité pur (PRD001)"
+        },
+        {
+          "date": "2025-05-10T14:30:00",
+          "type": "recherche",
+          "detail": "Recherche: 'miel karité naturel'"
+        },
+        {
+          "date": "2025-04-28T11:00:00",
+          "type": "commande_recue",
+          "detail": "Marqué reçu: commande BF-20250420-00058"
+        },
+        {
+          "date": "2025-04-20T15:00:00",
+          "type": "commande",
+          "detail": "Commande BF-20250420-00058 (5500 FCFA) - 1 article"
+        },
+        {
+          "date": "2025-04-20T14:55:00",
+          "type": "panier_ajout",
+          "detail": "Ajouté au panier: Miel de karité en rayon (PRD006)"
+        },
+        {
+          "date": "2025-03-15T13:00:00",
+          "type": "favoris_ajout",
+          "detail": "Ajouté aux favoris: Apiculteurs de Diebougou (SEL005)"
+        },
+        {
+          "date": "2025-02-20T10:30:00",
+          "type": "commande",
+          "detail": "Commande BF-20250220-00045 (1200 FCFA) - 1 article"
+        }
+      ],
+      "notifications_recentes": [
+        {
+          "date": "2025-07-23T17:00:00",
+          "type": "order_delivered",
+          "lu": false,
+          "titre": "Commande livrée",
+          "message": "Votre commande BF-20250718-00074 a été livrée - merci de confirmer la réception"
+        },
+        {
+          "date": "2025-07-22T10:00:00",
+          "type": "order_shipped",
+          "lu": true,
+          "titre": "Commande en livraison",
+          "message": "Votre commande BF-20250718-00074 est en cours de livraison"
+        },
+        {
+          "date": "2025-06-25T11:00:00",
+          "type": "order_delivered",
+          "lu": true,
+          "titre": "Commande livrée",
+          "message": "Votre commande BF-20250615-00065 a été livrée"
+        },
+        {
+          "date": "2025-05-20T10:00:00",
+          "type": "review_thanks",
+          "lu": true,
+          "titre": "Merci pour votre avis",
+          "message": "Votre avis sur Beurre de karité pur est très apprécié"
+        },
+        {
+          "date": "2025-03-15T13:00:00",
+          "type": "favorite_added",
+          "lu": true,
+          "titre": "Favori ajouté",
+          "message": "Apiculteurs de Diebougou ajouté à vos vendeurs favoris"
+        }
+      ],
+      "achats_count": 8,
+      "preferences": {
+        "categories_preferees": [
+          "Miel",
+          "Karite"
+        ],
+        "newsletter": true,
+        "langue": "fr"
+      }
+    }
+  },
+  "vendeurs": {
+    "beta_vendeur_1": {
+      "id": "beta_vendeur_1",
+      "type": "vendeur",
+      "nom": "Coopérative Femmes de Léo",
+      "email": "femmesleo@test.bf",
+      "telephone": "70 50 60 70",
+      "ville": "Léo",
+      "region": "Sud-Ouest",
+      "trust_level": "argent",
+      "date_inscription": "2019-03-15",
+      "description_courte": "Coopérative de 200+ femmes productrices de karité bio à Léo, 87 ventes réalisées",
+      "historique_activite": [
+        {
+          "date": "2025-07-24T16:00:00",
+          "type": "expedition_commande",
+          "detail": "Commande BF-20250721-00042 expédiée (client: Amadou Diallo)"
+        },
+        {
+          "date": "2025-07-23T09:00:00",
+          "type": "validation_commande",
+          "detail": "Commande BF-20250721-00042 marquée comme reçue par le client"
+        },
+        {
+          "date": "2025-07-22T14:00:00",
+          "type": "validation_commande",
+          "detail": "Commande BF-20250721-00042 acceptée"
+        },
+        {
+          "date": "2025-07-21T09:20:00",
+          "type": "notification",
+          "detail": "Nouvelle commande reçue: BF-20250721-00042 (2500 FCFA)"
+        },
+        {
+          "date": "2025-07-21T09:15:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Beurre de karité pur (PRD001) x1 - 2500 FCFA"
+        },
+        {
+          "date": "2025-07-21T09:00:00",
+          "type": "paiement_recu",
+          "detail": "Paiement Mobile Money reçu - 2500 FCFA"
+        },
+        {
+          "date": "2025-07-20T08:00:00",
+          "type": "connexion",
+          "detail": "Connexion dashboard vendeur depuis Léo (Sud-Ouest)"
+        },
+        {
+          "date": "2025-07-18T14:00:00",
+          "type": "gestion_stock",
+          "detail": "Stock mis à jour: Beurre de karité pur (PRD001) - 150 unités disponibles"
+        },
+        {
+          "date": "2025-07-15T11:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Beurre de karité pur (PRD001) x3 - 7500 FCFA (commande BF-20250715-00120)"
+        },
+        {
+          "date": "2025-07-15T10:30:00",
+          "type": "message_client",
+          "detail": "Message reçu de Fatimata Ouedraogo - question sur origine du karité"
+        },
+        {
+          "date": "2025-07-12T16:00:00",
+          "type": "reponse_message",
+          "detail": "Réponse envoyée à Fatimata Ouedraogo"
+        },
+        {
+          "date": "2025-07-10T09:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Beurre de karité pur (PRD001) x2 - 5000 FCFA (commande BF-20250710-00115)"
+        },
+        {
+          "date": "2025-07-05T14:00:00",
+          "type": "avis_recu",
+          "detail": "Avis 5★ reçu sur Beurre de karité pur (PRD001)"
+        },
+        {
+          "date": "2025-06-28T11:00:00",
+          "type": "trust_upgrade",
+          "detail": "Niveau de confiance atteint: Argent (87 ventes)"
+        },
+        {
+          "date": "2025-06-20T10:00:00",
+          "type": "validation_commande",
+          "detail": "Commande BF-20250615-00115 acceptée et expédiée"
+        },
+        {
+          "date": "2025-06-10T15:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Beurre de karité pur (PRD001) x5 - 12500 FCFA (lot revendeur)"
+        },
+        {
+          "date": "2025-05-15T13:00:00",
+          "type": "gestion_stock",
+          "detail": "Réassort: 200 unités de beurre de karité produites et ajoutées au stock"
+        },
+        {
+          "date": "2025-04-20T11:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Beurre de karité pur (PRD001) x1 - 2500 FCFA"
+        },
+        {
+          "date": "2025-03-30T10:00:00",
+          "type": "certification_update",
+          "detail": "Certification BioSPG renouvelée pour 2 ans"
+        },
+        {
+          "date": "2025-02-15T14:00:00",
+          "type": "produit_ajoute",
+          "detail": "Nouveau produit ajouté: Beurre de karité pur (PRD001)"
+        },
+        {
+          "date": "2025-01-28T09:00:00",
+          "type": "profil_update",
+          "detail": "Profil coopérative mis à jour: 200+ femmes membres"
+        },
+        {
+          "date": "2025-01-25T11:00:00",
+          "type": "connexion",
+          "detail": "Connexion dashboard vendeur depuis Léo (Sud-Ouest)"
+        }
+      ],
+      "notifications_recentes": [
+        {
+          "date": "2025-07-24T16:00:00",
+          "type": "order_shipped",
+          "lu": false,
+          "titre": "Commande expédiée",
+          "message": "BF-20250721-00042 expédiée avec succès au client Amadou Diallo"
+        },
+        {
+          "date": "2025-07-23T09:00:00",
+          "type": "order_completed",
+          "lu": false,
+          "titre": "Commande terminée",
+          "message": "BF-20250721-00042 marquée comme reçue - paiement libéré"
+        },
+        {
+          "date": "2025-07-21T09:15:00",
+          "type": "new_order",
+          "lu": false,
+          "titre": "Nouvelle commande",
+          "message": "Commande BF-20250721-00042 (2500 FCFA) reçue - à valider"
+        },
+        {
+          "date": "2025-07-15T10:30:00",
+          "type": "new_message",
+          "lu": true,
+          "titre": "Nouveau message",
+          "message": "Fatimata Ouedraogo vous a envoyé un message"
+        },
+        {
+          "date": "2025-07-05T14:00:00",
+          "type": "new_review",
+          "lu": true,
+          "titre": "Nouvel avis 5★",
+          "message": "Un client a laissé un avis 5★ sur Beurre de karité pur"
+        },
+        {
+          "date": "2025-06-28T11:00:00",
+          "type": "trust_upgrade",
+          "lu": true,
+          "titre": "Niveau Argent atteint!",
+          "message": "Félicitations! Votre coopérative atteint le niveau Argent"
+        },
+        {
+          "date": "2025-03-30T10:00:00",
+          "type": "certification",
+          "lu": true,
+          "titre": "Certification renouvelée",
+          "message": "Votre certification BioSPG a été renouvelée pour 2 ans"
+        }
+      ],
+      "ventes_count": 87,
+      "seller_id": "SEL001",
+      "categories": [
+        "Karite"
+      ],
+      "preferences": {
+        "categories_gerees": [
+          "Karite"
+        ],
+        "newsletter": true,
+        "langue": "fr",
+        "notifications_commandes": true
+      }
+    },
+    "beta_vendeur_2": {
+      "id": "beta_vendeur_2",
+      "type": "vendeur",
+      "nom": "Fondeurs de Ouagadougou",
+      "email": "fondeurs@test.bf",
+      "telephone": "70 01 23 45",
+      "ville": "Ouagadougou",
+      "region": "Centre",
+      "trust_level": "or",
+      "date_inscription": "2016-01-01",
+      "description_courte": "Maîtres fondeurs de bronze, technique ancestrale cire perdue, 230 ventes, niveau Or",
+      "historique_activite": [
+        {
+          "date": "2025-07-24T20:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Bronze du Burkina statuette (PRD010) x1 - 15000 FCFA (commande BF-20250724-00203, client: Ibrahim Kabore)"
+        },
+        {
+          "date": "2025-07-24T19:30:00",
+          "type": "notification",
+          "detail": "Nouvelle commande premium reçue: BF-20250724-00203 (27000 FCFA)"
+        },
+        {
+          "date": "2025-07-24T19:00:00",
+          "type": "paiement_recu",
+          "detail": "Paiement virement bancaire reçu - 27000 FCFA"
+        },
+        {
+          "date": "2025-07-22T11:30:00",
+          "type": "avis_recu",
+          "detail": "Avis 5★ reçu sur Bronze du Burkina (PRD010) de Ibrahim Kabore"
+        },
+        {
+          "date": "2025-07-22T10:00:00",
+          "type": "validation_commande",
+          "detail": "Commande BF-20250720-00195 expédiée"
+        },
+        {
+          "date": "2025-07-20T16:00:00",
+          "type": "expedition_commande",
+          "detail": "Commande BF-20250720-00195 expédiée (client: Boutique Sahel Commerce)"
+        },
+        {
+          "date": "2025-07-20T14:00:00",
+          "type": "vente",
+          "detail": "Vente en gros: Bronze du Burkina statuette (PRD010) x5 - 75000 FCFA (lot revendeur)"
+        },
+        {
+          "date": "2025-07-18T09:00:00",
+          "type": "nouveau_produit",
+          "detail": "Nouvelle pièce ajoutée au catalogue: statuette danseur Lobi (PRD010 variante)"
+        },
+        {
+          "date": "2025-07-15T16:30:00",
+          "type": "message_client",
+          "detail": "Message reçu de Ibrahim Kabore - commande personnalisée demandée"
+        },
+        {
+          "date": "2025-07-15T15:00:00",
+          "type": "reponse_message",
+          "detail": "Réponse envoyée à Ibrahim Kabore - devis personnalisé"
+        },
+        {
+          "date": "2025-07-10T14:30:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Bronze du Burkina statuette (PRD010) x1 - 15000 FCFA (commande BF-20250710-00189)"
+        },
+        {
+          "date": "2025-07-10T14:00:00",
+          "type": "validation_commande",
+          "detail": "Commande BF-20250710-00189 acceptée"
+        },
+        {
+          "date": "2025-07-05T11:00:00",
+          "type": "gestion_stock",
+          "detail": "Stock mis à jour: Bronze du Burkina (PRD010) - 15 unités disponibles (alerte stock bas)"
+        },
+        {
+          "date": "2025-06-28T14:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Bronze du Burkina statuette (PRD010) x3 - 45000 FCFA (lot revendeur)"
+        },
+        {
+          "date": "2025-06-20T10:00:00",
+          "type": "production",
+          "detail": "Nouvelle production terminée: 8 statuettes en bronze cire perdue"
+        },
+        {
+          "date": "2025-06-10T15:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Bronze du Burkina statuette (PRD010) x2 - 30000 FCFA (export)"
+        },
+        {
+          "date": "2025-05-25T13:00:00",
+          "type": "certification_update",
+          "detail": "Certification ABNORM maintenue - contrôle qualité passé"
+        },
+        {
+          "date": "2025-05-10T11:00:00",
+          "type": "trust_upgrade",
+          "detail": "Niveau de confiance maintenu: Or (230 ventes)"
+        },
+        {
+          "date": "2025-04-25T10:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Bronze du Burkina statuette (PRD010) x1 - 15000 FCFA"
+        },
+        {
+          "date": "2025-04-15T14:00:00",
+          "type": "message_client",
+          "detail": "Message reçu de Artisan Market Tenkodogo - demande de lot bronze"
+        },
+        {
+          "date": "2025-03-30T11:00:00",
+          "type": "production",
+          "detail": "Nouvelle production: 12 statuettes en bronze ajoutées au stock"
+        },
+        {
+          "date": "2025-03-15T09:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Bronze du Burkina statuette (PRD010) x4 - 60000 FCFA (lot export)"
+        },
+        {
+          "date": "2025-02-20T16:00:00",
+          "type": "connexion",
+          "detail": "Connexion dashboard vendeur depuis Ouagadougou (Centre)"
+        },
+        {
+          "date": "2025-02-10T11:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Bronze du Burkina statuette (PRD010) x1 - 15000 FCFA"
+        },
+        {
+          "date": "2025-01-28T10:00:00",
+          "type": "profil_update",
+          "detail": "Profil atelier mis à jour: nouvelle photo galerie"
+        }
+      ],
+      "notifications_recentes": [
+        {
+          "date": "2025-07-24T19:30:00",
+          "type": "new_order",
+          "lu": false,
+          "titre": "Commande premium",
+          "message": "Commande BF-20250724-00203 (27000 FCFA) de Ibrahim Kabore reçue"
+        },
+        {
+          "date": "2025-07-24T19:00:00",
+          "type": "payment_received",
+          "lu": false,
+          "titre": "Paiement reçu",
+          "message": "27000 FCFA reçus par virement bancaire - commande BF-20250724-00203"
+        },
+        {
+          "date": "2025-07-22T11:30:00",
+          "type": "new_review",
+          "lu": false,
+          "titre": "Avis 5★",
+          "message": "Ibrahim Kabore a laissé un avis 5★ sur Bronze du Burkina"
+        },
+        {
+          "date": "2025-07-20T16:00:00",
+          "type": "order_shipped",
+          "lu": true,
+          "titre": "Commande expédiée",
+          "message": "BF-20250720-00195 expédiée à Boutique Sahel Commerce"
+        },
+        {
+          "date": "2025-07-18T09:00:00",
+          "type": "product_added",
+          "lu": true,
+          "titre": "Produit ajouté",
+          "message": "Nouvelle pièce ajoutée au catalogue"
+        },
+        {
+          "date": "2025-07-15T16:30:00",
+          "type": "new_message",
+          "lu": true,
+          "titre": "Message personnalisé",
+          "message": "Ibrahim Kabore demande une commande personnalisée"
+        },
+        {
+          "date": "2025-07-05T11:00:00",
+          "type": "low_stock",
+          "lu": true,
+          "titre": "Stock bas",
+          "message": "Bronze du Burkina: 15 unités restantes - pensez à relancer la production"
+        },
+        {
+          "date": "2025-05-25T13:00:00",
+          "type": "certification",
+          "lu": true,
+          "titre": "Certification maintenue",
+          "message": "Votre certification ABNORM a été renouvelée"
+        }
+      ],
+      "ventes_count": 230,
+      "seller_id": "SEL009",
+      "categories": [
+        "Artisanat"
+      ],
+      "preferences": {
+        "categories_gerees": [
+          "Artisanat"
+        ],
+        "newsletter": false,
+        "langue": "fr",
+        "notifications_commandes": true
+      }
+    },
+    "beta_vendeur_3": {
+      "id": "beta_vendeur_3",
+      "type": "vendeur",
+      "nom": "Apiculteur de Banfora",
+      "email": "apiculteur.banfora@test.bf",
+      "telephone": "70 24 68 13",
+      "ville": "Banfora",
+      "region": "Cascades",
+      "trust_level": "argent",
+      "date_inscription": "2020-09-10",
+      "description_courte": "Apiculteur de Banfora spécialisé en miel de karité et miel toutes fleurs, 65 ventes",
+      "historique_activite": [
+        {
+          "date": "2025-07-24T17:30:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Miel toutes fleurs du Sud-Ouest (PRD005) x2 - 8000 FCFA (commande BF-20250724-00160)"
+        },
+        {
+          "date": "2025-07-24T17:00:00",
+          "type": "validation_commande",
+          "detail": "Commande BF-20250724-00160 acceptée"
+        },
+        {
+          "date": "2025-07-23T11:00:00",
+          "type": "paiement_recu",
+          "detail": "Paiement Mobile Money reçu - 8000 FCFA"
+        },
+        {
+          "date": "2025-07-22T15:00:00",
+          "type": "notification",
+          "detail": "Nouvelle commande reçue: BF-20250724-00160"
+        },
+        {
+          "date": "2025-07-20T10:00:00",
+          "type": "connexion",
+          "detail": "Connexion dashboard vendeur depuis Banfora (Cascades)"
+        },
+        {
+          "date": "2025-07-18T14:00:00",
+          "type": "gestion_stock",
+          "detail": "Stock mis à jour: Miel de karité en rayon (PRD006) - 25 unités (stock limité)"
+        },
+        {
+          "date": "2025-07-15T11:30:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Miel de karité en rayon (PRD006) x1 - 5500 FCFA (commande BF-20250715-00125)"
+        },
+        {
+          "date": "2025-07-12T09:00:00",
+          "type": "message_client",
+          "detail": "Message reçu de Boutique Sahel Commerce - demande de lot miel"
+        },
+        {
+          "date": "2025-07-10T14:00:00",
+          "type": "reponse_message",
+          "detail": "Réponse envoyée à Boutique Sahel Commerce - devis lot 20 unités"
+        },
+        {
+          "date": "2025-07-05T16:00:00",
+          "type": "vente",
+          "detail": "Vente en gros: Miel toutes fleurs du Sud-Ouest (PRD005) x10 - 40000 FCFA (lot revendeur)"
+        },
+        {
+          "date": "2025-06-28T11:00:00",
+          "type": "production",
+          "detail": "Récolte de printemps terminée: 80 kg de miel toutes fleurs"
+        },
+        {
+          "date": "2025-06-20T10:00:00",
+          "type": "validation_commande",
+          "detail": "Commande BF-20250615-00120 expédiée"
+        },
+        {
+          "date": "2025-06-15T15:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Miel toutes fleurs du Sud-Ouest (PRD005) x3 - 12000 FCFA"
+        },
+        {
+          "date": "2025-06-10T11:00:00",
+          "type": "avis_recu",
+          "detail": "Avis 4★ reçu sur Miel de karité en rayon (PRD006)"
+        },
+        {
+          "date": "2025-05-28T14:00:00",
+          "type": "trust_upgrade",
+          "detail": "Niveau de confiance atteint: Argent (65 ventes)"
+        },
+        {
+          "date": "2025-05-15T10:00:00",
+          "type": "gestion_stock",
+          "detail": "Réassort: 50 unités de miel de karité en rayon produites"
+        },
+        {
+          "date": "2025-04-20T11:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Miel toutes fleurs du Sud-Ouest (PRD005) x5 - 20000 FCFA (lot)"
+        },
+        {
+          "date": "2025-04-05T13:00:00",
+          "type": "certification_update",
+          "detail": "Certification BioSPG maintenue pour la saison 2025"
+        },
+        {
+          "date": "2025-03-15T10:00:00",
+          "type": "production",
+          "detail": "Préparation des ruches pour la saison des fleurs de karité"
+        },
+        {
+          "date": "2025-02-20T09:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Miel toutes fleurs du Sud-Ouest (PRD005) x2 - 8000 FCFA"
+        }
+      ],
+      "notifications_recentes": [
+        {
+          "date": "2025-07-24T17:00:00",
+          "type": "new_order",
+          "lu": false,
+          "titre": "Nouvelle commande",
+          "message": "Commande BF-20250724-00160 (8000 FCFA) reçue"
+        },
+        {
+          "date": "2025-07-23T11:00:00",
+          "type": "payment_received",
+          "lu": false,
+          "titre": "Paiement reçu",
+          "message": "8000 FCFA reçus par Mobile Money"
+        },
+        {
+          "date": "2025-07-18T14:00:00",
+          "type": "low_stock",
+          "lu": true,
+          "titre": "Stock limité",
+          "message": "Miel de karité en rayon: 25 unités restantes - produit rare"
+        },
+        {
+          "date": "2025-07-12T09:00:00",
+          "type": "new_message",
+          "lu": true,
+          "titre": "Demande de lot",
+          "message": "Boutique Sahel Commerce demande un lot de miel"
+        },
+        {
+          "date": "2025-06-10T11:00:00",
+          "type": "new_review",
+          "lu": true,
+          "titre": "Nouvel avis",
+          "message": "Un client a laissé un avis 4★ sur Miel de karité en rayon"
+        },
+        {
+          "date": "2025-05-28T14:00:00",
+          "type": "trust_upgrade",
+          "lu": true,
+          "titre": "Niveau Argent atteint!",
+          "message": "Félicitations! Vous atteignez le niveau Argent"
+        }
+      ],
+      "ventes_count": 65,
+      "seller_id": "SEL004",
+      "categories": [
+        "Miel"
+      ],
+      "preferences": {
+        "categories_gerees": [
+          "Miel"
+        ],
+        "newsletter": true,
+        "langue": "fr",
+        "notifications_commandes": true
+      }
+    },
+    "beta_vendeur_4": {
+      "id": "beta_vendeur_4",
+      "type": "vendeur",
+      "nom": "Tisserands de Koudougou",
+      "email": "tisserands.koudougou@test.bf",
+      "telephone": "70 79 13 57",
+      "ville": "Koudougou",
+      "region": "Centre-Ouest",
+      "trust_level": "bronze",
+      "date_inscription": "2023-02-15",
+      "description_courte": "Coopérative de tisserands traditionnels de Koudougou, coton et bogolan, 28 ventes",
+      "historique_activite": [
+        {
+          "date": "2025-07-23T16:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Fil de coton filé main (PRD008) x10 - 9000 FCFA (commande BF-20250723-00092)"
+        },
+        {
+          "date": "2025-07-23T15:30:00",
+          "type": "validation_commande",
+          "detail": "Commande BF-20250723-00092 acceptée"
+        },
+        {
+          "date": "2025-07-23T15:00:00",
+          "type": "paiement_recu",
+          "detail": "Paiement Mobile Money reçu - 9000 FCFA"
+        },
+        {
+          "date": "2025-07-22T09:00:00",
+          "type": "connexion",
+          "detail": "Connexion dashboard vendeur depuis Koudougou (Centre-Ouest)"
+        },
+        {
+          "date": "2025-07-18T14:00:00",
+          "type": "notification",
+          "detail": "Nouvelle commande reçue: BF-20250723-00092"
+        },
+        {
+          "date": "2025-07-15T11:00:00",
+          "type": "gestion_stock",
+          "detail": "Stock mis à jour: Fil de coton filé main (PRD008) - 300 bobines"
+        },
+        {
+          "date": "2025-07-10T15:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Fil de coton filé main (PRD008) x5 - 4500 FCFA (commande BF-20250710-00085)"
+        },
+        {
+          "date": "2025-07-05T10:00:00",
+          "type": "message_client",
+          "detail": "Message reçu de Distrib Plus Centre - demande de lot bogolan"
+        },
+        {
+          "date": "2025-06-28T14:00:00",
+          "type": "production",
+          "detail": "Nouvelle production: 100 bobines de fil de coton filées"
+        },
+        {
+          "date": "2025-06-20T11:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Fil de coton filé main (PRD008) x20 - 18000 FCFA (lot revendeur)"
+        },
+        {
+          "date": "2025-06-15T10:00:00",
+          "type": "reponse_message",
+          "detail": "Réponse envoyée à Boutique Sahel Commerce - devis lot coton"
+        },
+        {
+          "date": "2025-06-10T15:00:00",
+          "type": "avis_recu",
+          "detail": "Avis 4★ reçu sur Fil de coton filé main (PRD008)"
+        },
+        {
+          "date": "2025-05-28T11:00:00",
+          "type": "message_client",
+          "detail": "Message reçu de Boutique Sahel Commerce - demande de prix gros"
+        },
+        {
+          "date": "2025-05-20T14:00:00",
+          "type": "validation_commande",
+          "detail": "Commande BF-20250515-00072 expédiée"
+        },
+        {
+          "date": "2025-05-15T10:00:00",
+          "type": "vente",
+          "detail": "Vente enregistrée: Fil de coton filé main (PRD008) x8 - 7200 FCFA"
+        },
+        {
+          "date": "2025-04-25T13:00:00",
+          "type": "trust_upgrade",
+          "detail": "Niveau de confiance atteint: Bronze (28 ventes)"
+        },
+        {
+          "date": "2025-04-10T11:00:00",
+          "type": "produit_ajoute",
+          "detail": "Nouveau produit ajouté: Fil de coton filé main (PRD008)"
+        },
+        {
+          "date": "2025-03-20T10:00:00",
+          "type": "production",
+          "detail": "Production de bogolan: 15 pièces teintes traditionnellement"
+        }
+      ],
+      "notifications_recentes": [
+        {
+          "date": "2025-07-23T15:30:00",
+          "type": "new_order",
+          "lu": false,
+          "titre": "Nouvelle commande",
+          "message": "Commande BF-20250723-00092 (9000 FCFA) reçue"
+        },
+        {
+          "date": "2025-07-23T15:00:00",
+          "type": "payment_received",
+          "lu": false,
+          "titre": "Paiement reçu",
+          "message": "9000 FCFA reçus par Mobile Money"
+        },
+        {
+          "date": "2025-07-18T14:00:00",
+          "type": "new_order",
+          "lu": true,
+          "titre": "Commande en attente",
+          "message": "BF-20250723-00092 - à valider"
+        },
+        {
+          "date": "2025-07-05T10:00:00",
+          "type": "new_message",
+          "lu": true,
+          "titre": "Demande de lot",
+          "message": "Distrib Plus Centre demande un lot bogolan"
+        },
+        {
+          "date": "2025-06-10T15:00:00",
+          "type": "new_review",
+          "lu": true,
+          "titre": "Nouvel avis",
+          "message": "Un client a laissé un avis 4★ sur Fil de coton filé main"
+        }
+      ],
+      "ventes_count": 28,
+      "seller_id": "SEL007",
+      "categories": [
+        "Coton",
+        "Bogolan"
+      ],
+      "preferences": {
+        "categories_gerees": [
+          "Coton",
+          "Bogolan"
+        ],
+        "newsletter": true,
+        "langue": "fr",
+        "notifications_commandes": true
+      }
+    }
+  },
+  "revendeurs": {
+    "beta_revendeur_1": {
+      "id": "beta_revendeur_1",
+      "type": "revendeur",
+      "nom": "Boutique Sahel Commerce",
+      "email": "sahel.commerce@test.bf",
+      "telephone": "70 34 56 78",
+      "ville": "Ouagadougou",
+      "region": "Centre",
+      "trust_level": "or",
+      "date_inscription": "2021-04-10",
+      "description_courte": "Grande boutique d'import/export à Ouagadougou, 156 transactions en gros, niveau Or",
+      "historique_activite": [
+        {
+          "date": "2025-07-24T19:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Bronze du Burkina statuette (PRD010) x5 - 75000 FCFA (LOT-20250724-0042)"
+        },
+        {
+          "date": "2025-07-24T18:30:00",
+          "type": "calcul_lot",
+          "detail": "Calcul lot: 5 x 15000 = 75000 FCFA - remise gros 10% = 67500 FCFA économisés 7500 FCFA"
+        },
+        {
+          "date": "2025-07-24T18:00:00",
+          "type": "contact_fournisseur",
+          "detail": "Contact fournisseur: Fondeurs de Ouagadougou (SEL009) - demande de devis lot"
+        },
+        {
+          "date": "2025-07-22T15:00:00",
+          "type": "reception_lot",
+          "detail": "Lot reçu: LOT-20250715-0038 - 20 bobines de fil de coton (PRD008)"
+        },
+        {
+          "date": "2025-07-20T16:00:00",
+          "type": "paiement_fournisseur",
+          "detail": "Paiement fournisseur - 18000 FCFA à Tisserands de Koudougou"
+        },
+        {
+          "date": "2025-07-20T14:00:00",
+          "type": "commande_gros",
+          "detail": "Commande gros enregistrée: LOT-20250720-0040 (75000 FCFA) - 5 statuettes bronze"
+        },
+        {
+          "date": "2025-07-18T11:00:00",
+          "type": "mise_en_vente",
+          "detail": "Mise en vente: 20 bobines de fil de coton (PRD008) à 1200 FCFA/bobine (marge 33%)"
+        },
+        {
+          "date": "2025-07-15T14:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Miel toutes fleurs du Sud-Ouest (PRD005) x10 - 40000 FCFA (LOT-20250715-0039)"
+        },
+        {
+          "date": "2025-07-15T13:30:00",
+          "type": "calcul_lot",
+          "detail": "Calcul lot: 10 x 4000 = 40000 FCFA - remise gros 8% = 36800 FCFA économisés 3200 FCFA"
+        },
+        {
+          "date": "2025-07-12T09:00:00",
+          "type": "contact_fournisseur",
+          "detail": "Contact fournisseur: Apiculteur de Banfora (SEL004) - négociation prix miel"
+        },
+        {
+          "date": "2025-07-10T16:00:00",
+          "type": "reception_lot",
+          "detail": "Lot reçu: LOT-20250705-0035 - 5 statuettes bronze (PRD010)"
+        },
+        {
+          "date": "2025-07-05T11:00:00",
+          "type": "vente_revendu",
+          "detail": "Vente revendu: Bronze du Burkina statuette (PRD010) x2 - 35000 FCFA (marge 4000 FCFA/unité)"
+        },
+        {
+          "date": "2025-06-28T14:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Pagne en coton bazin riche (PRD007) x10 - 180000 FCFA (LOT-20250628-0032)"
+        },
+        {
+          "date": "2025-06-25T10:00:00",
+          "type": "contact_fournisseur",
+          "detail": "Contact fournisseur: Tisserands de Koudougou (SEL007) - commande lot bogolan"
+        },
+        {
+          "date": "2025-06-20T15:00:00",
+          "type": "mise_en_vente",
+          "detail": "Mise en vente: 10 pagnes bazin riche (PRD007) à 22000 FCFA/unité (marge 22%)"
+        },
+        {
+          "date": "2025-06-15T11:00:00",
+          "type": "vente_revendu",
+          "detail": "Vente revendu: Pagne en coton bazin riche (PRD007) x3 - 66000 FCFA"
+        },
+        {
+          "date": "2025-06-10T14:00:00",
+          "type": "calcul_lot",
+          "detail": "Calcul lot: 10 x 18000 = 180000 FCFA - remise gros 12% = 158400 FCFA économisés 21600 FCFA"
+        },
+        {
+          "date": "2025-05-25T10:00:00",
+          "type": "reception_lot",
+          "detail": "Lot reçu: LOT-20250520-0028 - 50 beurres de karité (PRD001)"
+        },
+        {
+          "date": "2025-05-15T14:00:00",
+          "type": "paiement_fournisseur",
+          "detail": "Paiement fournisseur - 125000 FCFA à Coopérative Femmes de Léo"
+        },
+        {
+          "date": "2025-04-28T11:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Beurre de karité pur (PRD001) x50 - 125000 FCFA (LOT-20250428-0025)"
+        },
+        {
+          "date": "2025-04-10T15:00:00",
+          "type": "mise_en_vente",
+          "detail": "Mise en vente: 50 beurres de karité (PRD001) à 3000 FCFA/unité (marge 20%)"
+        },
+        {
+          "date": "2025-03-20T10:00:00",
+          "type": "connexion",
+          "detail": "Connexion dashboard revendeur depuis Ouagadougou (Centre)"
+        },
+        {
+          "date": "2025-02-15T14:00:00",
+          "type": "trust_upgrade",
+          "detail": "Niveau de confiance atteint: Or - remise gros maximale débloquée"
+        },
+        {
+          "date": "2025-01-30T11:00:00",
+          "type": "vente_revendu",
+          "detail": "Vente revendu: Bronze du Burkina statuette (PRD010) x1 - 18000 FCFA (marge 3000 FCFA)"
+        }
+      ],
+      "notifications_recentes": [
+        {
+          "date": "2025-07-24T19:00:00",
+          "type": "wholesale_confirmed",
+          "lu": false,
+          "titre": "Commande gros confirmée",
+          "message": "LOT-20250724-0042 (75000 FCFA) confirmée par Fondeurs de Ouagadougou"
+        },
+        {
+          "date": "2025-07-22T15:00:00",
+          "type": "lot_received",
+          "lu": false,
+          "titre": "Lot reçu",
+          "message": "LOT-20250715-0038 reçu - 20 bobines de fil de coton disponibles"
+        },
+        {
+          "date": "2025-07-20T16:00:00",
+          "type": "payment_sent",
+          "lu": true,
+          "titre": "Paiement envoyé",
+          "message": "18000 FCFA envoyés à Tisserands de Koudougou"
+        },
+        {
+          "date": "2025-07-18T11:00:00",
+          "type": "products_listed",
+          "lu": true,
+          "titre": "Produits mis en vente",
+          "message": "20 bobines de fil de coton mises en vente à 1200 FCFA"
+        },
+        {
+          "date": "2025-07-12T09:00:00",
+          "type": "supplier_reply",
+          "lu": true,
+          "titre": "Réponse fournisseur",
+          "message": "Apiculteur de Banfora a répondu à votre demande de devis"
+        },
+        {
+          "date": "2025-06-25T10:00:00",
+          "type": "supplier_contact",
+          "lu": true,
+          "titre": "Contact fournisseur",
+          "message": "Demande de lot bogolan envoyée à Tisserands de Koudougou"
+        },
+        {
+          "date": "2025-02-15T14:00:00",
+          "type": "trust_upgrade",
+          "lu": true,
+          "titre": "Niveau Or atteint!",
+          "message": "Félicitations! Niveau Or débloqué - remises gros maximales"
+        }
+      ],
+      "transactions_count": 156,
+      "boutique_type": "grande_boutique",
+      "preferences": {
+        "categories_gerees": [
+          "Artisanat",
+          "Coton",
+          "Karite"
+        ],
+        "newsletter": true,
+        "langue": "fr",
+        "notifications_lots": true
+      }
+    },
+    "beta_revendeur_2": {
+      "id": "beta_revendeur_2",
+      "type": "revendeur",
+      "nom": "Petite Boutique Bobo",
+      "email": "petite.bobo@test.bf",
+      "telephone": "70 45 67 89",
+      "ville": "Bobo-Dioulasso",
+      "region": "Hauts-Bassins",
+      "trust_level": "argent",
+      "date_inscription": "2022-08-22",
+      "description_courte": "Petite boutique d'épicerie locale à Bobo-Dioulasso, 43 transactions en lots moyens",
+      "historique_activite": [
+        {
+          "date": "2025-07-23T17:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Graines de sésame doré (PRD003) x20 kg - 36000 FCFA (LOT-20250723-0018)"
+        },
+        {
+          "date": "2025-07-23T16:30:00",
+          "type": "calcul_lot",
+          "detail": "Calcul lot: 20 x 1800 = 36000 FCFA - remise gros 5% = 34200 FCFA économisés 1800 FCFA"
+        },
+        {
+          "date": "2025-07-23T16:00:00",
+          "type": "contact_fournisseur",
+          "detail": "Contact fournisseur: Ferme Wend-Kuni (SEL003) - commande sésame"
+        },
+        {
+          "date": "2025-07-22T11:00:00",
+          "type": "reception_lot",
+          "detail": "Lot reçu: LOT-20250715-0016 - 10 miels toutes fleurs (PRD005)"
+        },
+        {
+          "date": "2025-07-20T15:00:00",
+          "type": "paiement_fournisseur",
+          "detail": "Paiement fournisseur - 40000 FCFA à Apiculteur de Banfora"
+        },
+        {
+          "date": "2025-07-18T14:00:00",
+          "type": "mise_en_vente",
+          "detail": "Mise en vente: 10 miels toutes fleurs (PRD005) à 4500 FCFA/unité (marge 12.5%)"
+        },
+        {
+          "date": "2025-07-15T11:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Miel toutes fleurs du Sud-Ouest (PRD005) x10 - 40000 FCFA (LOT-20250715-0016)"
+        },
+        {
+          "date": "2025-07-10T14:00:00",
+          "type": "vente_revendu",
+          "detail": "Vente revendu: Beurre de karité pur (PRD001) x5 - 15000 FCFA (marge 2500 FCFA)"
+        },
+        {
+          "date": "2025-06-28T10:00:00",
+          "type": "contact_fournisseur",
+          "detail": "Contact fournisseur: Coopérative Femmes de Léo (SEL001) - commande beurre karité"
+        },
+        {
+          "date": "2025-06-20T15:00:00",
+          "type": "reception_lot",
+          "detail": "Lot reçu: LOT-20250615-0014 - 20 beurres de karité (PRD001)"
+        },
+        {
+          "date": "2025-06-15T11:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Beurre de karité pur (PRD001) x20 - 50000 FCFA (LOT-20250615-0014)"
+        },
+        {
+          "date": "2025-06-10T13:00:00",
+          "type": "calcul_lot",
+          "detail": "Calcul lot: 20 x 2500 = 50000 FCFA - remise gros 5% = 47500 FCFA économisés 2500 FCFA"
+        },
+        {
+          "date": "2025-05-28T14:00:00",
+          "type": "mise_en_vente",
+          "detail": "Mise en vente: 20 beurres de karité (PRD001) à 3000 FCFA/unité"
+        },
+        {
+          "date": "2025-05-15T11:00:00",
+          "type": "vente_revendu",
+          "detail": "Vente revendu: Miel toutes fleurs (PRD005) x3 - 13500 FCFA"
+        },
+        {
+          "date": "2025-05-05T10:00:00",
+          "type": "paiement_fournisseur",
+          "detail": "Paiement fournisseur - 12000 FCFA à Apiculteur de Banfora"
+        },
+        {
+          "date": "2025-04-20T14:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Huile de sésame artisanale (PRD004) x8 - 24000 FCFA (LOT-20250420-0011)"
+        },
+        {
+          "date": "2025-04-10T11:00:00",
+          "type": "reception_lot",
+          "detail": "Lot reçu: LOT-20250405-0010 - 8 huiles de sésame (PRD004)"
+        },
+        {
+          "date": "2025-03-20T15:00:00",
+          "type": "mise_en_vente",
+          "detail": "Mise en vente: 8 huiles de sésame (PRD004) à 3500 FCFA/unité"
+        }
+      ],
+      "notifications_recentes": [
+        {
+          "date": "2025-07-23T17:00:00",
+          "type": "wholesale_confirmed",
+          "lu": false,
+          "titre": "Commande gros confirmée",
+          "message": "LOT-20250723-0018 (36000 FCFA) confirmée par Ferme Wend-Kuni"
+        },
+        {
+          "date": "2025-07-22T11:00:00",
+          "type": "lot_received",
+          "lu": false,
+          "titre": "Lot reçu",
+          "message": "LOT-20250715-0016 reçu - 10 miels disponibles en boutique"
+        },
+        {
+          "date": "2025-07-20T15:00:00",
+          "type": "payment_sent",
+          "lu": true,
+          "titre": "Paiement envoyé",
+          "message": "40000 FCFA envoyés à Apiculteur de Banfora"
+        },
+        {
+          "date": "2025-07-18T14:00:00",
+          "type": "products_listed",
+          "lu": true,
+          "titre": "Produits mis en vente",
+          "message": "10 miels toutes fleurs à 4500 FCFA en boutique"
+        },
+        {
+          "date": "2025-06-28T10:00:00",
+          "type": "supplier_contact",
+          "lu": true,
+          "titre": "Contact fournisseur",
+          "message": "Demande envoyée à Coopérative Femmes de Léo"
+        },
+        {
+          "date": "2025-04-25T09:00:00",
+          "type": "newsletter",
+          "lu": true,
+          "titre": "Newsletter Avril",
+          "message": "Offres spéciales printemps pour revendeurs"
+        }
+      ],
+      "transactions_count": 43,
+      "boutique_type": "petite_boutique",
+      "preferences": {
+        "categories_gerees": [
+          "Miel",
+          "Sesame",
+          "Karite"
+        ],
+        "newsletter": true,
+        "langue": "fr",
+        "notifications_lots": true
+      }
+    },
+    "beta_revendeur_3": {
+      "id": "beta_revendeur_3",
+      "type": "revendeur",
+      "nom": "Distrib Plus Centre",
+      "email": "distrib.plus@test.bf",
+      "telephone": "70 88 77 66",
+      "ville": "Ouagadougou",
+      "region": "Centre",
+      "trust_level": "or",
+      "date_inscription": "2020-01-15",
+      "description_courte": "Distributeur régional à Ouagadougou, 280 transactions, couvre plusieurs régions du Burkina",
+      "historique_activite": [
+        {
+          "date": "2025-07-24T18:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Beurre de karité pur (PRD001) x100 - 250000 FCFA (LOT-20250724-0085)"
+        },
+        {
+          "date": "2025-07-24T17:30:00",
+          "type": "calcul_lot",
+          "detail": "Calcul lot: 100 x 2500 = 250000 FCFA - remise gros Or 15% = 212500 FCFA économisés 37500 FCFA"
+        },
+        {
+          "date": "2025-07-24T17:00:00",
+          "type": "contact_fournisseur",
+          "detail": "Contact fournisseur: Coopérative Femmes de Léo (SEL001) - commande mensuelle"
+        },
+        {
+          "date": "2025-07-22T16:00:00",
+          "type": "reception_lot",
+          "detail": "Lot reçu: LOT-20250715-0082 - 50 miels toutes fleurs (PRD005)"
+        },
+        {
+          "date": "2025-07-20T15:00:00",
+          "type": "vente_revendu",
+          "detail": "Vente revendu: Beurre de karité pur (PRD001) x30 - 90000 FCFA (marge 15000 FCFA)"
+        },
+        {
+          "date": "2025-07-18T14:00:00",
+          "type": "paiement_fournisseur",
+          "detail": "Paiement fournisseur - 200000 FCFA à Apiculteur de Banfora"
+        },
+        {
+          "date": "2025-07-15T11:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Miel toutes fleurs du Sud-Ouest (PRD005) x50 - 200000 FCFA (LOT-20250715-0082)"
+        },
+        {
+          "date": "2025-07-12T10:00:00",
+          "type": "mise_en_vente",
+          "detail": "Mise en vente: 50 miels toutes fleurs (PRD005) à 4500 FCFA/unité (marge 12.5%)"
+        },
+        {
+          "date": "2025-07-10T14:00:00",
+          "type": "contact_fournisseur",
+          "detail": "Contact fournisseur: Apiculteur de Banfora (SEL004) - demande devis 50 unités"
+        },
+        {
+          "date": "2025-07-05T15:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Graines de sésame doré (PRD003) x50 kg - 90000 FCFA (LOT-20250705-0078)"
+        },
+        {
+          "date": "2025-07-05T14:30:00",
+          "type": "calcul_lot",
+          "detail": "Calcul lot: 50 x 1800 = 90000 FCFA - remise gros 12% = 79200 FCFA économisés 10800 FCFA"
+        },
+        {
+          "date": "2025-06-28T16:00:00",
+          "type": "reception_lot",
+          "detail": "Lot reçu: LOT-20250620-0075 - 30 pagnes bazin riche (PRD007)"
+        },
+        {
+          "date": "2025-06-25T11:00:00",
+          "type": "vente_revendu",
+          "detail": "Vente revendu: Pagne en coton bazin riche (PRD007) x5 - 110000 FCFA (marge 10000 FCFA)"
+        },
+        {
+          "date": "2025-06-20T14:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Pagne en coton bazin riche (PRD007) x30 - 540000 FCFA (LOT-20250620-0075)"
+        },
+        {
+          "date": "2025-06-15T10:00:00",
+          "type": "calcul_lot",
+          "detail": "Calcul lot: 30 x 18000 = 540000 FCFA - remise gros 15% = 459000 FCFA économisés 81000 FCFA"
+        },
+        {
+          "date": "2025-06-10T15:00:00",
+          "type": "mise_en_vente",
+          "detail": "Mise en vente: 30 pagnes bazin riche (PRD007) à 22000 FCFA/unité"
+        },
+        {
+          "date": "2025-05-28T11:00:00",
+          "type": "contact_fournisseur",
+          "detail": "Contact fournisseur: Tisserands de Koudougou (SEL007) - commande lot bogolan"
+        },
+        {
+          "date": "2025-05-20T14:00:00",
+          "type": "vente_revendu",
+          "detail": "Vente revendu: Graines de sésame doré (PRD003) x20 kg - 40000 FCFA"
+        },
+        {
+          "date": "2025-05-10T10:00:00",
+          "type": "reception_lot",
+          "detail": "Lot reçu: LOT-20250505-0070 - 100 beurres de karité (PRD001)"
+        },
+        {
+          "date": "2025-04-28T15:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Beurre de karité pur (PRD001) x100 - 250000 FCFA (LOT-20250428-0068)"
+        },
+        {
+          "date": "2025-04-15T11:00:00",
+          "type": "paiement_fournisseur",
+          "detail": "Paiement fournisseur - 212500 FCFA à Coopérative Femmes de Léo (remise Or 15%)"
+        },
+        {
+          "date": "2025-04-05T14:00:00",
+          "type": "mise_en_vente",
+          "detail": "Mise en vente: 100 beurres de karité (PRD001) à 3000 FCFA/unité"
+        },
+        {
+          "date": "2025-03-20T10:00:00",
+          "type": "trust_upgrade",
+          "detail": "Niveau de confiance maintenu: Or - 280 transactions"
+        },
+        {
+          "date": "2025-02-15T15:00:00",
+          "type": "connexion",
+          "detail": "Connexion dashboard revendeur depuis Ouagadougou (Centre)"
+        },
+        {
+          "date": "2025-02-10T11:00:00",
+          "type": "vente_revendu",
+          "detail": "Vente revendu: Miel toutes fleurs (PRD005) x20 - 90000 FCFA"
+        }
+      ],
+      "notifications_recentes": [
+        {
+          "date": "2025-07-24T18:00:00",
+          "type": "wholesale_confirmed",
+          "lu": false,
+          "titre": "Commande gros confirmée",
+          "message": "LOT-20250724-0085 (250000 FCFA) confirmée par Coopérative Femmes de Léo"
+        },
+        {
+          "date": "2025-07-24T17:30:00",
+          "type": "discount_applied",
+          "lu": false,
+          "titre": "Remise Or appliquée",
+          "message": "Remise gros 15% appliquée - 37500 FCFA économisés sur LOT-20250724-0085"
+        },
+        {
+          "date": "2025-07-22T16:00:00",
+          "type": "lot_received",
+          "lu": false,
+          "titre": "Lot reçu",
+          "message": "LOT-20250715-0082 reçu - 50 miels toutes fleurs en stock"
+        },
+        {
+          "date": "2025-07-20T15:00:00",
+          "type": "resale_completed",
+          "lu": true,
+          "titre": "Vente revendu",
+          "message": "30 beurres de karité vendus - marge 15000 FCFA réalisée"
+        },
+        {
+          "date": "2025-07-12T10:00:00",
+          "type": "products_listed",
+          "lu": true,
+          "titre": "Produits mis en vente",
+          "message": "50 miels toutes fleurs à 4500 FCFA en boutique"
+        },
+        {
+          "date": "2025-06-28T16:00:00",
+          "type": "lot_received",
+          "lu": true,
+          "titre": "Lot reçu",
+          "message": "LOT-20250620-0075 reçu - 30 pagnes bazin riche en stock"
+        },
+        {
+          "date": "2025-05-28T11:00:00",
+          "type": "supplier_contact",
+          "lu": true,
+          "titre": "Contact fournisseur",
+          "message": "Demande de lot bogolan envoyée à Tisserands de Koudougou"
+        },
+        {
+          "date": "2025-03-20T10:00:00",
+          "type": "trust_upgrade",
+          "lu": true,
+          "titre": "Niveau Or maintenu",
+          "message": "Statut Or confirmé - 280 transactions réalisées"
+        }
+      ],
+      "transactions_count": 280,
+      "boutique_type": "grande_boutique",
+      "preferences": {
+        "categories_gerees": [
+          "Karite",
+          "Sesame",
+          "Miel",
+          "Coton"
+        ],
+        "newsletter": true,
+        "langue": "fr",
+        "notifications_lots": true
+      }
+    },
+    "beta_revendeur_4": {
+      "id": "beta_revendeur_4",
+      "type": "revendeur",
+      "nom": "Artisan Market Tenkodogo",
+      "email": "artisan.tenkodogo@test.bf",
+      "telephone": "70 99 88 77",
+      "ville": "Tenkodogo",
+      "region": "Centre-Est",
+      "trust_level": "argent",
+      "date_inscription": "2021-11-05",
+      "description_courte": "Boutique d'artisanat revendu à Tenkodogo, 67 transactions, valorise l'artisanat local",
+      "historique_activite": [
+        {
+          "date": "2025-07-23T15:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Bijoux en perles du Sahel (PRD012) x10 - 32000 FCFA (LOT-20250723-0025)"
+        },
+        {
+          "date": "2025-07-23T14:30:00",
+          "type": "calcul_lot",
+          "detail": "Calcul lot: 10 x 3200 = 32000 FCFA - remise gros 8% = 29440 FCFA économisés 2560 FCFA"
+        },
+        {
+          "date": "2025-07-23T14:00:00",
+          "type": "contact_fournisseur",
+          "detail": "Contact fournisseur: Artisanes de Dori (SEL011) - commande bijoux"
+        },
+        {
+          "date": "2025-07-22T11:00:00",
+          "type": "reception_lot",
+          "detail": "Lot reçu: LOT-20250715-0023 - 5 bronzes (PRD010)"
+        },
+        {
+          "date": "2025-07-20T16:00:00",
+          "type": "mise_en_vente",
+          "detail": "Mise en vente: 5 bronzes (PRD010) à 17000 FCFA/unité (marge 2000 FCFA)"
+        },
+        {
+          "date": "2025-07-18T14:00:00",
+          "type": "vente_revendu",
+          "detail": "Vente revendu: Panier tressé en fibres locales (PRD009) x2 - 14000 FCFA (marge 2000 FCFA)"
+        },
+        {
+          "date": "2025-07-15T11:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Bronze du Burkina statuette (PRD010) x5 - 75000 FCFA (LOT-20250715-0023)"
+        },
+        {
+          "date": "2025-07-10T15:00:00",
+          "type": "paiement_fournisseur",
+          "detail": "Paiement fournisseur - 75000 FCFA à Fondeurs de Ouagadougou"
+        },
+        {
+          "date": "2025-07-05T10:00:00",
+          "type": "contact_fournisseur",
+          "detail": "Contact fournisseur: Fondeurs de Ouagadougou (SEL009) - demande lot bronze"
+        },
+        {
+          "date": "2025-06-28T14:00:00",
+          "type": "reception_lot",
+          "detail": "Lot reçu: LOT-20250620-0020 - 10 paniers tressés (PRD009)"
+        },
+        {
+          "date": "2025-06-20T11:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Panier tressé en fibres locales (PRD009) x10 - 65000 FCFA (LOT-20250620-0020)"
+        },
+        {
+          "date": "2025-06-15T10:00:00",
+          "type": "calcul_lot",
+          "detail": "Calcul lot: 10 x 6500 = 65000 FCFA - remise gros 5% = 61750 FCFA économisés 3250 FCFA"
+        },
+        {
+          "date": "2025-06-10T15:00:00",
+          "type": "mise_en_vente",
+          "detail": "Mise en vente: 10 paniers tressés (PRD009) à 7500 FCFA/unité"
+        },
+        {
+          "date": "2025-05-25T11:00:00",
+          "type": "vente_revendu",
+          "detail": "Vente revendu: Bijoux en perles du Sahel (PRD012) x3 - 10800 FCFA"
+        },
+        {
+          "date": "2025-05-15T14:00:00",
+          "type": "achat_gros",
+          "detail": "Achat en gros: Masque en bois sculpté (PRD011) x5 - 60000 FCFA (LOT-20250515-0016)"
+        },
+        {
+          "date": "2025-05-10T10:00:00",
+          "type": "contact_fournisseur",
+          "detail": "Contact fournisseur: Sculpteurs de Bobo-Dioulasso (SEL010) - commande masques"
+        },
+        {
+          "date": "2025-04-28T11:00:00",
+          "type": "reception_lot",
+          "detail": "Lot reçu: LOT-20250420-0014 - 8 bijoux perles (PRD012)"
+        },
+        {
+          "date": "2025-04-20T15:00:00",
+          "type": "paiement_fournisseur",
+          "detail": "Paiement fournisseur - 25600 FCFA à Artisanes de Dori"
+        },
+        {
+          "date": "2025-04-10T14:00:00",
+          "type": "mise_en_vente",
+          "detail": "Mise en vente: 5 masques en bois sculpté (PRD011) à 14000 FCFA/unité"
+        },
+        {
+          "date": "2025-03-20T10:00:00",
+          "type": "connexion",
+          "detail": "Connexion dashboard revendeur depuis Tenkodogo (Centre-Est)"
+        }
+      ],
+      "notifications_recentes": [
+        {
+          "date": "2025-07-23T15:00:00",
+          "type": "wholesale_confirmed",
+          "lu": false,
+          "titre": "Commande gros confirmée",
+          "message": "LOT-20250723-0025 (32000 FCFA) confirmée par Artisanes de Dori"
+        },
+        {
+          "date": "2025-07-23T14:30:00",
+          "type": "discount_applied",
+          "lu": false,
+          "titre": "Remise appliquée",
+          "message": "Remise gros 8% - 2560 FCFA économisés sur LOT-20250723-0025"
+        },
+        {
+          "date": "2025-07-22T11:00:00",
+          "type": "lot_received",
+          "lu": true,
+          "titre": "Lot reçu",
+          "message": "LOT-20250715-0023 reçu - 5 bronzes disponibles en boutique"
+        },
+        {
+          "date": "2025-07-20T16:00:00",
+          "type": "products_listed",
+          "lu": true,
+          "titre": "Produits mis en vente",
+          "message": "5 bronzes à 17000 FCFA en boutique"
+        },
+        {
+          "date": "2025-07-18T14:00:00",
+          "type": "resale_completed",
+          "lu": true,
+          "titre": "Vente revendu",
+          "message": "2 paniers tressés vendus - marge 2000 FCFA"
+        },
+        {
+          "date": "2025-06-28T14:00:00",
+          "type": "lot_received",
+          "lu": true,
+          "titre": "Lot reçu",
+          "message": "LOT-20250620-0020 reçu - 10 paniers tressés en stock"
+        }
+      ],
+      "transactions_count": 67,
+      "boutique_type": "petite_boutique",
+      "preferences": {
+        "categories_gerees": [
+          "Artisanat",
+          "Coton"
+        ],
+        "newsletter": true,
+        "langue": "fr",
+        "notifications_lots": true
+      }
+    }
+  },
+  "metadata": {
+    "genere_le": "2025-07-25",
+    "total_comptes": 12,
+    "total_entrees_historique": 255,
+    "total_notifications": 79,
+    "breakdown": {
+      "acheteurs": 4,
+      "vendeurs": 4,
+      "revendeurs": 4
+    },
+    "periode_couverte": "2025-01-25 a 2025-07-24",
+    "format_dates": "ISO 8601",
+    "source": "json/beta-accounts.json v2.0"
+  }
+}

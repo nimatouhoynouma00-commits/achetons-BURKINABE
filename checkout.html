@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validation achat - Achetons Burkinabe</title>
+  <meta name="description" content="Confirmez votre achat et recevez votre recu avec QR-code de suivi. Paiement direct avec les vendeurs.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/checkout.css">
+  <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+  <style>
+    /* Refonte L7a - checkout moderne */
+    .checkout-hero {
+      background: linear-gradient(135deg, var(--terre) 0%, var(--terre-fonce) 70%, #5a2a0e 100%);
+      color: #fff;
+      padding: var(--sp-xxl) 0 var(--sp-xl);
+      position: relative;
+      overflow: hidden;
+    }
+    .checkout-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 28%, rgba(232, 161, 58, 0.28) 0%, transparent 55%),
+        radial-gradient(circle at 82% 70%, rgba(244, 200, 119, 0.18) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .checkout-hero .container { position: relative; z-index: 1; }
+    .checkout-hero .eyebrow { color: var(--miel-clair); }
+    .checkout-hero h1 { color: #fff; margin: 0 0 var(--sp-sm); font-size: 2.2rem; }
+    .checkout-hero p { color: rgba(255,255,255,0.9); max-width: 600px; margin: 0; }
+
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-xl);
+      padding: var(--sp-xl) 0;
+      align-items: start;
+    }
+    @media (min-width: 1024px) {
+      .checkout-layout { grid-template-columns: minmax(0, 1fr) 380px; }
+    }
+
+    .checkout-section-card {
+      background: var(--surface-1);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      padding: var(--sp-lg);
+      margin-bottom: var(--sp-md);
+    }
+    .checkout-section-card h3 {
+      margin: 0 0 var(--sp-md);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: var(--sp-sm);
+    }
+    .checkout-section-card h3 .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-pill);
+      background: var(--gradient-terre);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .checkout-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-md);
+    }
+    @media (max-width: 640px) {
+      .checkout-form-grid { grid-template-columns: 1fr; }
+    }
+    .checkout-form-grid .full-row { grid-column: 1 / -1; }
+
+    .payment-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: var(--sp-sm);
+    }
+    .payment-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: var(--sp-md);
+      border: 2px solid var(--ligne);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      background: var(--surface-1);
+      position: relative;
+    }
+    .payment-option input { position: absolute; opacity: 0; }
+    .payment-option:hover { border-color: var(--miel); }
+    .payment-option:has(input:checked) {
+      border-color: var(--terre);
+      background: var(--surface-2);
+      box-shadow: var(--shadow-glow);
+    }
+    .payment-option .pay-emoji { font-size: 1.6rem; line-height: 1; }
+    .payment-option .pay-body { flex: 1; min-width: 0; }
+    .payment-option .pay-title { font-weight: 700; color: var(--texte); font-size: 0.9rem; }
+    .payment-option .pay-desc { font-size: 0.75rem; color: var(--texte-doux); }
+
+    .payment-note {
+      margin-top: var(--sp-md);
+      padding: var(--sp-md);
+      background: color-mix(in srgb, var(--miel) 10%, transparent);
+      border-left: 3px solid var(--miel);
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      color: var(--texte);
+    }
+    .payment-note strong { color: var(--terre); }
+
+    .checkout-summary {
+      background: var(--surface-1);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-md);
+      padding: var(--sp-lg);
+      position: sticky;
+      top: calc(var(--header-h) + var(--sp-md));
+    }
+    @media (max-width: 1023px) { .checkout-summary { position: static; } }
+    .checkout-summary h3 { margin: 0 0 var(--sp-md); font-size: 1.15rem; }
+    .checkout-items-list { display: flex; flex-direction: column; gap: var(--sp-sm); margin-bottom: var(--sp-md); }
+    .checkout-line-item {
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      gap: var(--sp-sm);
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .checkout-line-item:last-child { border-bottom: none; }
+    .checkout-line-item .item-img {
+      width: 44px; height: 44px;
+      background: var(--surface-3);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .checkout-line-item .item-img svg { width: 80%; height: 80%; }
+    .checkout-line-item .item-body { min-width: 0; }
+    .checkout-line-item .item-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--texte);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .checkout-line-item .item-meta {
+      font-size: 0.72rem;
+      color: var(--texte-doux);
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .checkout-line-item .item-total {
+      font-weight: 700;
+      color: var(--terre);
+      font-size: 0.9rem;
+      font-family: var(--font-mono, monospace);
+    }
+    .checkout-summary-totals { margin-top: var(--sp-md); padding-top: var(--sp-md); border-top: 2px solid var(--border-subtle); }
+    .checkout-summary-totals .row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      font-size: 0.9rem;
+    }
+    .checkout-summary-totals .row .label { color: var(--texte-doux); }
+    .checkout-summary-totals .row .value { font-weight: 600; }
+    .checkout-summary-totals .row.total {
+      margin-top: var(--sp-sm);
+      padding-top: var(--sp-sm);
+      border-top: 1px solid var(--border-subtle);
+      font-size: 1.05rem;
+    }
+    .checkout-summary-totals .row.total .label { color: var(--texte); font-weight: 600; }
+    .checkout-summary-totals .row.total .value {
+      font-size: 1.4rem;
+      color: var(--terre);
+      font-family: var(--font-mono, monospace);
+    }
+
+    .confirm-btn {
+      margin-top: var(--sp-md);
+      width: 100%;
+    }
+
+    /* ============ RECU MODERNE ============ */
+    .receipt-modern {
+      max-width: 800px;
+      margin: var(--sp-xl) auto;
+      animation: fadeInUp 0.5s ease both;
+    }
+
+    .receipt-success-banner {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-lg);
+      padding: var(--sp-xl);
+      background: var(--gradient-success);
+      color: #fff;
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--sp-lg);
+      box-shadow: var(--shadow-lg);
+    }
+    .receipt-success-icon {
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.15);
+      border-radius: var(--radius-pill);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .receipt-success-icon svg { width: 48px; height: 48px; }
+    .receipt-success-icon .check-path {
+      stroke-dasharray: 50;
+      stroke-dashoffset: 50;
+      animation: drawCheckmark 0.8s ease 0.3s forwards;
+    }
+    .receipt-success-icon .check-circle {
+      stroke-dasharray: 200;
+      stroke-dashoffset: 200;
+      animation: drawCheckmark 1s ease 0.1s forwards;
+    }
+    .receipt-success-text h2 { margin: 0 0 4px 0; font-size: 1.6rem; color: #fff; }
+    .receipt-success-text p { margin: 0; color: rgba(255,255,255,0.95); font-size: 0.95rem; }
+
+    .receipt-card {
+      background: var(--surface-1);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-md);
+      padding: var(--sp-xl);
+      margin-bottom: var(--sp-lg);
+    }
+
+    .receipt-header-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--sp-lg);
+      align-items: center;
+      padding-bottom: var(--sp-lg);
+      border-bottom: 2px dashed var(--border-subtle);
+      margin-bottom: var(--sp-lg);
+    }
+    @media (max-width: 600px) {
+      .receipt-header-row { grid-template-columns: 1fr; text-align: center; }
+      .receipt-qr-wrapper { margin: 0 auto; }
+    }
+
+    .receipt-order-id {
+      font-size: 0.78rem;
+      color: var(--texte-doux);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+    .receipt-order-number {
+      font-family: var(--font-mono, monospace);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--terre);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .receipt-date {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      color: var(--texte-doux);
+    }
+    .receipt-qr-wrapper {
+      text-align: center;
+    }
+    .receipt-qr-wrapper .receipt-qr {
+      border: 4px solid #fff;
+      box-shadow: var(--shadow-sm);
+      border-radius: var(--radius-sm);
+    }
+    .receipt-qr-label {
+      font-size: 0.72rem;
+      color: var(--texte-doux);
+      margin-top: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .receipt-section-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--terre);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: var(--sp-lg) 0 var(--sp-sm);
+    }
+
+    .receipt-items-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .receipt-items-table th {
+      text-align: left;
+      padding: 8px 6px;
+      border-bottom: 2px solid var(--border-subtle);
+      color: var(--texte-doux);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .receipt-items-table td {
+      padding: 10px 6px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--texte);
+    }
+    .receipt-items-table tfoot td { border-bottom: none; padding-top: var(--sp-sm); }
+    .receipt-items-table .text-right { text-align: right; }
+    .receipt-items-table .receipt-total-row td {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--terre);
+      border-top: 2px solid var(--border-subtle);
+      padding-top: var(--sp-md);
+    }
+
+    .receipt-vendors {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--sp-md);
+      margin-top: var(--sp-sm);
+    }
+    .receipt-vendor-card {
+      padding: var(--sp-md);
+      background: var(--surface-2);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--terre);
+    }
+    .receipt-vendor-card .vendor-name {
+      font-weight: 700;
+      color: var(--texte);
+      margin-bottom: 4px;
+      font-size: 0.9rem;
+    }
+    .receipt-vendor-card .vendor-contact {
+      font-size: 0.78rem;
+      color: var(--texte-doux);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .receipt-payment-note {
+      padding: var(--sp-md);
+      background: color-mix(in srgb, var(--miel) 12%, transparent);
+      border-left: 3px solid var(--miel);
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      color: var(--texte);
+      margin-top: var(--sp-md);
+    }
+
+    .receipt-actions {
+      display: flex;
+      gap: var(--sp-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: var(--sp-lg);
+    }
+
+    @media print {
+      .site-header, .site-footer, .motif-strip, .receipt-actions, .checkout-hero { display: none !important; }
+      .receipt-card, .receipt-modern { box-shadow: none; border: 1px solid #ccc; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Aller au contenu</a>
+
+  <main id="main">
+    <section class="checkout-hero">
+      <div class="container">
+        <p class="eyebrow">Derniere etape</p>
+        <h1>Confirmez votre achat</h1>
+        <p>Verifiez vos informations de livraison, choisissez votre mode de paiement et confirmez pour recevoir votre recu.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div id="checkout-container">
+        <div class="spinner spinner-lg" style="margin: 80px auto;" aria-label="Chargement du checkout"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/embedded-data.js"></script>
+  <script src="js/data-seed.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui-components.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/trust-system.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/form-validation.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('app:ready', () => {
+      const session = Auth.requireAuth(['acheteur', 'revendeur']);
+      if (!session) return;
+
+      const container = document.getElementById('checkout-container');
+      const totals = Cart.computeTotals();
+
+      // Panier vide
+      if (!totals.items.length) {
+        container.innerHTML = `
+          <div class="cart-empty" style="text-align:center;padding:var(--sp-xxl) var(--sp-xl);background:var(--surface-1);border-radius:var(--radius-lg);border:1px solid var(--border-subtle);margin:var(--sp-xl) 0;">
+            <svg class="cart-empty-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:120px;height:120px;margin:0 auto var(--sp-md);color:var(--terre);opacity:0.6;">
+              <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+              <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+            </svg>
+            <h2 style="margin:0 0 var(--sp-sm);">Votre panier est vide</h2>
+            <p style="color:var(--texte-doux);margin:0 0 var(--sp-lg);">Ajoutez des produits avant de valider votre achat.</p>
+            <a href="produits.html" class="btn-modern btn-modern-primary btn-modern-lg">Voir les produits</a>
+          </div>
+        `;
+        return;
+      }
+
+      const unavailable = Cart.checkAvailability();
+
+      // Render le layout
+      container.innerHTML = `
+        <div class="checkout-layout">
+          <div class="checkout-form-col">
+            <!-- Section 1 : informations livraison -->
+            <div class="checkout-section-card">
+              <h3><span class="step-badge">1</span> Informations de livraison</h3>
+              <form id="checkout-form" novalidate>
+                <div class="checkout-form-grid">
+                  <div class="input-group-modern">
+                    <label for="buyer-name" class="form-label">Nom complet <span class="required">*</span></label>
+                    <input type="text" id="buyer-name" name="buyer_name" class="input-modern" value="${Utils.escapeHtml(session.user_name)}" required>
+                    <div class="input-error"></div>
+                  </div>
+                  <div class="input-group-modern">
+                    <label for="buyer-phone" class="form-label">Telephone <span class="required">*</span></label>
+                    <input type="tel" id="buyer-phone" name="buyer_phone" class="input-modern" value="${Utils.escapeHtml(session.telephone || '')}" placeholder="70 XX XX XX" required>
+                    <div class="input-error"></div>
+                  </div>
+                  <div class="input-group-modern full-row">
+                    <label for="buyer-address" class="form-label">Adresse de livraison <span class="required">*</span></label>
+                    <textarea id="buyer-address" name="buyer_address" class="input-modern" rows="2" placeholder="Quartier, rue, point de repere..." required></textarea>
+                    <div class="input-error"></div>
+                  </div>
+                  <div class="input-group-modern">
+                    <label for="buyer-city" class="form-label">Ville <span class="required">*</span></label>
+                    <select id="buyer-city" name="buyer_city" class="input-modern" required>
+                      <option value="">Choisir une ville...</option>
+                      ${Data.regions.map(r => `<option value="${Utils.escapeHtml(r.chef_lieu)}" ${session.ville === r.chef_lieu ? 'selected' : ''}>${Utils.escapeHtml(r.chef_lieu)} (${Utils.escapeHtml(r.nom)})</option>`).join('')}
+                    </select>
+                    <div class="input-error"></div>
+                  </div>
+                  <div class="input-group-modern">
+                    <label for="buyer-region" class="form-label">Region</label>
+                    <select id="buyer-region" name="buyer_region" class="input-modern">
+                      <option value="">Choisir une region...</option>
+                      ${Data.regions.map(r => `<option value="${Utils.escapeHtml(r.nom)}" ${session.region === r.nom ? 'selected' : ''}>${Utils.escapeHtml(r.nom)}</option>`).join('')}
+                    </select>
+                    <div class="input-error"></div>
+                  </div>
+                  <div class="input-group-modern full-row">
+                    <label for="buyer-note" class="form-label">Note pour le vendeur (optionnel)</label>
+                    <textarea id="buyer-note" name="buyer_note" class="input-modern" rows="2" placeholder="Instructions de livraison, horaires de preference..."></textarea>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- Section 2 : mode paiement -->
+            <div class="checkout-section-card">
+              <h3><span class="step-badge">2</span> Mode de paiement</h3>
+              <div class="payment-options" id="payment-options">
+                <label class="payment-option">
+                  <input type="radio" name="payment_method" value="wave" checked>
+                  <span class="pay-emoji">🌊</span>
+                  <div class="pay-body">
+                    <div class="pay-title">Wave</div>
+                    <div class="pay-desc">Paiement mobile Wave</div>
+                  </div>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="payment_method" value="orange_money">
+                  <span class="pay-emoji">🟠</span>
+                  <div class="pay-body">
+                    <div class="pay-title">Orange Money</div>
+                    <div class="pay-desc">Portefeuille OM</div>
+                  </div>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="payment_method" value="moov_money">
+                  <span class="pay-emoji">🔵</span>
+                  <div class="pay-body">
+                    <div class="pay-title">Moov Money</div>
+                    <div class="pay-desc">Portefeuille Moov</div>
+                  </div>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="payment_method" value="cash">
+                  <span class="pay-emoji">💵</span>
+                  <div class="pay-body">
+                    <div class="pay-title">Cash a la livraison</div>
+                    <div class="pay-desc">Paiement en main propre</div>
+                  </div>
+                </label>
+              </div>
+              <div class="payment-note">
+                <strong>Note importante :</strong> aucun paiement en ligne. Le reglement se fait directement avec le vendeur (cash, Wave, Orange Money, Moov Money). Les coordonnees de chaque vendeur figurent dans votre recu pour organiser le paiement et la livraison.
+              </div>
+            </div>
+
+            ${unavailable.length ? `
+              <div class="cart-stock-warning" style="margin-bottom:var(--sp-md);padding:var(--sp-sm) var(--sp-md);background:color-mix(in srgb, var(--attention) 12%, transparent);border-left:3px solid var(--attention);border-radius:var(--radius-md);font-size:0.82rem;color:#8a5e0a;">
+                <strong>Attention :</strong> ${unavailable.length} produit${unavailable.length > 1 ? 's' : ''} plus disponible${unavailable.length > 1 ? 's' : ''}. Retournez au panier pour ajuster.
+              </div>
+            ` : ''}
+          </div>
+
+          <!-- Resume commande -->
+          <aside class="checkout-summary">
+            <h3>Votre commande</h3>
+            <div class="checkout-items-list">
+              ${totals.items.map(it => `
+                <div class="checkout-line-item">
+                  <div class="item-img">${ProductImage._svgForCategory(it.product.categorie, 'sm')}</div>
+                  <div class="item-body">
+                    <div class="item-name" title="${Utils.escapeHtml(it.product.nom)}">${Utils.escapeHtml(it.product.nom)}</div>
+                    <div class="item-meta">
+                      <span>${it.quantity} × ${Utils.formatPrice(it.unit_price)}</span>
+                      ${it.bulk ? `<span class="badge-modern badge-modern-miel" style="font-size:0.6rem;">-${it.remise_pct}%</span>` : ''}
+                    </div>
+                  </div>
+                  <div class="item-total">${Utils.formatPrice(it.line_total)}</div>
+                </div>
+              `).join('')}
+            </div>
+
+            <div class="checkout-summary-totals">
+              <div class="row">
+                <span class="label">Sous-total</span>
+                <span class="value">${Utils.formatPrice(totals.gross_total)}</span>
+              </div>
+              ${totals.remise_total > 0 ? `
+                <div class="row">
+                  <span class="label">Remise</span>
+                  <span class="value" style="color:var(--succes);">- ${Utils.formatPrice(totals.remise_total)}</span>
+                </div>
+              ` : ''}
+              <div class="row">
+                <span class="label">Livraison</span>
+                <span class="value" style="color:var(--texte-doux);">A convenir</span>
+              </div>
+              <div class="row total">
+                <span class="label">Total</span>
+                <span class="value">${Utils.formatPrice(totals.total)}</span>
+              </div>
+            </div>
+
+            <button id="confirm-btn" class="btn-modern btn-modern-primary btn-modern-block btn-modern-lg confirm-btn" type="button" ${unavailable.length ? 'disabled' : ''}>
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Confirmer la commande
+            </button>
+            <a href="panier.html" class="continue-link" style="display:block;text-align:center;margin-top:var(--sp-sm);color:var(--texte-doux);text-decoration:none;font-size:0.85rem;">← Retour au panier</a>
+          </aside>
+        </div>
+      `;
+
+      // Validation live
+      const form = document.getElementById('checkout-form');
+      FormValidation.attachLiveValidation(form, {
+        fields: [
+          { id: 'buyer_name', required: true, min_length: 2, label: 'Nom complet' },
+          { id: 'buyer_phone', required: true, validation: 'phone', label: 'Telephone' },
+          { id: 'buyer_address', required: true, min_length: 5, label: 'Adresse' },
+          { id: 'buyer_city', required: true, label: 'Ville' }
+        ]
+      });
+
+      document.getElementById('confirm-btn').addEventListener('click', onConfirm);
+    });
+
+    async function onConfirm() {
+      const form = document.getElementById('checkout-form');
+      const data = {
+        buyer_name: document.getElementById('buyer-name').value.trim(),
+        buyer_phone: document.getElementById('buyer-phone').value.trim(),
+        buyer_address: document.getElementById('buyer-address').value.trim(),
+        buyer_city: document.getElementById('buyer-city').value,
+        buyer_region: document.getElementById('buyer-region').value,
+        buyer_note: document.getElementById('buyer-note').value.trim(),
+        payment_method: (document.querySelector('input[name="payment_method"]:checked') || {}).value || 'cash'
+      };
+
+      // Validations
+      if (!data.buyer_name || data.buyer_name.length < 2) { UI.toast('Nom invalide', 'warning'); return; }
+      if (!Utils.isValidPhone(data.buyer_phone)) { UI.toast('Telephone invalide (8 chiffres)', 'warning'); return; }
+      if (!data.buyer_address || data.buyer_address.length < 5) { UI.toast('Adresse trop courte', 'warning'); return; }
+      if (!data.buyer_city) { UI.toast('Choisissez une ville', 'warning'); return; }
+
+      const confirmBtn = document.getElementById('confirm-btn');
+      confirmBtn.disabled = true;
+      confirmBtn.innerHTML = '<span class="spinner" style="width:18px;height:18px;border-width:2px;border-top-color:#fff;border-color:rgba(255,255,255,0.3) rgba(255,255,255,0.3) rgba(255,255,255,0.3) #fff;"></span> Traitement...';
+
+      UI.toast('Traitement de votre commande...', 'info', 1500);
+
+      const result = await Checkout.process(data);
+      if (result.success) {
+        renderReceipt(result.order, data);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        UI.toast(result.error, 'error');
+        confirmBtn.disabled = false;
+        confirmBtn.innerHTML = '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Confirmer la commande';
+      }
+    }
+
+    function renderReceipt(order, formData) {
+      const container = document.getElementById('checkout-container');
+      const paymentLabel = {
+        wave: 'Wave',
+        orange_money: 'Orange Money',
+        moov_money: 'Moov Money',
+        cash: 'Cash a la livraison'
+      }[formData.payment_method] || formData.payment_method;
+
+      // Recupere les vendeurs uniques avec coordonnees
+      const vendors = (order.seller_ids || []).map(sid => Data.getSeller(sid)).filter(Boolean);
+
+      container.innerHTML = `
+        <div class="receipt-modern">
+          <!-- Bandeau succes anime -->
+          <div class="receipt-success-banner">
+            <div class="receipt-success-icon">
+              <svg viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <circle class="check-circle" cx="26" cy="26" r="24"/>
+                <path class="check-path" d="M14 27 L22 35 L38 17"/>
+              </svg>
+            </div>
+            <div class="receipt-success-text">
+              <h2>Commande confirmee !</h2>
+              <p>Votre recu est pret. Les vendeurs ont ete notifies et vous contacteront pour le paiement et la livraison.</p>
+            </div>
+          </div>
+
+          <!-- Recu principal -->
+          <div class="receipt-card">
+            <div class="receipt-header-row">
+              <div>
+                <div class="receipt-order-id">Numero de commande</div>
+                <div class="receipt-order-number">${Utils.escapeHtml(order.order_id)}</div>
+                <div class="receipt-date">${Utils.formatDate(order.order_date)} · Statut : <strong>En cours</strong></div>
+              </div>
+              <div class="receipt-qr-wrapper">
+                ${Checkout._renderQRPlaceholder(order.order_id, 110)}
+                <div class="receipt-qr-label">Code de suivi</div>
+              </div>
+            </div>
+
+            <!-- Informations acheteur -->
+            <div class="receipt-section-title">Informations acheteur</div>
+            <div style="font-size:0.9rem;color:var(--texte);">
+              <strong>${Utils.escapeHtml(order.buyer_name)}</strong><br>
+              ${Utils.escapeHtml(order.buyer_phone)}<br>
+              ${Utils.escapeHtml(order.buyer_address)}<br>
+              ${Utils.escapeHtml(order.buyer_city)}${order.buyer_region ? ' · ' + Utils.escapeHtml(order.buyer_region) : ''}
+              ${order.buyer_note ? '<br><em>Note : ' + Utils.escapeHtml(order.buyer_note) + '</em>' : ''}
+            </div>
+
+            <!-- Items -->
+            <div class="receipt-section-title">Produits commandes</div>
+            <table class="receipt-items-table">
+              <thead>
+                <tr>
+                  <th>Produit</th>
+                  <th>Vendeur</th>
+                  <th class="text-right">Qte</th>
+                  <th class="text-right">Prix unit.</th>
+                  <th class="text-right">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${order.items.map(it => `
+                  <tr>
+                    <td>${Utils.escapeHtml(it.nom)}</td>
+                    <td>${Utils.escapeHtml(it.seller_name)}</td>
+                    <td class="text-right">${it.quantity}</td>
+                    <td class="text-right">${Utils.formatPrice(it.unit_price)}</td>
+                    <td class="text-right">${Utils.formatPrice(it.line_total)}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+              <tfoot>
+                ${order.remise_total > 0 ? `
+                  <tr>
+                    <td colspan="4" class="text-right" style="color:var(--texte-doux);">Remise revendeur</td>
+                    <td class="text-right" style="color:var(--succes);">- ${Utils.formatPrice(order.remise_total)}</td>
+                  </tr>
+                ` : ''}
+                <tr class="receipt-total-row">
+                  <td colspan="4" class="text-right">TOTAL</td>
+                  <td class="text-right">${Utils.formatPrice(order.total)}</td>
+                </tr>
+              </tfoot>
+            </table>
+
+            <!-- Coordonnees vendeurs (multi-vendeurs) -->
+            <div class="receipt-section-title">Coordonnees ${vendors.length > 1 ? 'des ' + vendors.length + ' vendeurs' : 'du vendeur'}</div>
+            <div class="receipt-vendors">
+              ${vendors.map(v => `
+                <div class="receipt-vendor-card">
+                  <div class="vendor-name">${Utils.escapeHtml(v.nom)}</div>
+                  <div class="vendor-contact">
+                    ${v.telephone ? '<span>📞 ' + Utils.escapeHtml(v.telephone) + '</span>' : ''}
+                    ${v.email ? '<span>✉️ ' + Utils.escapeHtml(v.email) + '</span>' : ''}
+                    ${(v.ville || v.region) ? '<span>📍 ' + Utils.escapeHtml(v.ville || '') + (v.region ? ', ' + Utils.escapeHtml(v.region) : '') + '</span>' : ''}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+
+            <!-- Note paiement -->
+            <div class="receipt-payment-note">
+              <strong>Paiement : ${Utils.escapeHtml(paymentLabel)}</strong><br>
+              ${Utils.escapeHtml(order.payment_note || 'Paiement direct avec le vendeur. Aucun paiement en ligne.')}<br>
+              <span style="font-size:0.78rem;color:var(--texte-doux);">Contactez chaque vendeur pour convenir du reglement et de la livraison.</span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="receipt-actions">
+            <button onclick="window.print()" class="btn-modern btn-modern-primary btn-modern-lg" type="button">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Imprimer le recu
+            </button>
+            <a href="historique.html" class="btn-modern btn-modern-secondary btn-modern-lg">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg>
+              Voir mon historique
+            </a>
+            <a href="index.html" class="btn-modern btn-modern-ghost btn-modern-lg">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+              Retour a l'accueil
+            </a>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

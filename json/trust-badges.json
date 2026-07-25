@@ -1,0 +1,42 @@
+{
+  "trust_levels": [
+    {
+      "level": "bronze",
+      "hex": "#CD7F32",
+      "icon_svg": "images/icons/icon-bronze.svg",
+      "threshold_ventes": {
+        "min": 1,
+        "max": 49
+      },
+      "threshold_avis_positifs": "60% minimum",
+      "description": "Vendeur debutant avec confiance initiale. A complete entre 1 et 49 ventes avec un taux d'avis positifs de minimum 60%. Ce badge indique que le vendeur est actif sur la plateforme et que les premiers acheteurs ont donne des avis globalement positifs."
+    },
+    {
+      "level": "argent",
+      "hex": "#C0C0C0",
+      "icon_svg": "images/icons/icon-argent.svg",
+      "threshold_ventes": {
+        "min": 50,
+        "max": 199
+      },
+      "threshold_avis_positifs": "75% minimum",
+      "description": "Vendeur etabli avec confiance renforce. A complete entre 50 et 199 ventes avec un taux d'avis positifs de minimum 75%. Ce badge signale un vendeur regulier qui a construit une reputation solide sur la plateforme."
+    },
+    {
+      "level": "or",
+      "hex": "#FFD700",
+      "icon_svg": "images/icons/icon-or.svg",
+      "threshold_ventes": {
+        "min": 200,
+        "max": null
+      },
+      "threshold_avis_positifs": "90% minimum",
+      "description": "Vendeur premium avec confiance maximale. A complete 200 ventes ou plus avec un taux d'avis positifs de minimum 90%. Ce badge est la distinction supreme et indique un vendeur exceptionnel dont la qualite et le service sont reconnus."
+    }
+  ],
+  "upgrade_logic": {
+    "check_frequency": "a chaque nouvelle vente completee",
+    "notification_on_upgrade": true,
+    "downgrade_rules": "Pas de downgrade automatique, mais avis negatifs consecutifs peuvent signaler un probleme"
+  }
+}

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon panier - Achetons Burkinabe</title>
+  <meta name="description" content="Votre panier d'achats. Verifiez les produits, ajustez les quantites et finalisez votre commande.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+  <style>
+    /* Refonte L7a - panier moderne */
+    .cart-hero {
+      background: linear-gradient(135deg, var(--terre) 0%, var(--terre-fonce) 70%, #5a2a0e 100%);
+      color: #fff;
+      padding: var(--sp-xxl) 0 var(--sp-xl);
+      position: relative;
+      overflow: hidden;
+    }
+    .cart-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 28%, rgba(232, 161, 58, 0.28) 0%, transparent 55%),
+        radial-gradient(circle at 82% 70%, rgba(244, 200, 119, 0.18) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .cart-hero .container { position: relative; z-index: 1; }
+    .cart-hero .eyebrow { color: var(--miel-clair); }
+    .cart-hero h1 { color: #fff; margin: 0 0 var(--sp-sm); font-size: 2.2rem; }
+    .cart-hero p { color: rgba(255,255,255,0.9); max-width: 600px; margin: 0; }
+
+    .cart-empty {
+      background: var(--surface-1);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-xxl) var(--sp-xl);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-subtle);
+      margin: var(--sp-xl) 0;
+      animation: fadeIn 0.5s ease both;
+    }
+    .cart-empty-svg {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto var(--sp-lg);
+      color: var(--terre);
+      opacity: 0.6;
+      animation: bounce 2.5s ease infinite;
+    }
+    .cart-empty h2 { margin: 0 0 var(--sp-sm); font-size: 1.6rem; color: var(--texte); }
+    .cart-empty p { color: var(--texte-doux); margin: 0 0 var(--sp-lg); max-width: 480px; margin-left: auto; margin-right: auto; }
+    .cart-empty-actions { display: flex; gap: var(--sp-sm); justify-content: center; flex-wrap: wrap; }
+
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-xl);
+      padding: var(--sp-xl) 0;
+      align-items: start;
+    }
+    @media (min-width: 1024px) {
+      .cart-layout { grid-template-columns: minmax(0, 1fr) 380px; }
+    }
+
+    .cart-items-card {
+      background: var(--surface-1);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .cart-items-header {
+      padding: var(--sp-md) var(--sp-lg);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--surface-2);
+    }
+    .cart-items-header h2 { margin: 0; font-size: 1.1rem; }
+    .cart-items-header .clear-btn {
+      background: none;
+      border: none;
+      color: var(--texte-doux);
+      cursor: pointer;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color var(--transition-fast);
+    }
+    .cart-items-header .clear-btn:hover { color: var(--erreur); }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: var(--sp-md);
+      padding: var(--sp-md) var(--sp-lg);
+      border-bottom: 1px solid var(--border-subtle);
+      align-items: center;
+      transition: background var(--transition-fast);
+      animation: fadeIn 0.3s ease both;
+    }
+    .cart-item:last-child { border-bottom: none; }
+    .cart-item:hover { background: var(--surface-2); }
+    @media (max-width: 640px) {
+      .cart-item {
+        grid-template-columns: 60px 1fr;
+        grid-template-rows: auto auto;
+        gap: var(--sp-sm);
+      }
+      .cart-item .cart-item-actions { grid-column: 1 / -1; }
+    }
+
+    .cart-item-image {
+      width: 80px;
+      height: 80px;
+      background: var(--surface-3);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .cart-item-image svg { width: 80%; height: 80%; }
+    @media (max-width: 640px) {
+      .cart-item-image { width: 60px; height: 60px; }
+    }
+
+    .cart-item-info { min-width: 0; }
+    .cart-item-info h3 {
+      margin: 0 0 4px 0;
+      font-size: 1rem;
+      color: var(--texte);
+    }
+    .cart-item-info h3 a { color: inherit; text-decoration: none; }
+    .cart-item-info h3 a:hover { color: var(--terre); }
+    .cart-item-info .item-vendeur {
+      font-size: 0.8rem;
+      color: var(--texte-doux);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .cart-item-info .item-price-unit {
+      font-size: 0.82rem;
+      color: var(--texte-doux);
+    }
+    .cart-item-info .item-badges {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .cart-item-info .item-badges .badge-modern { font-size: 0.65rem; padding: 2px 8px; }
+
+    .cart-item-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--sp-sm);
+    }
+    @media (max-width: 640px) {
+      .cart-item-actions {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+
+    .cart-stepper {
+      display: inline-flex;
+      align-items: center;
+      border: 1.5px solid var(--ligne);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .cart-stepper button {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: var(--surface-1);
+      color: var(--texte);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .cart-stepper button:hover:not(:disabled) {
+      background: var(--terre);
+      color: #fff;
+    }
+    .cart-stepper button:disabled { opacity: 0.3; cursor: not-allowed; }
+    .cart-stepper input {
+      width: 50px;
+      text-align: center;
+      border: none;
+      border-left: 1.5px solid var(--ligne);
+      border-right: 1.5px solid var(--ligne);
+      padding: 8px 4px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--texte);
+      background: var(--surface-1);
+    }
+    .cart-stepper input::-webkit-outer-spin-button,
+    .cart-stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+    .cart-item-line-total {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--terre);
+      font-family: var(--font-mono, monospace);
+    }
+
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: var(--texte-doux);
+      cursor: pointer;
+      padding: 6px;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cart-item-remove:hover {
+      color: var(--erreur);
+      background: color-mix(in srgb, var(--erreur) 10%, transparent);
+    }
+
+    .cart-summary {
+      background: var(--surface-1);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-md);
+      padding: var(--sp-lg);
+      position: sticky;
+      top: calc(var(--header-h) + var(--sp-md));
+    }
+    @media (max-width: 1023px) { .cart-summary { position: static; } }
+    .cart-summary h3 { margin: 0 0 var(--sp-md); font-size: 1.15rem; }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 0.9rem;
+    }
+    .summary-row .label { color: var(--texte-doux); }
+    .summary-row .value { font-weight: 600; color: var(--texte); }
+    .summary-row.summary-total {
+      margin-top: var(--sp-sm);
+      padding-top: var(--sp-md);
+      border-top: 2px solid var(--border-subtle);
+      font-size: 1.05rem;
+    }
+    .summary-row.summary-total .label { color: var(--texte); font-weight: 600; }
+    .summary-row.summary-total .value {
+      font-size: 1.4rem;
+      color: var(--terre);
+      font-family: var(--font-mono, monospace);
+    }
+    .summary-row .value.text-success { color: var(--succes); }
+
+    .summary-note {
+      margin-top: var(--sp-md);
+      padding: var(--sp-md);
+      background: var(--surface-2);
+      border-left: 3px solid var(--miel);
+      border-radius: var(--radius-md);
+      font-size: 0.8rem;
+      color: var(--texte-doux);
+    }
+    .summary-note strong { color: var(--texte); }
+    .summary-payment-icons {
+      display: flex;
+      gap: 6px;
+      margin-top: var(--sp-sm);
+      flex-wrap: wrap;
+    }
+    .summary-payment-icons .pay-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--texte-doux);
+      background: var(--surface-1);
+    }
+
+    .checkout-btn-block { margin-top: var(--sp-md); }
+    .continue-link {
+      display: block;
+      text-align: center;
+      margin-top: var(--sp-sm);
+      color: var(--texte-doux);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color var(--transition-fast);
+    }
+    .continue-link:hover { color: var(--terre); }
+
+    .cart-stock-warning {
+      margin-top: var(--sp-sm);
+      padding: var(--sp-sm) var(--sp-md);
+      background: color-mix(in srgb, var(--attention) 12%, transparent);
+      border-left: 3px solid var(--attention);
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      color: #8a5e0a;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Aller au contenu</a>
+
+  <main id="main">
+    <section class="cart-hero">
+      <div class="container">
+        <p class="eyebrow">Votre selection</p>
+        <h1>Mon panier</h1>
+        <p>Verifiez vos produits et ajustez les quantites avant de valider votre achat.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div id="cart-container">
+        <div class="spinner spinner-lg" style="margin: 80px auto;" aria-label="Chargement du panier"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/embedded-data.js"></script>
+  <script src="js/data-seed.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui-components.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('app:ready', () => {
+      renderCart();
+      document.addEventListener('cart:updated', renderCart);
+    });
+
+    function renderCart() {
+      const container = document.getElementById('cart-container');
+      const totals = Cart.computeTotals();
+
+      // ===== Empty state moderne =====
+      if (!totals.items.length) {
+        container.innerHTML = `
+          <div class="cart-empty">
+            <svg class="cart-empty-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="9" cy="21" r="1"/>
+              <circle cx="20" cy="21" r="1"/>
+              <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+            </svg>
+            <h2>Votre panier est vide</h2>
+            <p>Decouvrez nos produits burkinabe : karite, sesame, miel, coton et artisanat. Ajoutez vos articles preferes puis revenez ici finaliser votre commande.</p>
+            <div class="cart-empty-actions">
+              <a href="produits.html" class="btn-modern btn-modern-primary btn-modern-lg">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                Voir les produits
+              </a>
+              <a href="index.html" class="btn-modern btn-modern-secondary btn-modern-lg">Retour a l'accueil</a>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      // Check availability
+      const unavailable = Cart.checkAvailability();
+
+      // ===== Layout 2 colonnes =====
+      container.innerHTML = `
+        <div class="cart-layout">
+          <div class="cart-items-card">
+            <div class="cart-items-header">
+              <h2>${totals.items.length} article${totals.items.length > 1 ? 's' : ''} dans votre panier</h2>
+              <button class="clear-btn" id="clear-cart-btn" type="button">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+                Vider le panier
+              </button>
+            </div>
+            ${totals.items.map(it => renderCartItem(it, unavailable)).join('')}
+          </div>
+
+          <aside class="cart-summary">
+            <h3>Recapitulatif</h3>
+            <div class="summary-row">
+              <span class="label">Sous-total (${totals.item_count} article${totals.item_count > 1 ? 's' : ''})</span>
+              <span class="value">${Utils.formatPrice(totals.subtotal)}</span>
+            </div>
+            ${totals.remise_total > 0 ? `
+              <div class="summary-row">
+                <span class="label">Remise revendeur</span>
+                <span class="value text-success">- ${Utils.formatPrice(totals.remise_total)}</span>
+              </div>
+            ` : ''}
+            <div class="summary-row">
+              <span class="label">Frais de livraison</span>
+              <span class="value">0 FCFA <span style="font-size:0.72rem;color:var(--texte-doux);font-weight:400;">· A convenir</span></span>
+            </div>
+            <div class="summary-row summary-total">
+              <span class="label">Total a payer</span>
+              <span class="value">${Utils.formatPrice(totals.total)}</span>
+            </div>
+
+            <div class="summary-note">
+              <strong>Paiement direct au vendeur</strong><br>
+              Aucun paiement en ligne. Vous reglez directement avec le vendeur (cash, Wave, Orange Money). Les coordonnees de chaque vendeur vous seront communiquees dans le recu.
+              <div class="summary-payment-icons">
+                <span class="pay-chip">💵 Cash</span>
+                <span class="pay-chip">🌊 Wave</span>
+                <span class="pay-chip">🟠 Orange Money</span>
+                <span class="pay-chip">🔵 Moov Money</span>
+              </div>
+            </div>
+
+            <div class="checkout-btn-block">
+              <button id="checkout-btn" class="btn-modern btn-modern-primary btn-modern-block btn-modern-lg" type="button">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Commander
+              </button>
+              <a href="produits.html" class="continue-link">← Continuer mes achats</a>
+            </div>
+
+            ${unavailable.length ? `
+              <div class="cart-stock-warning">
+                <strong>Attention :</strong> ${unavailable.length} produit${unavailable.length > 1 ? 's' : ''} ${unavailable.length > 1 ? 'sont' : 'est'} plus disponible${unavailable.length > 1 ? 's' : ''}. Ajustez votre panier avant de commander.
+              </div>
+            ` : ''}
+          </aside>
+        </div>
+      `;
+
+      // Wire steppers + remove
+      wireCartItems();
+      // Wire buttons
+      document.getElementById('checkout-btn').addEventListener('click', onCheckout);
+      document.getElementById('clear-cart-btn').addEventListener('click', onClearCart);
+    }
+
+    function renderCartItem(it, unavailable) {
+      const seller = Data.getSeller(it.product.vendeur_id);
+      const isUnavailable = unavailable.find(u => u.product_id === it.product_id);
+      const stock = Data.getEffectiveStock(it.product);
+      const max = Math.max(1, stock);
+      const lowStock = stock > 0 && stock <= (it.product.stock_alerte || 5);
+      const isMaxQty = it.quantity >= max;
+
+      return `
+        <div class="cart-item" data-product-id="${it.product_id}">
+          <div class="cart-item-image">
+            ${ProductImage._svgForCategory(it.product.categorie, 'sm')}
+          </div>
+          <div class="cart-item-info">
+            <h3><a href="produit-detail.html?id=${it.product_id}">${Utils.escapeHtml(it.product.nom)}</a></h3>
+            ${seller ? `
+              <div class="item-vendeur">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M3 9l1-5h16l1 5M4 9v11a1 1 0 001 1h14a1 1 0 001-1V9"/></svg>
+                par ${Utils.escapeHtml(seller.nom)}
+              </div>
+            ` : ''}
+            <div class="item-price-unit">${Utils.formatPrice(it.unit_price)} / ${Utils.escapeHtml(it.product.unite_prix)}</div>
+            <div class="item-badges">
+              ${it.bulk ? `<span class="badge-modern badge-modern-miel">Lot de ${it.lot_size} (-${it.remise_pct}%)</span>` : ''}
+              ${lowStock ? `<span class="badge-modern badge-modern-warning">Stock faible (${stock} restant)</span>` : ''}
+              ${isUnavailable ? `<span class="badge-modern badge-modern-error">${Utils.escapeHtml(isUnavailable.reason)}</span>` : ''}
+            </div>
+          </div>
+          <div class="cart-item-actions">
+            <div class="cart-stepper">
+              <button type="button" data-action="dec" aria-label="Diminuer la quantite" ${it.quantity <= 1 ? 'disabled' : ''}>−</button>
+              <input type="number" value="${it.quantity}" min="1" max="${max}" data-qty-input aria-label="Quantite">
+              <button type="button" data-action="inc" aria-label="Augmenter la quantite" ${isMaxQty || isUnavailable ? 'disabled' : ''}>+</button>
+            </div>
+            <div class="cart-item-line-total">${Utils.formatPrice(it.line_total)}</div>
+            <button class="cart-item-remove" data-action="remove" aria-label="Retirer du panier" title="Retirer du panier">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function wireCartItems() {
+      document.querySelectorAll('.cart-item').forEach(item => {
+        const productId = item.dataset.productId;
+        const input = item.querySelector('[data-qty-input]');
+
+        item.querySelectorAll('.cart-stepper button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const cur = parseInt(input.value, 10) || 1;
+            const max = parseInt(input.max, 10) || 999;
+            if (btn.dataset.action === 'inc' && cur < max) {
+              input.value = cur + 1;
+              Cart.updateQty(productId, cur + 1);
+            }
+            if (btn.dataset.action === 'dec' && cur > 1) {
+              input.value = cur - 1;
+              Cart.updateQty(productId, cur - 1);
+            }
+          });
+        });
+
+        input.addEventListener('change', () => {
+          let n = parseInt(input.value, 10);
+          const max = parseInt(input.max, 10) || 999;
+          if (isNaN(n) || n < 1) n = 1;
+          if (n > max) { n = max; UI.toast('Stock maximum atteint', 'warning'); }
+          input.value = n;
+          Cart.updateQty(productId, n);
+        });
+
+        item.querySelector('.cart-item-remove').addEventListener('click', () => {
+          Cart.removeItem(productId);
+        });
+      });
+    }
+
+    function onCheckout() {
+      const unavailable = Cart.checkAvailability();
+      if (unavailable.length) {
+        UI.toast('Certains produits ne sont plus disponibles. Ajustez votre panier.', 'warning');
+        return;
+      }
+      if (!Auth.isLoggedIn()) {
+        UI.toast('Connectez-vous pour finaliser votre achat', 'info');
+        setTimeout(() => {
+          window.location.href = 'connexion.html?message=' + encodeURIComponent('Connectez-vous pour finaliser votre achat');
+        }, 800);
+        return;
+      }
+      window.location.href = 'checkout.html';
+    }
+
+    function onClearCart() {
+      UI.confirm('Vider tout le panier ?', () => {
+        Cart.clear();
+      }, { confirmText: 'Vider', danger: true });
+    }
+  </script>
+</body>
+</html>

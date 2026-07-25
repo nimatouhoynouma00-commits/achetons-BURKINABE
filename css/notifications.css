@@ -1,0 +1,8 @@
+/* notifications.css - Styles page notifications */
+
+.filter-tabs {
+  display: flex;
+  gap: var(--sp-xs);
+  margin-bottom: var(--sp-lg);
+  flex-wrap: wrap;
+}

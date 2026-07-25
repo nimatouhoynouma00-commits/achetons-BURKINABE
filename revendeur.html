@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revendeurs & Boutiques - Achetons Burkinabe</title>
+<meta name="description" content="Espace revendeurs : accédez aux lots en gros, calculez vos remises (grande boutique -15%, petite boutique -10%) et gérez votre activité de revente.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/icons.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/dark-mode.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/revendeur.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+</head>
+<body>
+<a href="#main" class="skip-link">Aller au contenu</a>
+
+<main id="main">
+    <div id="reseller-container">
+        <div class="container">
+            <div class="spinner" style="margin: 80px auto;"></div>
+        </div>
+    </div>
+</main>
+
+<script src="js/utils.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/embedded-data.js"></script>
+<script src="js/data-seed.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/ui-components.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/checkout.js"></script>
+<script src="js/products.js"></script>
+<script src="js/reseller.js"></script>
+<script src="js/app.js"></script>
+<script>
+document.addEventListener('app:ready', () => {
+    // Pour la demo on autorise aussi les acheteurs curieux, mais on recommande connexion revendeur
+
+    const session = Auth.requireAuth();
+    if (!session) return;
+
+    const container = document.getElementById('reseller-container');
+    Reseller.renderPage(container);
+});
+</script>
+</body>
+</html>

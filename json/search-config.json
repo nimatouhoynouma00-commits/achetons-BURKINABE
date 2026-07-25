@@ -1,0 +1,91 @@
+{
+  "search_settings": {
+    "fields": [
+      {
+        "name": "nom",
+        "weight": 3,
+        "type": "string",
+        "search_mode": "contains"
+      },
+      {
+        "name": "categorie",
+        "weight": 2,
+        "type": "string",
+        "search_mode": "exact_then_contains"
+      },
+      {
+        "name": "vendeur_nom",
+        "weight": 1.5,
+        "type": "string",
+        "search_mode": "contains"
+      },
+      {
+        "name": "region",
+        "weight": 1,
+        "type": "string",
+        "search_mode": "exact"
+      },
+      {
+        "name": "description",
+        "weight": 0.5,
+        "type": "string",
+        "search_mode": "contains"
+      },
+      {
+        "name": "certification",
+        "weight": 1,
+        "type": "string",
+        "search_mode": "exact"
+      },
+      {
+        "name": "tags",
+        "weight": 1,
+        "type": "array",
+        "search_mode": "contains_any"
+      }
+    ],
+    "fuzzy_search": true,
+    "fuzzy_threshold": 0.6,
+    "autocomplete_enabled": true,
+    "autocomplete_max_suggestions": 8,
+    "synonyms": {
+      "karite": [
+        "beurre karite",
+        "shea butter",
+        "shi",
+        "beurre",
+        "savon karite"
+      ],
+      "sesame": [
+        "graines sesame",
+        "huile sesame",
+        "sesame dore",
+        "graines"
+      ],
+      "miel": [
+        "honey",
+        "apiculture",
+        "miel brut",
+        "miel karite"
+      ],
+      "coton": [
+        "bazin",
+        "pagne",
+        "tissu",
+        "fil coton",
+        "tissage"
+      ],
+      "artisanat": [
+        "bronze",
+        "masque",
+        "panier",
+        "bijoux",
+        "sculpture",
+        "perles",
+        "cire perdue"
+      ]
+    },
+    "min_query_length": 2,
+    "debounce_ms": 300
+  }
+}

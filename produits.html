@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogue Produits - Achetons Burkinabe</title>
+  <meta name="description" content="Catalogue complet des produits du Burkina Faso. Karite, sesame, miel, coton, artisanat. Recherche, filtres et tri.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+  <style>
+    /* Refonte L7a - layout catalogue produits */
+    .catalog-hero {
+      background: linear-gradient(135deg, var(--terre) 0%, var(--terre-fonce) 70%, #5a2a0e 100%);
+      color: #fff;
+      padding: var(--sp-xxl) 0 var(--sp-xl);
+      position: relative;
+      overflow: hidden;
+    }
+    .catalog-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 28%, rgba(232, 161, 58, 0.28) 0%, transparent 55%),
+        radial-gradient(circle at 82% 70%, rgba(244, 200, 119, 0.18) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .catalog-hero .container { position: relative; z-index: 1; }
+    .catalog-hero .eyebrow { color: var(--miel-clair); }
+    .catalog-hero h1 { color: #fff; margin: 0 0 var(--sp-sm); font-size: 2.2rem; }
+    .catalog-hero p { color: rgba(255,255,255,0.9); max-width: 640px; margin: 0; }
+
+    .catalog-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-xl);
+      padding: var(--sp-xl) 0;
+      align-items: start;
+    }
+    @media (min-width: 1024px) {
+      .catalog-layout { grid-template-columns: 280px minmax(0, 1fr); }
+    }
+
+    .filters-sidebar {
+      background: var(--surface-1);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: calc(var(--header-h) + var(--sp-md));
+      max-height: calc(100vh - var(--header-h) - var(--sp-xl));
+      overflow-y: auto;
+    }
+    @media (max-width: 1023px) {
+      .filters-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 88%;
+        max-width: 360px;
+        z-index: 1000;
+        border-radius: 0;
+        max-height: 100vh;
+        transform: translateX(-100%);
+        transition: transform var(--transition-base);
+        overflow-y: auto;
+      }
+      .filters-sidebar.open { transform: translateX(0); box-shadow: var(--shadow-xl); }
+      .filters-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+      }
+      .filters-overlay.open { display: block; }
+    }
+
+    .filters-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--sp-md) var(--sp-lg);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      background: var(--surface-1);
+      z-index: 1;
+    }
+    .filters-header h2 { margin: 0; font-size: 1.1rem; }
+    .filters-close { display: none; background: none; border: none; cursor: pointer; color: var(--texte-doux); font-size: 1.4rem; line-height: 1; }
+    @media (max-width: 1023px) { .filters-close { display: block; } }
+
+    .filter-group {
+      padding: var(--sp-md) var(--sp-lg);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .filter-group:last-child { border-bottom: none; }
+    .filter-group-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--terre);
+      margin: 0 0 var(--sp-sm);
+      cursor: pointer;
+    }
+    .filter-group-title::after {
+      content: '−';
+      font-size: 1.2rem;
+      color: var(--texte-doux);
+      line-height: 1;
+    }
+    .filter-group.collapsed .filter-group-title::after { content: '+'; }
+    .filter-group.collapsed .filter-group-body { display: none; }
+    .filter-group-body { display: flex; flex-direction: column; gap: 6px; }
+
+    .filter-check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--texte);
+      cursor: pointer;
+      padding: 4px 0;
+    }
+    .filter-check input { accent-color: var(--terre); width: 16px; height: 16px; }
+    .filter-check .count {
+      margin-left: auto;
+      font-size: 0.72rem;
+      color: var(--texte-doux);
+      background: var(--surface-3);
+      padding: 1px 8px;
+      border-radius: var(--radius-pill);
+    }
+
+    .filter-radio { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; cursor: pointer; padding: 4px 0; }
+    .filter-radio input { accent-color: var(--terre); }
+
+    .price-range-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-sm);
+      margin-top: 6px;
+    }
+    .price-range-row .input-modern { padding: 8px 10px; font-size: 0.85rem; }
+    .price-range-row label {
+      font-size: 0.7rem;
+      color: var(--texte-doux);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
+      display: block;
+    }
+
+    .filter-reset-btn {
+      width: 100%;
+      margin-top: var(--sp-sm);
+      padding: 8px;
+      background: var(--surface-3);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      color: var(--texte);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .filter-reset-btn:hover { background: var(--surface-2); border-color: var(--terre); color: var(--terre); }
+
+    .catalog-toolbar {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-md);
+      margin-bottom: var(--sp-lg);
+      flex-wrap: wrap;
+    }
+    .catalog-toolbar .toolbar-count {
+      flex: 1;
+      font-size: 0.9rem;
+      color: var(--texte-doux);
+    }
+    .catalog-toolbar .toolbar-count strong { color: var(--texte); font-weight: 700; }
+
+    .toolbar-sort {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .toolbar-sort label { font-size: 0.8rem; color: var(--texte-doux); }
+    .toolbar-sort select {
+      padding: 8px 12px;
+      border: 1.5px solid var(--ligne);
+      border-radius: var(--radius-md);
+      background: var(--surface-1);
+      color: var(--texte);
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .view-toggle {
+      display: flex;
+      border: 1.5px solid var(--ligne);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .view-toggle button {
+      padding: 8px 12px;
+      background: var(--surface-1);
+      border: none;
+      cursor: pointer;
+      color: var(--texte-doux);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .view-toggle button.active {
+      background: var(--terre);
+      color: #fff;
+    }
+
+    .filters-mobile-toggle {
+      display: none;
+      padding: 10px 16px;
+      background: var(--terre);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      align-items: center;
+      gap: 8px;
+    }
+    @media (max-width: 1023px) {
+      .filters-mobile-toggle { display: inline-flex; }
+    }
+
+    .products-grid.list-mode {
+      grid-template-columns: 1fr;
+    }
+
+    .catalog-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-top: var(--sp-xl);
+      flex-wrap: wrap;
+    }
+    .catalog-pagination button {
+      min-width: 38px;
+      height: 38px;
+      padding: 0 10px;
+      border: 1.5px solid var(--border-subtle);
+      background: var(--surface-1);
+      color: var(--texte);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all var(--transition-fast);
+    }
+    .catalog-pagination button:hover:not(:disabled) {
+      border-color: var(--terre);
+      color: var(--terre);
+    }
+    .catalog-pagination button.active {
+      background: var(--gradient-terre);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: var(--shadow-terre);
+    }
+    .catalog-pagination button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .catalog-pagination .page-ellipsis {
+      padding: 0 6px;
+      color: var(--texte-doux);
+    }
+
+    .empty-state-catalog {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: var(--sp-xxl) var(--sp-lg);
+      color: var(--texte-doux);
+    }
+    .empty-state-catalog svg { width: 64px; height: 64px; opacity: 0.4; margin-bottom: var(--sp-md); }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Aller au contenu</a>
+
+  <main id="main">
+    <!-- Header section -->
+    <section class="catalog-hero">
+      <div class="container">
+        <p class="eyebrow">Catalogue</p>
+        <h1>Tous nos produits</h1>
+        <p>Karite, sesame, miel, coton et artisanat. Filtrez par categorie, certification, region et niveau de confiance pour trouver exactement ce que vous cherchez.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="catalog-layout">
+        <!-- ============ SIDEBAR FILTRES ============ -->
+        <aside class="filters-sidebar" id="filters-sidebar" aria-label="Filtres catalogue">
+          <div class="filters-header">
+            <h2>Filtres</h2>
+            <button class="filters-close" id="filters-close" aria-label="Fermer les filtres">×</button>
+          </div>
+
+          <!-- Recherche textuelle -->
+          <div class="filter-group">
+            <div class="filter-group-title">Recherche</div>
+            <div class="filter-group-body">
+              <input type="text" id="filter-search" class="input-modern" placeholder="karite, miel, bazin..." aria-label="Rechercher">
+            </div>
+          </div>
+
+          <!-- Categories -->
+          <div class="filter-group" data-group="categories">
+            <div class="filter-group-title">Categories</div>
+            <div class="filter-group-body" id="filter-categories"></div>
+          </div>
+
+          <!-- Certifications -->
+          <div class="filter-group" data-group="certs">
+            <div class="filter-group-title">Certifications</div>
+            <div class="filter-group-body" id="filter-certs">
+              <label class="filter-check"><input type="checkbox" data-cert="BioSPG"> BioSPG <span class="count" id="cert-count-BioSPG">0</span></label>
+              <label class="filter-check"><input type="checkbox" data-cert="ABNORM"> ABNORM <span class="count" id="cert-count-ABNORM">0</span></label>
+              <label class="filter-check"><input type="checkbox" data-cert="Made_in_BF"> Made in BF <span class="count" id="cert-count-Made_in_BF">0</span></label>
+            </div>
+          </div>
+
+          <!-- Trust vendeur -->
+          <div class="filter-group" data-group="trust">
+            <div class="filter-group-title">Confiance vendeur</div>
+            <div class="filter-group-body" id="filter-trust">
+              <label class="filter-check"><input type="checkbox" data-trust="bronze"> Bronze <span class="count" id="trust-count-bronze">0</span></label>
+              <label class="filter-check"><input type="checkbox" data-trust="argent"> Argent <span class="count" id="trust-count-argent">0</span></label>
+              <label class="filter-check"><input type="checkbox" data-trust="or"> Or <span class="count" id="trust-count-or">0</span></label>
+            </div>
+          </div>
+
+          <!-- Regions (multi-select via checkboxes scrollable) -->
+          <div class="filter-group" data-group="regions">
+            <div class="filter-group-title">Regions</div>
+            <div class="filter-group-body" id="filter-regions" style="max-height:180px;overflow-y:auto;"></div>
+          </div>
+
+          <!-- Fourchette prix -->
+          <div class="filter-group" data-group="price">
+            <div class="filter-group-title">Fourchette de prix (FCFA)</div>
+            <div class="filter-group-body">
+              <div class="price-range-row">
+                <div>
+                  <label for="price-min">Min</label>
+                  <input type="number" id="price-min" class="input-modern" placeholder="0" min="0" step="100">
+                </div>
+                <div>
+                  <label for="price-max">Max</label>
+                  <input type="number" id="price-max" class="input-modern" placeholder="50000" min="0" step="100">
+                </div>
+              </div>
+              <button class="filter-reset-btn" id="apply-price" type="button">Appliquer</button>
+            </div>
+          </div>
+
+          <!-- Reset -->
+          <div class="filter-group">
+            <button class="filter-reset-btn" id="reset-filters" type="button">Reinitialiser les filtres</button>
+          </div>
+        </aside>
+        <div class="filters-overlay" id="filters-overlay"></div>
+
+        <!-- ============ MAIN CONTENT ============ -->
+        <div class="catalog-main">
+          <!-- Toolbar -->
+          <div class="catalog-toolbar">
+            <button class="filters-mobile-toggle" id="filters-open" type="button">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="14" y2="12"/><line x1="4" y1="18" x2="10" y2="18"/></svg>
+              Filtres
+            </button>
+            <p class="toolbar-count" id="results-count">Chargement...</p>
+            <div class="toolbar-sort">
+              <label for="sort-select">Trier :</label>
+              <select id="sort-select">
+                <option value="plus_recent">Plus recents</option>
+                <option value="prix_asc">Prix croissant</option>
+                <option value="prix_desc">Prix decroissant</option>
+                <option value="meilleures_avis">Mieux notes</option>
+                <option value="populaire">Populaires</option>
+              </select>
+            </div>
+            <div class="view-toggle" role="group" aria-label="Mode d'affichage">
+              <button id="view-grid" class="active" type="button" title="Grille" aria-label="Vue grille">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              </button>
+              <button id="view-list" type="button" title="Liste" aria-label="Vue liste">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Grille produits -->
+          <div class="products-grid" id="products-grid">
+            <div class="empty-state-catalog">
+              <div class="spinner spinner-lg" style="margin:0 auto var(--sp-md);"></div>
+              <p>Chargement des produits...</p>
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <nav class="catalog-pagination" id="catalog-pagination" aria-label="Pagination"></nav>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/embedded-data.js"></script>
+  <script src="js/data-seed.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui-components.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/traceability.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    const PAGE_SIZE = 12;
+    const state = {
+      query: '',
+      categories: [],   // multi-select
+      certs: [],        // multi-select
+      trust: [],        // multi-select
+      regions: [],      // multi-select
+      priceMin: null,
+      priceMax: null,
+      sort: 'plus_recent',
+      view: 'grid',     // 'grid' | 'list'
+      page: 1
+    };
+
+    document.addEventListener('app:ready', () => {
+      // Pre-remplir depuis URL
+      hydrateFromURL();
+
+      // Render filtres categories / regions / counts
+      renderCategoryFilters();
+      renderRegionFilters();
+      computeFilterCounts();
+
+      // Wire events
+      wireFilters();
+      wireToolbar();
+      wireMobileFilters();
+      wireGroupCollapse();
+
+      // Applique l'etat aux inputs
+      syncInputsFromState();
+
+      // Render
+      renderProducts();
+    });
+
+    /* ============ URL sync ============ */
+    function hydrateFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      state.query = params.get('q') || '';
+      if (params.get('category')) state.categories = params.get('category').split(',').filter(Boolean);
+      if (params.get('certs')) state.certs = params.get('certs').split(',').filter(Boolean);
+      if (params.get('trust')) state.trust = params.get('trust').split(',').filter(Boolean);
+      if (params.get('regions')) state.regions = params.get('regions').split(',').filter(Boolean);
+      if (params.get('min')) state.priceMin = parseInt(params.get('min'), 10) || null;
+      if (params.get('max')) state.priceMax = parseInt(params.get('max'), 10) || null;
+      if (params.get('sort')) state.sort = params.get('sort');
+      if (params.get('view')) state.view = params.get('view') === 'list' ? 'list' : 'grid';
+      if (params.get('page')) state.page = Math.max(1, parseInt(params.get('page'), 10) || 1);
+    }
+
+    function syncURLFromState() {
+      const params = new URLSearchParams();
+      if (state.query) params.set('q', state.query);
+      if (state.categories.length) params.set('category', state.categories.join(','));
+      if (state.certs.length) params.set('certs', state.certs.join(','));
+      if (state.trust.length) params.set('trust', state.trust.join(','));
+      if (state.regions.length) params.set('regions', state.regions.join(','));
+      if (state.priceMin != null) params.set('min', String(state.priceMin));
+      if (state.priceMax != null) params.set('max', String(state.priceMax));
+      if (state.sort !== 'plus_recent') params.set('sort', state.sort);
+      if (state.view === 'list') params.set('view', 'list');
+      if (state.page > 1) params.set('page', String(state.page));
+      const qs = params.toString();
+      const newURL = window.location.pathname + (qs ? '?' + qs : '');
+      window.history.replaceState({}, '', newURL);
+    }
+
+    function syncInputsFromState() {
+      document.getElementById('filter-search').value = state.query;
+      document.getElementById('sort-select').value = state.sort;
+      document.getElementById('price-min').value = state.priceMin != null ? state.priceMin : '';
+      document.getElementById('price-max').value = state.priceMax != null ? state.priceMax : '';
+      // checkboxes
+      document.querySelectorAll('[data-cert]').forEach(c => { c.checked = state.certs.includes(c.dataset.cert); });
+      document.querySelectorAll('[data-trust]').forEach(c => { c.checked = state.trust.includes(c.dataset.trust); });
+      document.querySelectorAll('[data-category]').forEach(c => { c.checked = state.categories.includes(c.dataset.category); });
+      document.querySelectorAll('[data-region]').forEach(c => { c.checked = state.regions.includes(c.dataset.region); });
+      // view toggle
+      document.getElementById('view-grid').classList.toggle('active', state.view === 'grid');
+      document.getElementById('view-list').classList.toggle('active', state.view === 'list');
+    }
+
+    /* ============ Filtres rendering ============ */
+    function renderCategoryFilters() {
+      const container = document.getElementById('filter-categories');
+      const counts = countByCategory();
+      container.innerHTML = Data.categories.map(c => `
+        <label class="filter-check">
+          <input type="checkbox" data-category="${Utils.escapeHtml(c.nom)}">
+          ${Utils.escapeHtml(c.nom)}
+          <span class="count">${counts[c.nom] || 0}</span>
+        </label>
+      `).join('');
+    }
+
+    function renderRegionFilters() {
+      const container = document.getElementById('filter-regions');
+      const counts = countByRegion();
+      container.innerHTML = Data.regions.map(r => `
+        <label class="filter-check">
+          <input type="checkbox" data-region="${Utils.escapeHtml(r.nom)}">
+          ${Utils.escapeHtml(r.nom)}
+          <span class="count">${counts[r.nom] || 0}</span>
+        </label>
+      `).join('');
+    }
+
+    function countByCategory() {
+      const m = {};
+      Data.products.forEach(p => { m[p.categorie] = (m[p.categorie] || 0) + 1; });
+      return m;
+    }
+    function countByRegion() {
+      const m = {};
+      Data.products.forEach(p => {
+        const r = p.region;
+        if (r) m[r] = (m[r] || 0) + 1;
+      });
+      return m;
+    }
+    function countByCert() {
+      const m = { BioSPG: 0, ABNORM: 0, Made_in_BF: 0 };
+      Data.products.forEach(p => {
+        (p.certification || []).forEach(c => { if (m[c] != null) m[c]++; });
+      });
+      return m;
+    }
+    function countByTrust() {
+      const m = { bronze: 0, argent: 0, or: 0 };
+      Data.products.forEach(p => {
+        const s = Data.getSeller(p.vendeur_id);
+        if (s && s.trust_level && m[s.trust_level] != null) m[s.trust_level]++;
+      });
+      return m;
+    }
+    function computeFilterCounts() {
+      const cc = countByCert();
+      Object.keys(cc).forEach(k => { const el = document.getElementById('cert-count-' + k); if (el) el.textContent = cc[k]; });
+      const tt = countByTrust();
+      Object.keys(tt).forEach(k => { const el = document.getElementById('trust-count-' + k); if (el) el.textContent = tt[k]; });
+    }
+
+    /* ============ Wiring ============ */
+    function wireFilters() {
+      // Recherche (debounce)
+      const searchInput = document.getElementById('filter-search');
+      const debouncedSearch = Utils.debounce(() => {
+        state.query = searchInput.value.trim();
+        state.page = 1;
+        renderProducts();
+      }, 300);
+      searchInput.addEventListener('input', debouncedSearch);
+
+      // Categories
+      document.getElementById('filter-categories').addEventListener('change', (e) => {
+        const cb = e.target.closest('[data-category]');
+        if (!cb) return;
+        const c = cb.dataset.category;
+        if (cb.checked) { if (!state.categories.includes(c)) state.categories.push(c); }
+        else { state.categories = state.categories.filter(x => x !== c); }
+        state.page = 1;
+        renderProducts();
+      });
+
+      // Certs
+      document.getElementById('filter-certs').addEventListener('change', (e) => {
+        const cb = e.target.closest('[data-cert]');
+        if (!cb) return;
+        const c = cb.dataset.cert;
+        if (cb.checked) { if (!state.certs.includes(c)) state.certs.push(c); }
+        else { state.certs = state.certs.filter(x => x !== c); }
+        state.page = 1;
+        renderProducts();
+      });
+
+      // Trust
+      document.getElementById('filter-trust').addEventListener('change', (e) => {
+        const cb = e.target.closest('[data-trust]');
+        if (!cb) return;
+        const t = cb.dataset.trust;
+        if (cb.checked) { if (!state.trust.includes(t)) state.trust.push(t); }
+        else { state.trust = state.trust.filter(x => x !== t); }
+        state.page = 1;
+        renderProducts();
+      });
+
+      // Regions
+      document.getElementById('filter-regions').addEventListener('change', (e) => {
+        const cb = e.target.closest('[data-region]');
+        if (!cb) return;
+        const r = cb.dataset.region;
+        if (cb.checked) { if (!state.regions.includes(r)) state.regions.push(r); }
+        else { state.regions = state.regions.filter(x => x !== r); }
+        state.page = 1;
+        renderProducts();
+      });
+
+      // Price
+      document.getElementById('apply-price').addEventListener('click', () => {
+        const min = document.getElementById('price-min').value.trim();
+        const max = document.getElementById('price-max').value.trim();
+        state.priceMin = min ? parseInt(min, 10) : null;
+        state.priceMax = max ? parseInt(max, 10) : null;
+        state.page = 1;
+        renderProducts();
+      });
+
+      // Reset
+      document.getElementById('reset-filters').addEventListener('click', () => {
+        state.query = '';
+        state.categories = [];
+        state.certs = [];
+        state.trust = [];
+        state.regions = [];
+        state.priceMin = null;
+        state.priceMax = null;
+        state.sort = 'plus_recent';
+        state.page = 1;
+        syncInputsFromState();
+        renderProducts();
+      });
+    }
+
+    function wireToolbar() {
+      // Sort
+      document.getElementById('sort-select').addEventListener('change', (e) => {
+        state.sort = e.target.value;
+        renderProducts();
+      });
+
+      // View toggle
+      document.getElementById('view-grid').addEventListener('click', () => {
+        state.view = 'grid';
+        document.getElementById('view-grid').classList.add('active');
+        document.getElementById('view-list').classList.remove('active');
+        applyViewMode();
+        syncURLFromState();
+      });
+      document.getElementById('view-list').addEventListener('click', () => {
+        state.view = 'list';
+        document.getElementById('view-list').classList.add('active');
+        document.getElementById('view-grid').classList.remove('active');
+        applyViewMode();
+        syncURLFromState();
+      });
+    }
+
+    function applyViewMode() {
+      const grid = document.getElementById('products-grid');
+      grid.classList.toggle('list-mode', state.view === 'list');
+    }
+
+    function wireMobileFilters() {
+      const sidebar = document.getElementById('filters-sidebar');
+      const overlay = document.getElementById('filters-overlay');
+      const openBtn = document.getElementById('filters-open');
+      const closeBtn = document.getElementById('filters-close');
+      if (openBtn) openBtn.addEventListener('click', () => {
+        sidebar.classList.add('open');
+        overlay.classList.add('open');
+      });
+      const close = () => {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('open');
+      };
+      if (closeBtn) closeBtn.addEventListener('click', close);
+      if (overlay) overlay.addEventListener('click', close);
+    }
+
+    function wireGroupCollapse() {
+      document.querySelectorAll('.filter-group-title').forEach(t => {
+        t.addEventListener('click', () => {
+          t.closest('.filter-group').classList.toggle('collapsed');
+        });
+      });
+    }
+
+    /* ============ Rendering ============ */
+    function applyFilters() {
+      let products = state.query
+        ? Search.fuzzySearch(state.query)
+        : Data.products.slice();
+
+      // Categories (multi)
+      if (state.categories.length) {
+        products = products.filter(p => state.categories.includes(p.categorie));
+      }
+      // Certifications (multi)
+      if (state.certs.length) {
+        products = products.filter(p =>
+          state.certs.some(c => (p.certification || []).includes(c))
+        );
+      }
+      // Trust (multi)
+      if (state.trust.length) {
+        products = products.filter(p => {
+          const s = Data.getSeller(p.vendeur_id);
+          return s && state.trust.includes(s.trust_level);
+        });
+      }
+      // Regions (multi)
+      if (state.regions.length) {
+        products = products.filter(p => state.regions.includes(p.region));
+      }
+      // Price
+      if (state.priceMin != null) {
+        products = products.filter(p => p.prix >= state.priceMin);
+      }
+      if (state.priceMax != null) {
+        products = products.filter(p => p.prix <= state.priceMax);
+      }
+
+      // Sort
+      products = Search.sortProducts(products, state.sort);
+      return products;
+    }
+
+    function renderProducts() {
+      applyViewMode();
+      const grid = document.getElementById('products-grid');
+      const allFiltered = applyFilters();
+      const count = allFiltered.length;
+      document.getElementById('results-count').innerHTML = `<strong>${count}</strong> produit${count > 1 ? 's' : ''} trouve${count > 1 ? 's' : ''}`;
+
+      // Pagination
+      const totalPages = Math.max(1, Math.ceil(count / PAGE_SIZE));
+      if (state.page > totalPages) state.page = totalPages;
+      const start = (state.page - 1) * PAGE_SIZE;
+      const pageItems = allFiltered.slice(start, start + PAGE_SIZE);
+
+      if (!pageItems.length) {
+        grid.innerHTML = `
+          <div class="empty-state-catalog">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:64px;height:64px;opacity:0.4;margin:0 auto var(--sp-md);">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <h3>Aucun produit ne correspond</h3>
+            <p>Essayez un autre terme de recherche ou reinitialisez les filtres.</p>
+          </div>
+        `;
+      } else {
+        ProductsView.renderGrid(grid, pageItems);
+      }
+
+      renderPagination(totalPages);
+      syncURLFromState();
+
+      // Scroll to top on page change if not first render
+      // (silently done via user click)
+    }
+
+    function renderPagination(totalPages) {
+      const container = document.getElementById('catalog-pagination');
+      if (totalPages <= 1) { container.innerHTML = ''; return; }
+
+      const buttons = [];
+      // Prev
+      buttons.push(`<button data-page="${state.page - 1}" ${state.page === 1 ? 'disabled' : ''} aria-label="Page precedente">‹</button>`);
+
+      // Page numbers with ellipsis
+      const pages = [];
+      const push = (n) => { if (!pages.includes(n)) pages.push(n); };
+      push(1);
+      if (state.page - 2 > 2) pages.push('...');
+      for (let n = Math.max(2, state.page - 1); n <= Math.min(totalPages - 1, state.page + 1); n++) push(n);
+      if (state.page + 2 < totalPages - 1) pages.push('...');
+      if (totalPages > 1) push(totalPages);
+
+      pages.forEach(p => {
+        if (p === '...') buttons.push(`<span class="page-ellipsis">…</span>`);
+        else buttons.push(`<button data-page="${p}" class="${p === state.page ? 'active' : ''}" aria-label="Page ${p}" ${p === state.page ? 'aria-current="page"' : ''}>${p}</button>`);
+      });
+
+      // Next
+      buttons.push(`<button data-page="${state.page + 1}" ${state.page === totalPages ? 'disabled' : ''} aria-label="Page suivante">›</button>`);
+
+      container.innerHTML = buttons.join('');
+      container.querySelectorAll('button[data-page]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const n = parseInt(btn.dataset.page, 10);
+          if (!isNaN(n) && n >= 1 && n <= totalPages && n !== state.page) {
+            state.page = n;
+            renderProducts();
+            // Scroll to top of grid
+            const grid = document.getElementById('products-grid');
+            if (grid) {
+              const rect = grid.getBoundingClientRect();
+              const target = rect.top + window.scrollY - 100;
+              window.scrollTo({ top: target, behavior: 'smooth' });
+            }
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

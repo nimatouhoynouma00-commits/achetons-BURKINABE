@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "version": "2.0",
+    "description": "Skills, competences et MCP servers utiles pour la conception et le developpement"
+  },
+  "skills_needed": [
+    {
+      "id": "SK01",
+      "name": "HTML5 Semantique",
+      "category": "frontend_structure",
+      "description": "Structure HTML semantique W3C, ARIA labels, forms accessibles"
+    },
+    {
+      "id": "SK02",
+      "name": "CSS3 Advanced",
+      "category": "frontend_styling",
+      "description": "Custom properties, Grid, Flexbox, responsive, dark mode, animations"
+    },
+    {
+      "id": "SK03",
+      "name": "JavaScript Vanilla ES6+",
+      "category": "frontend_logic",
+      "description": "DOM manipulation, events, localStorage, SPA routing, form validation"
+    },
+    {
+      "id": "SK04",
+      "name": "Data Modeling JSON",
+      "category": "data",
+      "description": "JSON schemas, CRUD localStorage, data seeding, reference integrity"
+    },
+    {
+      "id": "SK05",
+      "name": "UX Research & Design",
+      "category": "design",
+      "description": "Personas, user flows, wireframes, accessibility, WCAG"
+    },
+    {
+      "id": "SK06",
+      "name": "UI Design System",
+      "category": "design",
+      "description": "Color theory, typography, spacing, components, icons SVG"
+    },
+    {
+      "id": "SK07",
+      "name": "IxD Interaction Design",
+      "category": "design",
+      "description": "Feedback patterns, state management, error handling, animation"
+    },
+    {
+      "id": "SK08",
+      "name": "Chrome DevTools",
+      "category": "testing",
+      "description": "Console debugging, network analysis, device emulation, localStorage inspection"
+    },
+    {
+      "id": "SK09",
+      "name": "Anti-IA Style",
+      "category": "quality",
+      "description": "Comment audit, human text style, maintenance-friendly code"
+    },
+    {
+      "id": "SK10",
+      "name": "Loop Engineering",
+      "category": "process",
+      "description": "Iterative conception with checking and reflection cycles"
+    }
+  ],
+  "mcp_servers_recommended": [
+    {
+      "name": "Chrome DevTools Protocol",
+      "usage": "Testing site in headless Chrome, verifying console, layout, localStorage",
+      "url": "https://chromedevtools.github.io/devtools-protocol/"
+    },
+    {
+      "name": "W3C Validator API",
+      "usage": "Validating HTML structure",
+      "url": "https://validator.w3.org/"
+    },
+    {
+      "name": "CSS Stats",
+      "usage": "Analyzing CSS complexity and consistency",
+      "url": "https://cssstats.com/"
+    },
+    {
+      "name": "WebAIM Contrast Checker",
+      "usage": "Verifying WCAG AA contrast ratios",
+      "url": "https://webaim.org/resources/contrastchecker/"
+    },
+    {
+      "name": "axe-core",
+      "usage": "Accessibility testing library",
+      "url": "https://github.com/dequelabs/axe-core"
+    },
+    {
+      "name": "Lighthouse",
+      "usage": "Performance, accessibility, best practices audit",
+      "url": "https://developers.google.com/web/tools/lighthouse"
+    }
+  ],
+  "tools_for_images": [
+    {
+      "name": "Unsplash",
+      "usage": "Free high-quality photos of products",
+      "url": "https://unsplash.com/"
+    },
+    {
+      "name": "Wikimedia Commons",
+      "usage": "Free real photos with context",
+      "url": "https://commons.wikimedia.org/"
+    },
+    {
+      "name": "SVG Optimization (SVGO)",
+      "usage": "Optimizing SVG icons for web",
+      "url": "https://github.com/svg/svgo"
+    },
+    {
+      "name": "RealFaviconGenerator",
+      "usage": "Generating favicon from SVG",
+      "url": "https://realfavicongenerator.net/"
+    },
+    {
+      "name": "Squoosh",
+      "usage": "Image compression and format conversion",
+      "url": "https://squoosh.app/"
+    }
+  ]
+}

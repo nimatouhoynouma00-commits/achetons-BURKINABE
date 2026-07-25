@@ -1,0 +1,34 @@
+{
+  "reseller_rules": {
+    "types": {
+      "grande_boutique": {
+        "min_lot_size": 50,
+        "unites": [
+          "kg",
+          "unites",
+          "tonnes"
+        ],
+        "remise_percentage": 15,
+        "description": "Grandes boutiques et distributeurs passant des commandes en gros (50+ kg/unites)"
+      },
+      "petite_boutique": {
+        "min_lot_size": 10,
+        "unites": [
+          "kg",
+          "unites"
+        ],
+        "remise_percentage": 8,
+        "description": "Petites boutiques et revendeurs locaux passant des commandes moyennes (10+ kg/unites)"
+      }
+    },
+    "pricing_calculation": [
+      "prix_lot = prix_unitaire * quantite_lot * (1 - remise_percentage / 100)",
+      "economie = prix_unitaire * quantite_lot * remise_percentage / 100"
+    ],
+    "bulk_cart_rules": {
+      "min_item_quantity": "depends on boutique type",
+      "cart_must_meet_minimum": true,
+      "receipt_includes_remise_details": true
+    }
+  }
+}

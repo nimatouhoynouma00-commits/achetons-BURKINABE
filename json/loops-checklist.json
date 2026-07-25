@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "version": "2.0",
+    "description": "Checklist detaillee pour chaque loop de conception"
+  },
+  "loops": [
+    {
+      "loop_id": "L0",
+      "name": "Initialisation",
+      "status": "completed",
+      "items_checked": [
+        "Code source analyse",
+        "Objectifs definis",
+        "Structure creee"
+      ],
+      "checker": "chef_testeur",
+      "check_result": "CHECK OK"
+    },
+    {
+      "loop_id": "L1",
+      "name": "Recherche",
+      "status": "completed",
+      "items_checked": [
+        "Donnees Burkina collectees",
+        "Cooperatives identifiees",
+        "Certifications documentees",
+        "Images sources identifiees",
+        "Loop Engineering compris"
+      ],
+      "checker": "architecte_projet",
+      "check_result": "CHECK OK"
+    },
+    {
+      "loop_id": "L2",
+      "name": "Design System",
+      "status": "completed",
+      "items_checked": [
+        "Palette complete",
+        "Typographie",
+        "Spacing",
+        "Icons",
+        "Composants",
+        "Dark mode"
+      ],
+      "checker": "testeur_design",
+      "check_result": "CHECK OK"
+    },
+    {
+      "loop_id": "L3",
+      "name": "Wireframes & Logic",
+      "status": "completed",
+      "items_checked": [
+        "11 pages wireframed",
+        "YAML logic",
+        "User flows",
+        "Personas"
+      ],
+      "checker": "testeur_ux",
+      "check_result": "CHECK OK"
+    },
+    {
+      "loop_id": "L4",
+      "name": "Data Architecture",
+      "status": "completed",
+      "items_checked": [
+        "Products JSON",
+        "Sellers JSON",
+        "Categories",
+        "Certifications",
+        "Regions",
+        "Beta accounts",
+        "Trust badges",
+        "Search config",
+        "Cart rules",
+        "Reseller rules",
+        "Form schemas"
+      ],
+      "checker": "testeur_data",
+      "check_result": "CHECK OK"
+    },
+    {
+      "loop_id": "L5",
+      "name": "Code HTML",
+      "status": "pending",
+      "items_checked": [],
+      "checker": "testeur_html",
+      "check_result": "PENDING"
+    },
+    {
+      "loop_id": "L6",
+      "name": "Code CSS",
+      "status": "pending",
+      "items_checked": [],
+      "checker": "testeur_css",
+      "check_result": "PENDING"
+    },
+    {
+      "loop_id": "L7",
+      "name": "Code JavaScript",
+      "status": "pending",
+      "items_checked": [],
+      "checker": "testeur_js",
+      "check_result": "PENDING"
+    },
+    {
+      "loop_id": "L8",
+      "name": "Integration & Anti-IA",
+      "status": "pending",
+      "items_checked": [],
+      "checker": "chef_testeur",
+      "check_result": "PENDING"
+    },
+    {
+      "loop_id": "L9",
+      "name": "Chrome DevTools Simulation",
+      "status": "pending",
+      "items_checked": [],
+      "checker": "chef_testeur",
+      "check_result": "PENDING"
+    },
+    {
+      "loop_id": "L10",
+      "name": "Finalisation & Livraison",
+      "status": "pending",
+      "items_checked": [],
+      "checker": "architecte_projet + chef_testeur",
+      "check_result": "PENDING"
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "meta": {
+    "version": "2.0",
+    "date": "2026-07-24"
+  },
+  "sellers": [
+    {
+      "id": "SEL001",
+      "nom": "Cooperative Femmes de Leo",
+      "type": "cooperative",
+      "region": "Sud-Ouest",
+      "ville": "Leo",
+      "telephone": "70 25 36 48",
+      "email": "femmesleo@achetons.bf",
+      "description": "Cooperative de femmes productrices de karite dans la region du Sud-Ouest. Plus de 200 femmes membres qui transforme le karite selon les methods traditionnelles.",
+      "categories": [
+        "Karite"
+      ],
+      "trust_level": "argent",
+      "ventes_count": 87,
+      "products_count": 2,
+      "date_creation": "2019-03-15",
+      "certification_cooperative": [
+        "BioSPG"
+      ],
+      "logo_url": "images/products/karite-beurre.jpg"
+    },
+    {
+      "id": "SEL002",
+      "nom": "Atelier Sougrinooma",
+      "type": "artisan_individuel",
+      "region": "Centre",
+      "ville": "Ouagadougou",
+      "telephone": "70 12 34 56",
+      "email": "sougrinooma@achetons.bf",
+      "description": "Atelier artisanal de fabrication de savons naturels a Ouagadougou. Specialise dans les savons au karite et au miel.",
+      "categories": [
+        "Karite"
+      ],
+      "trust_level": "bronze",
+      "ventes_count": 34,
+      "products_count": 1,
+      "date_creation": "2022-01-10"
+    },
+    {
+      "id": "SEL003",
+      "nom": "Ferme Wend-Kuni",
+      "type": "producteur_agricole",
+      "region": "Boucle du Mouhoun",
+      "ville": "Dedougou",
+      "telephone": "70 45 67 89",
+      "email": "wendkuni@achetons.bf",
+      "description": "Ferme agricole familiale productrice de sesame dore dans la Boucle du Mouhoun, la premiere region sesame du Burkina.",
+      "categories": [
+        "Sesame"
+      ],
+      "trust_level": "argent",
+      "ventes_count": 120,
+      "products_count": 1,
+      "date_creation": "2018-06-20",
+      "certification_cooperative": [
+        "BioSPG",
+        "ABNORM"
+      ]
+    },
+    {
+      "id": "SEL004",
+      "nom": "Cooperative Wend-Kuni",
+      "type": "cooperative",
+      "region": "Boucle du Mouhoun",
+      "ville": "Dedougou",
+      "telephone": "70 56 78 90",
+      "email": "coop-wendkuni@achetons.bf",
+      "description": "Cooperative de producteurs de sesame qui transforme les graines en huile artisanale presse a froid.",
+      "categories": [
+        "Sesame"
+      ],
+      "trust_level": "or",
+      "ventes_count": 215,
+      "products_count": 1,
+      "date_creation": "2017-01-05",
+      "certification_cooperative": [
+        "BioSPG"
+      ]
+    },
+    {
+      "id": "SEL005",
+      "nom": "Apiculteurs de Diebougou",
+      "type": "cooperative",
+      "region": "Sud-Ouest",
+      "ville": "Diebougou",
+      "telephone": "70 67 89 01",
+      "email": "apidiebougou@achetons.bf",
+      "description": "Groupement d'apiculteurs pratiquant une apiculture respectueuse en foret classee du Sud-Ouest.",
+      "categories": [
+        "Miel"
+      ],
+      "trust_level": "argent",
+      "ventes_count": 95,
+      "products_count": 2,
+      "date_creation": "2020-04-01",
+      "certification_cooperative": [
+        "BioSPG"
+      ]
+    },
+    {
+      "id": "SEL006",
+      "nom": "Tisserands de Koudougou",
+      "type": "cooperative",
+      "region": "Centre-Ouest",
+      "ville": "Koudougou",
+      "telephone": "70 78 90 12",
+      "email": "tisserands-kdg@achetons.bf",
+      "description": "Cooperative de tisserands traditionnels de Koudougou, centre historique du tissage au Burkina.",
+      "categories": [
+        "Coton"
+      ],
+      "trust_level": "argent",
+      "ventes_count": 68,
+      "products_count": 1,
+      "date_creation": "2019-08-10"
+    },
+    {
+      "id": "SEL007",
+      "nom": "Cooperative de filature de Bobo",
+      "type": "cooperative",
+      "region": "Hauts-Bassins",
+      "ville": "Bobo-Dioulasso",
+      "telephone": "70 89 01 23",
+      "email": "filature-bobo@achetons.bf",
+      "description": "Cooperative de filature artisanale de coton a Bobo-Dioulasso.",
+      "categories": [
+        "Coton"
+      ],
+      "trust_level": "bronze",
+      "ventes_count": 28,
+      "products_count": 1,
+      "date_creation": "2023-02-15"
+    },
+    {
+      "id": "SEL008",
+      "nom": "Artisans de Ouahigouya",
+      "type": "cooperative",
+      "region": "Nord",
+      "ville": "Ouahigouya",
+      "telephone": "70 90 12 34",
+      "email": "artisans-ohg@achetons.bf",
+      "description": "Groupement d'artisans tresseurs du Nord du Burkina, specialises dans les paniers et objets decoratifs.",
+      "categories": [
+        "Artisanat"
+      ],
+      "trust_level": "argent",
+      "ventes_count": 55,
+      "products_count": 1,
+      "date_creation": "2020-05-20"
+    },
+    {
+      "id": "SEL009",
+      "nom": "Fondeurs de Ouagadougou",
+      "type": "artisan_individuel",
+      "region": "Centre",
+      "ville": "Ouagadougou",
+      "telephone": "70 01 23 45",
+      "email": "fondeurs-odg@achetons.bf",
+      "description": "Maitres fondeurs de bronze utilisant la technique ancestrale de la cire perdue.",
+      "categories": [
+        "Artisanat"
+      ],
+      "trust_level": "or",
+      "ventes_count": 230,
+      "products_count": 1,
+      "date_creation": "2016-01-01",
+      "certification_cooperative": [
+        "ABNORM"
+      ]
+    },
+    {
+      "id": "SEL010",
+      "nom": "Sculpteurs de Bobo-Dioulasso",
+      "type": "cooperative",
+      "region": "Hauts-Bassins",
+      "ville": "Bobo-Dioulasso",
+      "telephone": "70 12 34 56",
+      "email": "sculpteurs-bobo@achetons.bf",
+      "description": "Sculpteurs traditionnels de Bobo-Dioulasso, capitale culturelle du Burkina Faso.",
+      "categories": [
+        "Artisanat"
+      ],
+      "trust_level": "argent",
+      "ventes_count": 78,
+      "products_count": 1,
+      "date_creation": "2019-06-15"
+    },
+    {
+      "id": "SEL011",
+      "nom": "Artisanes de Dori",
+      "type": "cooperative",
+      "region": "Sahel",
+      "ville": "Dori",
+      "telephone": "70 23 45 67",
+      "email": "artisanes-dori@achetons.bf",
+      "description": "Artisanes du Sahel specialises dans les bijoux en perles traditionnelles.",
+      "categories": [
+        "Artisanat"
+      ],
+      "trust_level": "bronze",
+      "ventes_count": 42,
+      "products_count": 1,
+      "date_creation": "2021-09-10"
+    }
+  ]
+}

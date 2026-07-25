@@ -1,0 +1,98 @@
+/* dark-mode.css - Adaptations specifiques au mode sombre */
+
+:root[data-theme="dark"] body {
+  color-scheme: dark;
+}
+
+:root[data-theme="dark"] .badge-category {
+  background: rgba(168, 83, 31, 0.25);
+  color: var(--miel-clair);
+}
+
+:root[data-theme="dark"] .btn-secondary {
+  color: var(--miel-clair);
+  border-color: var(--terre);
+}
+
+:root[data-theme="dark"] .btn-secondary:hover {
+  background: var(--terre);
+  color: #fff;
+}
+
+:root[data-theme="dark"] .btn-ghost {
+  color: var(--texte);
+  border-color: var(--ligne);
+}
+
+:root[data-theme="dark"] .btn-ghost:hover {
+  background: var(--sesame);
+  color: var(--miel-clair);
+  border-color: var(--miel);
+}
+
+:root[data-theme="dark"] .filter-chip {
+  background: var(--carte);
+  border-color: var(--ligne);
+  color: var(--texte);
+}
+
+:root[data-theme="dark"] .filter-chip.active {
+  background: var(--terre);
+  border-color: var(--terre);
+  color: #fff;
+}
+
+:root[data-theme="dark"] .toast.success { background: #1f8c4d; }
+:root[data-theme="dark"] .toast.error   { background: #962d22; }
+:root[data-theme="dark"] .toast.warning { background: #c97f0d; }
+:root[data-theme="dark"] .toast.info    { background: #1c6a9c; }
+
+:root[data-theme="dark"] .badge-bronze {
+  background: #8a5520;
+}
+
+:root[data-theme="dark"] .search-bar .form-input {
+  background: var(--carte);
+}
+
+:root[data-theme="dark"] .stepper button {
+  background: var(--sesame);
+  color: var(--miel-clair);
+}
+
+:root[data-theme="dark"] .stepper input {
+  background: var(--carte);
+}
+
+:root[data-theme="dark"] .tag {
+  background: var(--sesame);
+  color: var(--texte-doux);
+}
+
+:root[data-theme="dark"] .eyebrow {
+  color: var(--miel);
+}
+
+:root[data-theme="dark"] .price,
+:root[data-theme="dark"] .price-large,
+:root[data-theme="dark"] .price-small {
+  color: var(--miel);
+}
+
+:root[data-theme="dark"] a {
+  color: var(--miel);
+}
+
+:root[data-theme="dark"] a:hover {
+  color: var(--miel-clair);
+}
+
+:root[data-theme="dark"] .motif-strip {
+  opacity: 0.85;
+}
+
+:root[data-theme="dark"] .form-input::placeholder,
+:root[data-theme="dark"] .form-textarea::placeholder {
+  color: var(--texte-doux);
+  opacity: 0.7;
+}

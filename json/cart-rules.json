@@ -1,0 +1,17 @@
+{
+  "cart_rules": {
+    "max_items": 50,
+    "min_quantity_per_item": 1,
+    "max_quantity_per_item": 999,
+    "allow_multiple_sellers": true,
+    "delivery_note": "Livraison a confirmer avec chaque vendeur individuellement. La plateforme ne gere pas la livraison.",
+    "payment_note": "Paiement direct avec le vendeur: cash, Wave, Orange Money, Mobile Money. Pas de paiement en ligne via la plateforme.",
+    "checkout_requires_auth": true,
+    "receipt_generation": true,
+    "receipt_format": "HTML_printable",
+    "receipt_number_format": "BF-YYYYMMDD-XXXXX",
+    "save_to_history": true,
+    "notify_sellers": true,
+    "notify_type": "order_received"
+  }
+}

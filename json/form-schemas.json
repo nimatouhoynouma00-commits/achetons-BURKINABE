@@ -1,0 +1,178 @@
+{
+  "schemas": {
+    "login": {
+      "fields": [
+        {
+          "id": "email",
+          "type": "text",
+          "label": "Email ou telephone",
+          "required": true,
+          "validation": "email_or_phone",
+          "error_message": "Merci d'indiquer un email ou telephone valide"
+        },
+        {
+          "id": "password",
+          "type": "password",
+          "label": "Mot de passe",
+          "required": true,
+          "min_length": 4,
+          "error_message": "Mot de passe trop court"
+        }
+      ]
+    },
+    "register_acheteur": {
+      "fields": [
+        {
+          "id": "nom",
+          "type": "text",
+          "label": "Nom complet",
+          "required": true,
+          "min_length": 2
+        },
+        {
+          "id": "email",
+          "type": "email",
+          "label": "Email",
+          "required": true
+        },
+        {
+          "id": "telephone",
+          "type": "tel",
+          "label": "Telephone",
+          "required": true,
+          "pattern": "^[0-9\\s+]{8,}$"
+        },
+        {
+          "id": "password",
+          "type": "password",
+          "label": "Mot de passe",
+          "required": true,
+          "min_length": 4
+        },
+        {
+          "id": "ville",
+          "type": "select",
+          "label": "Ville",
+          "required": true,
+          "options_source": "regions.json"
+        }
+      ]
+    },
+    "register_vendeur": {
+      "fields": [
+        {
+          "id": "nom",
+          "type": "text",
+          "label": "Nom ou nom de boutique",
+          "required": true,
+          "min_length": 2
+        },
+        {
+          "id": "email",
+          "type": "email",
+          "label": "Email",
+          "required": true
+        },
+        {
+          "id": "telephone",
+          "type": "tel",
+          "label": "Telephone",
+          "required": true
+        },
+        {
+          "id": "password",
+          "type": "password",
+          "label": "Mot de passe",
+          "required": true,
+          "min_length": 4
+        },
+        {
+          "id": "region",
+          "type": "select",
+          "label": "Region d'activite",
+          "required": true,
+          "options_source": "regions.json"
+        },
+        {
+          "id": "type_vendeur",
+          "type": "select",
+          "label": "Type de vendeur",
+          "required": true,
+          "options": [
+            "Cooperative",
+            "Artisan individuel",
+            "Producteur agricole",
+            "Revendeur boutique"
+          ]
+        },
+        {
+          "id": "categories",
+          "type": "multi_select",
+          "label": "Categories de produits",
+          "options_source": "categories.json"
+        }
+      ]
+    },
+    "contact_vendeur": {
+      "fields": [
+        {
+          "id": "nom",
+          "type": "text",
+          "label": "Nom complet",
+          "required": true,
+          "min_length": 2
+        },
+        {
+          "id": "contact_info",
+          "type": "text",
+          "label": "Telephone ou email",
+          "required": true,
+          "validation": "email_or_phone"
+        },
+        {
+          "id": "produit",
+          "type": "select",
+          "label": "Produit concerne",
+          "required": true,
+          "options_source": "products.json"
+        },
+        {
+          "id": "message",
+          "type": "textarea",
+          "label": "Votre message",
+          "required": true,
+          "min_length": 10
+        }
+      ]
+    },
+    "checkout": {
+      "fields": [
+        {
+          "id": "buyer_name",
+          "type": "text",
+          "label": "Nom complet",
+          "required": true
+        },
+        {
+          "id": "buyer_phone",
+          "type": "tel",
+          "label": "Telephone",
+          "required": true
+        },
+        {
+          "id": "buyer_address",
+          "type": "textarea",
+          "label": "Adresse de livraison",
+          "required": true
+        },
+        {
+          "id": "buyer_city",
+          "type": "select",
+          "label": "Ville",
+          "required": true,
+          "options_source": "regions.json villes"
+        }
+      ]
+    }
+  }
+}
